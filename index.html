@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="meta-title">Daniele Sforza — Software & Mobile Developer</title>
+  <meta name="description" id="meta-desc" content="Sito personale e portfolio di Daniele Sforza. Sviluppo applicazioni mobile native e multipiattaforma per iOS e Android.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0e17;
+      --card-bg: rgba(17, 24, 39, 0.7);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-hover: rgba(99, 102, 241, 0.35);
+      --primary: #6366f1;
+      --primary-hover: #4f46e5;
+      --primary-light: rgba(99, 102, 241, 0.12);
+      --accent: #38bdf8;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --radius: 16px;
+      --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.15), transparent 45%),
+        radial-gradient(circle at 90% 70%, rgba(56, 189, 248, 0.12), transparent 45%);
+      background-attachment: fixed;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+      width: 100%;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(10, 14, 23, 0.85);
+      border-bottom: 1px solid var(--card-border);
+      padding: 18px 0;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--primary);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--primary);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    .lang-switcher {
+      display: flex;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 3px;
+      border-radius: 20px;
+      border: 1px solid var(--card-border);
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: inherit;
+      font-size: 0.775rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .lang-btn.active {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 80px 0 60px;
+      text-align: left;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary-light);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      color: #a5b4fc;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 30px;
+      margin-bottom: 24px;
+    }
+
+    .hero-badge::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      background: #4ade80;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #4ade80;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #ffffff 40%, #c7d2fe 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+      color: var(--text-muted);
+      max-width: 680px;
+      margin-bottom: 32px;
+      line-height: 1.55;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: 12px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.07);
+      color: var(--text);
+      border: 1px solid var(--card-border);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+    }
+
+    /* Section styling */
+    .section {
+      padding: 48px 0;
+    }
+
+    .section-header {
+      margin-bottom: 28px;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    /* Projects Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 30px;
+      backdrop-filter: blur(12px);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card:hover {
+      border-color: var(--card-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 32px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    .project-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .project-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      box-shadow: 0 6px 16px rgba(99, 102, 241, 0.35);
+      object-fit: cover;
+    }
+
+    .project-title-group h3 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .project-tags {
+      display: flex;
+      gap: 6px;
+      margin-top: 4px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-size: 0.725rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-muted);
+    }
+
+    .tag-live {
+      background: rgba(74, 222, 128, 0.15);
+      color: #4ade80;
+      border: 1px solid rgba(74, 222, 128, 0.3);
+    }
+
+    .tag-upcoming {
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .project-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 24px;
+      flex-grow: 1;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: var(--transition);
+      margin-top: auto;
+    }
+
+    .project-link:hover {
+      color: #a5b4fc;
+      transform: translateX(4px);
+    }
+
+    .project-card.upcoming {
+      border-style: dashed;
+      background: rgba(17, 24, 39, 0.4);
+    }
+
+    .project-card.upcoming:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+    }
+
+    /* Contact Card */
+    .contact-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 40px;
+      text-align: center;
+      margin: 40px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-box::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+    }
+
+    .contact-box h2 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+    }
+
+    .contact-box p {
+      color: var(--text-muted);
+      max-width: 520px;
+      margin: 0 auto 24px;
+      font-size: 1.05rem;
+    }
+
+    .email-chip {
+      display: inline-block;
+      font-family: ui-monospace, monospace;
+      font-size: 1.05rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      padding: 8px 18px;
+      border-radius: 10px;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: auto;
+      border-top: 1px solid var(--card-border);
+      padding: 32px 0;
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 0.875rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #1e293b;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1000;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header>
+    <div class="container nav-inner">
+      <a href="#" class="brand">
+        <span class="brand-dot"></span>
+        <span>Daniele Sforza</span>
+      </a>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="#progetti" id="nav-projects">Progetti</a></li>
+          <li><a href="#contatti" id="nav-contact">Contatti</a></li>
+        </ul>
+        <div class="lang-switcher">
+          <button class="lang-btn active" data-lang="it">IT</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-badge" id="hero-badge">Disponibile per nuovi progetti</div>
+      <h1 id="hero-title">Sviluppatore Mobile &amp; Software Engineer</h1>
+      <p id="hero-desc">Creo applicazioni e strumenti digitali curati nell'esperienza utente, performanti e rispettosi della privacy, per iOS, Android e web.</p>
+      <div class="hero-actions">
+        <a href="#progetti" class="btn btn-primary" id="btn-view-projects">Esplora le App</a>
+        <a href="mailto:info@danielesforza.dev" class="btn btn-secondary">info@danielesforza.dev</a>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section" id="progetti">
+      <div class="section-header">
+        <h2 class="section-title" id="sec-projects-title">Progetti &amp; Applicazioni</h2>
+        <p class="section-desc" id="sec-projects-desc">Applicazioni mobile progettate per semplificare la vita quotidiana.</p>
+      </div>
+
+      <div class="projects-grid">
+        <!-- Calendario Turni Card -->
+        <div class="project-card">
+          <div class="project-header">
+            <img src="calendario-turni/icon.png" alt="Calendario Turni" class="project-icon" onerror="this.style.display='none'">
+            <div class="project-title-group">
+              <h3>Calendario Turni</h3>
+              <div class="project-tags">
+                <span class="tag tag-live">Disponibile</span>
+                <span class="tag">iOS</span>
+                <span class="tag">Android</span>
+              </div>
+            </div>
+          </div>
+          <p id="cal-desc">L'agenda intelligente per pianificare i tuoi turni di lavoro. Sincronizzazione automatica con il calendario di sistema, ciclazione dei turni e 100% privacy locale.</p>
+          <a href="calendario-turni/index.html" class="project-link" id="cal-link">
+            Scopri l'app &amp; Assistenza &rarr;
+          </a>
+        </div>
+
+        <!-- Upcoming Projects Card -->
+        <div class="project-card upcoming">
+          <div class="project-header">
+            <div class="project-icon" style="background: rgba(56, 189, 248, 0.15); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; color: var(--accent);">
+              🚀
+            </div>
+            <div class="project-title-group">
+              <h3 id="up-title">Nuovi Progetti</h3>
+              <div class="project-tags">
+                <span class="tag tag-upcoming" id="up-tag">In Sviluppo</span>
+                <span class="tag">Mobile &amp; Web</span>
+              </div>
+            </div>
+          </div>
+          <p id="up-desc">Nuove applicazioni, tool e soluzioni innovative in arrivo presto su App Store e Google Play Store. Resta sintonizzato!</p>
+          <span class="project-link" style="color: var(--text-dim);" id="up-link">Prossimamente &rarr;</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-box" id="contatti">
+      <h2 id="contact-title">Parliamo del tuo prossimo progetto</h2>
+      <p id="contact-desc">Hai una domanda, un feedback su un'app o vuoi collaborare? Scrivimi direttamente all'indirizzo ufficiale.</p>
+      <div class="email-chip">info@danielesforza.dev</div>
+      <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+        <a href="mailto:info@danielesforza.dev" class="btn btn-primary" id="btn-email-me">
+          ✉️ Invia un'email
+        </a>
+        <button class="btn btn-secondary" onclick="copyEmail()">
+          📋 Copia email
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> Daniele Sforza. Tutti i diritti riservati.</p>
+      <div class="footer-links">
+        <a href="calendario-turni/index.html">Calendario Turni</a>
+        <a href="https://www.freeprivacypolicy.com/live/b8457bc8-97bf-47fd-a089-4f37e8677723" target="_blank" rel="noopener">Privacy</a>
+        <a href="mailto:info@danielesforza.dev">Contatti</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast">Email copiata negli appunti!</div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const tData = {
+      it: {
+        metaTitle: "Daniele Sforza — Software & Mobile Developer",
+        metaDesc: "Sito personale e portfolio di Daniele Sforza. Sviluppo applicazioni mobile native e multipiattaforma per iOS e Android.",
+        navProjects: "Progetti",
+        navContact: "Contatti",
+        heroBadge: "Disponibile per nuovi progetti",
+        heroTitle: "Sviluppatore Mobile & Software Engineer",
+        heroDesc: "Creo applicazioni e strumenti digitali curati nell'esperienza utente, performanti e rispettosi della privacy, per iOS, Android e web.",
+        btnProjects: "Esplora le App",
+        secProjectsTitle: "Progetti & Applicazioni",
+        secProjectsDesc: "Applicazioni mobile progettate per semplificare la vita quotidiana.",
+        calDesc: "L'agenda intelligente per pianificare i tuoi turni di lavoro. Sincronizzazione automatica con il calendario di sistema, ciclazione dei turni e 100% privacy locale.",
+        calLink: "Scopri l'app & Assistenza &rarr;",
+        upTitle: "Nuovi Progetti",
+        upTag: "In Sviluppo",
+        upDesc: "Nuove applicazioni, tool e soluzioni innovative in arrivo presto su App Store e Google Play Store. Resta sintonizzato!",
+        upLink: "Prossimamente &rarr;",
+        contactTitle: "Parliamo del tuo prossimo progetto",
+        contactDesc: "Hai una domanda, un feedback su un'app o vuoi collaborare? Scrivimi direttamente all'indirizzo ufficiale.",
+        btnEmailMe: "✉️ Invia un'email",
+        toastCopied: "Email copiata negli appunti!"
+      },
+      en: {
+        metaTitle: "Daniele Sforza — Software & Mobile Developer",
+        metaDesc: "Personal portfolio of Daniele Sforza. Building crafted, high-performance mobile apps for iOS and Android.",
+        navProjects: "Projects",
+        navContact: "Contact",
+        heroBadge: "Available for new projects",
+        heroTitle: "Mobile Developer & Software Engineer",
+        heroDesc: "Crafting polished, high-performance, and privacy-focused digital tools for iOS, Android, and the web.",
+        btnProjects: "Explore Apps",
+        secProjectsTitle: "Projects & Applications",
+        secProjectsDesc: "Mobile applications designed to simplify daily routines.",
+        calDesc: "The smart calendar for managing work shifts. Automatic device calendar sync, recurring shift patterns, and 100% on-device privacy.",
+        calLink: "Explore App & Support &rarr;",
+        upTitle: "Upcoming Projects",
+        upTag: "In Development",
+        upDesc: "New applications and innovative tools coming soon to the App Store and Google Play Store. Stay tuned!",
+        upLink: "Coming Soon &rarr;",
+        contactTitle: "Let's build something together",
+        contactDesc: "Have a question, feedback on an app, or interested in collaborating? Send me a message.",
+        btnEmailMe: "✉️ Send an Email",
+        toastCopied: "Email copied to clipboard!"
+      }
+    };
+
+    function setLanguage(lang) {
+      if (!tData[lang]) lang = 'it';
+      const t = tData[lang];
+
+      document.documentElement.lang = lang;
+      document.getElementById('meta-title').textContent = t.metaTitle;
+      document.getElementById('meta-desc').content = t.metaDesc;
+      document.getElementById('nav-projects').textContent = t.navProjects;
+      document.getElementById('nav-contact').textContent = t.navContact;
+      document.getElementById('hero-badge').textContent = t.heroBadge;
+      document.getElementById('hero-title').innerHTML = t.heroTitle;
+      document.getElementById('hero-desc').textContent = t.heroDesc;
+      document.getElementById('btn-view-projects').textContent = t.btnProjects;
+      document.getElementById('sec-projects-title').textContent = t.secProjectsTitle;
+      document.getElementById('sec-projects-desc').textContent = t.secProjectsDesc;
+      document.getElementById('cal-desc').textContent = t.calDesc;
+      document.getElementById('cal-link').innerHTML = t.calLink;
+      document.getElementById('up-title').textContent = t.upTitle;
+      document.getElementById('up-tag').textContent = t.upTag;
+      document.getElementById('up-desc').textContent = t.upDesc;
+      document.getElementById('up-link').innerHTML = t.upLink;
+      document.getElementById('contact-title').textContent = t.contactTitle;
+      document.getElementById('contact-desc').textContent = t.contactDesc;
+      document.getElementById('btn-email-me').innerHTML = t.btnEmailMe;
+      document.getElementById('toast').textContent = t.toastCopied;
+
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+      localStorage.setItem('portfolio_lang', lang);
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+    });
+
+    const saved = localStorage.getItem('portfolio_lang');
+    const browserLang = (navigator.language || 'it').substring(0, 2).toLowerCase();
+    const initial = saved || (tData[browserLang] ? browserLang : 'it');
+    setLanguage(initial);
+
+    function copyEmail() {
+      navigator.clipboard.writeText('info@danielesforza.dev').then(() => {
+        const toast = document.getElementById('toast');
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2500);
+      });
+    }
+  </script>
+</body>
+</html>

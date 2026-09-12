@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="meta-title">Calendario Turni - Supporto & Assistenza</title>
+  <meta name="description" id="meta-desc" content="Pagina di supporto e assistenza ufficiale per Calendario Turni (iOS e Android).">
+  <link rel="icon" type="image/png" href="icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card-bg: rgba(18, 24, 38, 0.75);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-hover-border: rgba(99, 102, 241, 0.4);
+      --primary: #6366f1;
+      --primary-hover: #4f46e5;
+      --primary-light: rgba(99, 102, 241, 0.12);
+      --accent: #38bdf8;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --radius: 16px;
+      --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(99, 102, 241, 0.15), transparent 45%),
+        radial-gradient(circle at 85% 65%, rgba(56, 189, 248, 0.12), transparent 40%);
+      background-attachment: fixed;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+      width: 100%;
+    }
+
+    /* Navbar */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(11, 15, 25, 0.85);
+      border-bottom: 1px solid var(--card-border);
+      padding: 14px 0;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .back-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--card-border);
+      transition: var(--transition);
+    }
+
+    .back-home:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+      object-fit: cover;
+    }
+
+    .brand-name {
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+    }
+
+    /* Lang selector */
+    .lang-switcher {
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 3px;
+      border-radius: 30px;
+      border: 1px solid var(--card-border);
+      gap: 2px;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: inherit;
+      font-size: 0.775rem;
+      font-weight: 600;
+      padding: 5px 10px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .lang-btn:hover {
+      color: var(--text);
+    }
+
+    .lang-btn.active {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(99, 102, 241, 0.4);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 56px 0 36px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--primary-light);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      color: #a5b4fc;
+      font-size: 0.825rem;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 30px;
+      margin-bottom: 20px;
+    }
+
+    .hero-badge::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      background: #818cf8;
+      border-radius: 50%;
+      display: inline-block;
+      box-shadow: 0 0 8px #818cf8;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 18px;
+      background: linear-gradient(135deg, #ffffff 40%, #a5b4fc 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+      color: var(--text-muted);
+      max-width: 640px;
+      margin: 0 auto 32px;
+    }
+
+    /* Contact Card */
+    .contact-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 36px 32px;
+      backdrop-filter: blur(12px);
+      text-align: center;
+      margin-bottom: 48px;
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+    }
+
+    .contact-card h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -0.02em;
+    }
+
+    .contact-card p {
+      color: var(--text-muted);
+      max-width: 540px;
+      margin: 0 auto 24px;
+      font-size: 1rem;
+    }
+
+    .email-display {
+      display: inline-block;
+      font-family: ui-monospace, monospace;
+      font-size: 0.95rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      padding: 6px 14px;
+      border-radius: 8px;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .contact-actions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: 12px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+      border: 1px solid var(--card-border);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.14);
+      color: #fff;
+    }
+
+    /* Feature pills */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-bottom: 56px;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 24px;
+      transition: var(--transition);
+    }
+
+    .feature-card:hover {
+      border-color: var(--card-hover-border);
+      transform: translateY(-2px);
+    }
+
+    .feature-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: var(--primary-light);
+      color: #a5b4fc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      margin-bottom: 14px;
+    }
+
+    .feature-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* FAQ Section */
+    .faq-section {
+      margin-bottom: 64px;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .faq-item {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .faq-item:hover {
+      border-color: var(--card-hover-border);
+    }
+
+    .faq-question {
+      padding: 18px 22px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+    }
+
+    .faq-icon {
+      transition: transform 0.25s ease;
+      font-size: 1.2rem;
+      color: var(--text-dim);
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+      color: var(--primary);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      padding: 0 22px;
+      color: var(--text-muted);
+      font-size: 0.925rem;
+      line-height: 1.6;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+      padding: 0 22px 20px 22px;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: auto;
+      border-top: 1px solid var(--card-border);
+      padding: 36px 0;
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 0.875rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #1e293b;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1000;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header>
+    <div class="container nav-inner">
+      <div class="brand-group">
+        <a href="../index.html" class="back-home">← danielesforza.dev</a>
+        <a href="#" class="brand">
+          <img src="icon.png" alt="Calendario Turni" class="brand-icon" onerror="this.style.display='none'">
+          <span class="brand-name">Calendario Turni</span>
+        </a>
+      </div>
+      <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="it">IT</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="es">ES</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+        <button class="lang-btn" data-lang="de">DE</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-badge" id="hero-badge">Supporto Ufficiale</div>
+      <h1 id="hero-title">L'agenda intelligente per i tuoi turni</h1>
+      <p id="hero-desc">Organizza i tuoi cicli di turni, sincronizza gli orari con il calendario del tuo dispositivo e tieni sempre sotto controllo il tuo lavoro con la massima privacy.</p>
+    </section>
+
+    <!-- Support Contact Card -->
+    <section class="contact-card">
+      <h2 id="contact-title">Hai bisogno di assistenza?</h2>
+      <p id="contact-desc">Siamo qui per aiutarti. Se riscontri problemi, hai domande sull'applicazione o desideri suggerire nuove funzionalità, scrivici direttamente.</p>
+      <div class="email-display">info@danielesforza.dev</div>
+      <div class="contact-actions">
+        <a href="mailto:info@danielesforza.dev?subject=Assistenza%20Calendario%20Turni" class="btn btn-primary" id="btn-email">
+          ✉️ Invia un'email al supporto
+        </a>
+        <button class="btn btn-secondary" id="btn-copy" onclick="copyEmail()">
+          📋 Copia indirizzo email
+        </button>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🔄</div>
+        <h3 id="feat-1-title">Ciclazione Automatica</h3>
+        <p id="feat-1-desc">Imposta lo schema dei tuoi turni e l'applicazione calcolerà automaticamente tutti i mesi futuri.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📅</div>
+        <h3 id="feat-2-title">Sincronizzazione Calendario</h3>
+        <p id="feat-2-desc">Esporta e sincronizza automaticamente i tuoi orari con Apple Calendario e Google Calendar.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3 id="feat-3-title">100% Privacy & Offline</h3>
+        <p id="feat-3-desc">I tuoi dati rimangono esclusivamente sul tuo dispositivo. Nessun server esterno, nessuna registrazione.</p>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+      <h2 class="section-title" id="faq-title">Domande Frequenti</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question">
+            <span id="faq-1-q">Come sincronizzo i turni con il calendario del mio smartphone?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer" id="faq-1-a">
+            Apri l'app e vai su <strong>Impostazioni &gt; Calendario dispositivo</strong>. Abilita l'interruttore e seleziona il calendario in cui salvare automaticamente i tuoi turni. L'app sincronizzerà i tuoi turni istantaneamente.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span id="faq-2-q">I miei dati e i miei turni sono privati?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer" id="faq-2-a">
+            Sì, al 100%. Calendario Turni memorizza tutte le tue informazioni localmente sul dispositivo. Nessun orario, nota o dato personale viene mai caricato su server esterni o condiviso con terze parti.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span id="faq-3-q">Come posso ripristinare il mio acquisto (Versione Pro)?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer" id="faq-3-a">
+            Se hai cambiato dispositivo o reinstallato l'app, apri <strong>Impostazioni &gt; Versione Pro</strong> e tocca il pulsante <strong>"Ripristina acquisti"</strong>. Il tuo acquisto verrà ripristinato automaticamente senza costi aggiuntivi.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span id="faq-4-q">Come imposto una rotazione o un ciclo di turni?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer" id="faq-4-a">
+            Vai su <strong>Impostazioni &gt; Ciclazione Turni</strong>. Inserisci la sequenza del tuo ciclo (es. Mattina, Pomeriggio, Notte, Riposo) e imposta la data di partenza: l'app proietterà lo schema su tutti i mesi a venire.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="https://www.freeprivacypolicy.com/live/b8457bc8-97bf-47fd-a089-4f37e8677723" target="_blank" rel="noopener" id="link-privacy">Privacy Policy</a>
+        <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener" id="link-terms">Termini d'uso (EULA)</a>
+        <a href="mailto:info@danielesforza.dev" id="link-contact">Contatta lo sviluppatore</a>
+      </div>
+      <p id="footer-copy">&copy; <span id="year"></span> Daniele Sforza • Calendario Turni. Tutti i diritti riservati.</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast">Email copiata negli appunti!</div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const translations = {
+      it: {
+        metaTitle: "Calendario Turni - Supporto & Assistenza",
+        metaDesc: "Pagina di supporto e assistenza ufficiale per Calendario Turni.",
+        heroBadge: "Supporto Ufficiale",
+        heroTitle: "L'agenda intelligente per i tuoi turni",
+        heroDesc: "Organizza i tuoi cicli di turni, sincronizza gli orari con il calendario del tuo dispositivo e tieni sempre sotto controllo il tuo lavoro con la massima privacy.",
+        contactTitle: "Hai bisogno di assistenza?",
+        contactDesc: "Siamo qui per aiutarti. Se riscontri problemi, hai domande sull'applicazione o desideri suggerire nuove funzionalità, scrivici direttamente.",
+        btnEmail: "✉️ Invia un'email al supporto",
+        btnCopy: "📋 Copia indirizzo email",
+        toastCopied: "Email copiata negli appunti!",
+        feat1Title: "Ciclazione Automatica",
+        feat1Desc: "Imposta lo schema dei tuoi turni e l'applicazione calcolerà automaticamente tutti i mesi futuri.",
+        feat2Title: "Sincronizzazione Calendario",
+        feat2Desc: "Esporta e sincronizza automaticamente i tuoi orari con Apple Calendario e Google Calendar.",
+        feat3Title: "100% Privacy & Offline",
+        feat3Desc: "I tuoi dati rimangono esclusivamente sul tuo dispositivo. Nessun server esterno, nessuna registrazione.",
+        faqTitle: "Domande Frequenti",
+        faq1Q: "Come sincronizzo i turni con il calendario del mio smartphone?",
+        faq1A: "Apri l'app e vai su <strong>Impostazioni &gt; Calendario dispositivo</strong>. Abilita l'interruttore e seleziona il calendario in cui salvare automaticamente i tuoi turni.",
+        faq2Q: "I miei dati e i miei turni sono privati?",
+        faq2A: "Sì, al 100%. Calendario Turni memorizza tutte le tue informazioni localmente sul dispositivo. Nessun dato personale viene mai caricato su server esterni.",
+        faq3Q: "Come posso ripristinare il mio acquisto (Versione Pro)?",
+        faq3A: "Apri <strong>Impostazioni &gt; Versione Pro</strong> e tocca il pulsante <strong>\"Ripristina acquisti\"</strong> per riattivare la tua licenza.",
+        faq4Q: "Come imposto una rotazione o un ciclo di turni?",
+        faq4A: "Vai su <strong>Impostazioni &gt; Ciclazione Turni</strong>. Inserisci la sequenza del tuo ciclo e imposta la data di partenza: l'app calcolerà tutto automaticamente.",
+        linkPrivacy: "Informativa sulla Privacy",
+        linkTerms: "Termini d'uso (EULA)",
+        linkContact: "Contatta lo sviluppatore",
+        footerCopy: "&copy; " + new Date().getFullYear() + " Daniele Sforza • Calendario Turni. Tutti i diritti riservati."
+      },
+      en: {
+        metaTitle: "Shift Calendar - Support & Help",
+        metaDesc: "Official support and help desk for Shift Calendar (iOS and Android).",
+        heroBadge: "Official Support",
+        heroTitle: "The smart calendar for your work shifts",
+        heroDesc: "Organize your shift rotations, sync schedules with your device calendar, and stay on top of your work schedule with complete privacy.",
+        contactTitle: "Need assistance?",
+        contactDesc: "We're here to help. If you experience any issues, have questions, or want to suggest new features, feel free to contact us.",
+        btnEmail: "✉️ Send an email to support",
+        btnCopy: "📋 Copy email address",
+        toastCopied: "Email copied to clipboard!",
+        feat1Title: "Automated Rotations",
+        feat1Desc: "Configure your recurring shift patterns and the app will project your shifts for all upcoming months.",
+        feat2Title: "Calendar Synchronization",
+        feat2Desc: "Sync your shift events directly with Apple Calendar and Google Calendar.",
+        feat3Title: "100% Private & Offline",
+        feat3Desc: "Your schedule stays strictly on your phone. No cloud accounts, no external tracking.",
+        faqTitle: "Frequently Asked Questions",
+        faq1Q: "How do I sync shifts with my phone's calendar?",
+        faq1A: "Go to <strong>Settings &gt; Device Calendar</strong>. Enable synchronization and pick the target calendar.",
+        faq2Q: "Is my personal schedule data kept private?",
+        faq2A: "Yes, 100%. Shift Calendar stores everything locally on your device without sending any data to external servers.",
+        faq3Q: "How do I restore my Pro purchase?",
+        faq3A: "Open <strong>Settings &gt; Pro Version</strong> and tap <strong>\"Restore Purchases\"</strong> to re-activate your purchase.",
+        faq4Q: "How do I set up a recurring shift rotation?",
+        faq4A: "Navigate to <strong>Settings &gt; Shift Rotation</strong>. Enter your rotation cycle and the starting date.",
+        linkPrivacy: "Privacy Policy",
+        linkTerms: "Terms of Use (EULA)",
+        linkContact: "Contact Developer",
+        footerCopy: "&copy; " + new Date().getFullYear() + " Daniele Sforza • Shift Calendar. All rights reserved."
+      },
+      es: {
+        metaTitle: "Calendario de Turnos - Soporte y Ayuda",
+        metaDesc: "Soporte oficial y asistencia para Calendario de Turnos.",
+        heroBadge: "Soporte Oficial",
+        heroTitle: "La agenda inteligente para tus turnos de trabajo",
+        heroDesc: "Organiza tus ciclos rotativos, sincroniza horarios con el calendario del dispositivo y mantén el control con total privacidad.",
+        contactTitle: "¿Necesitas ayuda?",
+        contactDesc: "Estamos a tu disposición. Si tienes problemas, consultas o sugerencias, contáctanos directamente.",
+        btnEmail: "✉️ Enviar un correo a soporte",
+        btnCopy: "📋 Copiar dirección de correo",
+        toastCopied: "¡Correo copiado al portapapeles!",
+        feat1Title: "Rotación Automática",
+        feat1Desc: "Define tu secuencia de turnos y la app calculará automáticamente todos los meses siguientes.",
+        feat2Title: "Sincronización de Calendario",
+        feat2Desc: "Exporta y sincroniza tus horarios con Google Calendar y Apple Calendario.",
+        feat3Title: "100% Privado y Sin Conexión",
+        feat3Desc: "Tus turnos se guardan únicamente en tu teléfono, sin servidores externos.",
+        faqTitle: "Preguntas Frecuentes",
+        faq1Q: "¿Cómo sincronizo los turnos con el calendario del móvil?",
+        faq1A: "Abre <strong>Ajustes &gt; Calendario del dispositivo</strong>, activa la opción y selecciona el calendario de destino.",
+        faq2Q: "¿Mis datos y turnos están protegidos?",
+        faq2A: "Sí, totalmente. Calendario de Turnos funciona 100% de forma local en tu dispositivo.",
+        faq3Q: "¿Cómo restauro mi compra de la Versión Pro?",
+        faq3A: "Ve a <strong>Ajustes &gt; Versión Pro</strong> y pulsa en <strong>\"Restaurar compras\"</strong>.",
+        faq4Q: "¿Cómo configuro un patrón de turnos?",
+        faq4A: "Entra en <strong>Ajustes &gt; Rotación de Turnos</strong>, indica la secuencia y la fecha de inicio.",
+        linkPrivacy: "Política de Privacidad",
+        linkTerms: "Términos de Uso (EULA)",
+        linkContact: "Contactar con el desarrollador",
+        footerCopy: "&copy; " + new Date().getFullYear() + " Daniele Sforza • Calendario de Turnos. Todos los derechos reservados."
+      },
+      fr: {
+        metaTitle: "Calendrier de Garde - Support & Aide",
+        metaDesc: "Support officiel et aide pour Calendrier de Garde et planning de travail.",
+        heroBadge: "Support Officiel",
+        heroTitle: "L'agenda intelligent pour vos horaires et gardes",
+        heroDesc: "Gérez vos roulements d'équipe, synchronisez avec le calendrier de votre téléphone et gardez le contrôle de votre planning.",
+        contactTitle: "Besoin d'aide ?",
+        contactDesc: "Nous sommes là pour vous aider. Si vous rencontrez un souci ou avez une suggestion, écrivez-nous.",
+        btnEmail: "✉️ Envoyer un e-mail à l'assistance",
+        btnCopy: "📋 Copier l'adresse e-mail",
+        toastCopied: "E-mail copié dans le presse-papiers !",
+        feat1Title: "Cycles Automatiques",
+        feat1Desc: "Configurez votre roulement et l'application calcule automatiquement les plannings futurs.",
+        feat2Title: "Synchronisation Calendrier",
+        feat2Desc: "Synchronisez directement vos gardes avec Apple Calendrier et Google Calendar.",
+        feat3Title: "100% Hors Ligne & Privé",
+        feat3Desc: "Vos horaires restent strictement stockés sur votre smartphone, sans serveurs distants.",
+        faqTitle: "Foire Aux Questions",
+        faq1Q: "Comment synchroniser mes horaires avec mon calendrier ?",
+        faq1A: "Allez dans <strong>Paramètres &gt; Calendrier de l'appareil</strong>, activez la synchronisation et choisissez le calendrier cible.",
+        faq2Q: "Mes données personnelles sont-elles protégées ?",
+        faq2A: "Oui, à 100%. L'application fonctionne en local et ne transmet aucune donnée à des serveurs tiers.",
+        faq3Q: "Comment restaurer mon achat (Version Pro) ?",
+        faq3A: "Dans <strong>Paramètres &gt; Version Pro</strong>, touchez le bouton <strong>\"Restaurer les achats\"</strong>.",
+        faq4Q: "Comment configurer un cycle de roulement ?",
+        faq4A: "Rendez-vous dans <strong>Paramètres &gt; Rotation des horaires</strong> et saisissez votre séquence.",
+        linkPrivacy: "Politique de confidentialité",
+        linkTerms: "Conditions d'utilisation (CLUF)",
+        linkContact: "Contacter le développeur",
+        footerCopy: "&copy; " + new Date().getFullYear() + " Daniele Sforza • Calendrier de Garde. Tous droits réservés."
+      },
+      de: {
+        metaTitle: "Schichtkalender - Support & Hilfe",
+        metaDesc: "Offizielle Support- und Hilfeseite für Schichtkalender.",
+        heroBadge: "Offizieller Support",
+        heroTitle: "Der intelligente Kalender für Ihre Arbeitsschichten",
+        heroDesc: "Verwalten Sie Ihre Schichtzyklen, synchronisieren Sie Termine mit Ihrem Gerätekalender und behalten Sie Ihre Arbeitszeiten im Blick.",
+        contactTitle: "Brauchen Sie Hilfe?",
+        contactDesc: "Wir sind für Sie da. Wenn Sie Fragen haben oder ein Problem melden möchten, kontaktieren Sie uns direkt.",
+        btnEmail: "✉️ E-Mail an den Support senden",
+        btnCopy: "📋 E-Mail-Adresse kopieren",
+        toastCopied: "E-Mail-Adresse in die Zwischenablage kopiert!",
+        feat1Title: "Automatische Rotation",
+        feat1Desc: "Geben Sie Ihr Schichtmuster ein und die App berechnet alle zukünftigen Monate automatisch.",
+        feat2Title: "Kalender-Synchronisierung",
+        feat2Desc: "Synchronisieren Sie Ihre Schichten nahtlos mit Apple Kalender und Google Kalender.",
+        feat3Title: "100% Datenschutz & Offline",
+        feat3Desc: "Ihre Schichtdaten verbleiben ausschließlich lokal auf Ihrem Gerät ohne Cloud-Tracking.",
+        faqTitle: "Häufig gestellte Fragen",
+        faq1Q: "Wie synchronisiere ich meine Schichten mit dem Kalender?",
+        faq1A: "Gehen Sie zu <strong>Einstellungen &gt; Gerätekalender</strong>, aktivieren Sie die Synchronisierung und wählen Sie Ihren Kalender.",
+        faq2Q: "Sind meine persönlichen Schichtdaten geschützt?",
+        faq2A: "Ja, zu 100%. Die App arbeitet vollständig offline auf Ihrem Smartphone.",
+        faq3Q: "Wie kann ich meinen Kauf (Pro-Version) wiederherstellen?",
+        faq3A: "Tippen Sie in <strong>Einstellungen &gt; Pro-Version</strong> auf <strong>\"Käufe wiederherstellen\"</strong>.",
+        faq4Q: "Wie richte ich ein Schichtmuster ein?",
+        faq4A: "Wählen Sie <strong>Einstellungen &gt; Schichtrotation</strong> und geben Sie Ihr Muster sowie das Startdatum an.",
+        linkPrivacy: "Datenschutzrichtlinie",
+        linkTerms: "Nutzungsbedingungen (EULA)",
+        linkContact: "Entwickler kontaktieren",
+        footerCopy: "&copy; " + new Date().getFullYear() + " Daniele Sforza • Schichtkalender. Alle Rechte vorbehalten."
+      }
+    };
+
+    function setLanguage(lang) {
+      if (!translations[lang]) lang = 'it';
+      const t = translations[lang];
+
+      document.documentElement.lang = lang;
+      document.getElementById('meta-title').textContent = t.metaTitle;
+      document.getElementById('hero-badge').textContent = t.heroBadge;
+      document.getElementById('hero-title').textContent = t.heroTitle;
+      document.getElementById('hero-desc').textContent = t.heroDesc;
+      document.getElementById('contact-title').textContent = t.contactTitle;
+      document.getElementById('contact-desc').textContent = t.contactDesc;
+      document.getElementById('btn-email').innerHTML = t.btnEmail;
+      document.getElementById('btn-copy').innerHTML = t.btnCopy;
+      document.getElementById('toast').textContent = t.toastCopied;
+
+      document.getElementById('feat-1-title').textContent = t.feat1Title;
+      document.getElementById('feat-1-desc').textContent = t.feat1Desc;
+      document.getElementById('feat-2-title').textContent = t.feat2Title;
+      document.getElementById('feat-2-desc').textContent = t.feat2Desc;
+      document.getElementById('feat-3-title').textContent = t.feat3Title;
+      document.getElementById('feat-3-desc').textContent = t.feat3Desc;
+
+      document.getElementById('faq-title').textContent = t.faqTitle;
+      document.getElementById('faq-1-q').textContent = t.faq1Q;
+      document.getElementById('faq-1-a').innerHTML = t.faq1A;
+      document.getElementById('faq-2-q').textContent = t.faq2Q;
+      document.getElementById('faq-2-a').innerHTML = t.faq2A;
+      document.getElementById('faq-3-q').textContent = t.faq3Q;
+      document.getElementById('faq-3-a').innerHTML = t.faq3A;
+      document.getElementById('faq-4-q').textContent = t.faq4Q;
+      document.getElementById('faq-4-a').innerHTML = t.faq4A;
+
+      document.getElementById('link-privacy').textContent = t.linkPrivacy;
+      document.getElementById('link-terms').textContent = t.linkTerms;
+      document.getElementById('link-contact').textContent = t.linkContact;
+      document.getElementById('footer-copy').innerHTML = t.footerCopy;
+
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+
+      localStorage.setItem('preferred_lang', lang);
+    }
+
+    // Language buttons
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+    });
+
+    // Detect browser lang or stored
+    const saved = localStorage.getItem('preferred_lang');
+    const browserLang = (navigator.language || 'it').substring(0, 2).toLowerCase();
+    const initialLang = saved || (translations[browserLang] ? browserLang : 'it');
+    setLanguage(initialLang);
+
+    // Accordion
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', () => {
+        const item = q.parentElement;
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) {
+          item.classList.add('open');
+        }
+      });
+    });
+
+    // Copy email helper
+    function copyEmail() {
+      navigator.clipboard.writeText('info@danielesforza.dev').then(() => {
+        const toast = document.getElementById('toast');
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2500);
+      });
+    }
+  </script>
+</body>
+</html>
