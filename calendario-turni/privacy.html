@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="meta-title">Privacy Policy — Calendario Turni</title>
+  <meta name="description" id="meta-desc" content="Official Privacy Policy for Calendario Turni (iOS and Android). Transparent details on data handling, on-device storage, Sentry diagnostics, and RevenueCat.">
+  <link rel="icon" type="image/png" href="icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card-bg: rgba(18, 24, 38, 0.75);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-hover-border: rgba(99, 102, 241, 0.4);
+      --primary: #6366f1;
+      --primary-hover: #4f46e5;
+      --primary-light: rgba(99, 102, 241, 0.12);
+      --accent: #38bdf8;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --radius: 16px;
+      --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(99, 102, 241, 0.15), transparent 45%),
+        radial-gradient(circle at 85% 65%, rgba(56, 189, 248, 0.12), transparent 40%);
+      background-attachment: fixed;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px;
+      width: 100%;
+    }
+
+    /* Navbar */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(11, 15, 25, 0.85);
+      border-bottom: 1px solid var(--card-border);
+      padding: 14px 0;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .back-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--card-border);
+      transition: var(--transition);
+    }
+
+    .back-home:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+      object-fit: cover;
+    }
+
+    .brand-name {
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+    }
+
+    /* Lang selector */
+    .lang-switcher {
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 3px;
+      border-radius: 30px;
+      border: 1px solid var(--card-border);
+      gap: 2px;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: inherit;
+      font-size: 0.775rem;
+      font-weight: 600;
+      padding: 5px 10px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .lang-btn:hover {
+      color: var(--text);
+    }
+
+    .lang-btn.active {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(99, 102, 241, 0.4);
+    }
+
+    /* Main Policy Container */
+    main {
+      flex: 1;
+      padding: 48px 0 64px;
+    }
+
+    .policy-header {
+      margin-bottom: 36px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--primary-light);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      color: #a5b4fc;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 5px 14px;
+      border-radius: 30px;
+      margin-bottom: 16px;
+    }
+
+    .policy-header h1 {
+      font-size: clamp(2rem, 4.5vw, 2.75rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #ffffff 40%, #a5b4fc 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .last-updated {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .policy-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 36px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.3);
+    }
+
+    .policy-card h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #fff;
+      margin-top: 32px;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .policy-card h2:first-of-type {
+      margin-top: 0;
+    }
+
+    .policy-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #e2e8f0;
+      margin-top: 20px;
+      margin-bottom: 8px;
+    }
+
+    .policy-card p {
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      font-size: 0.96rem;
+    }
+
+    .policy-card ul {
+      margin-left: 20px;
+      margin-bottom: 16px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .policy-card li {
+      margin-bottom: 8px;
+    }
+
+    .policy-card strong {
+      color: var(--text);
+    }
+
+    .policy-card a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .policy-card a:hover {
+      text-decoration: underline;
+    }
+
+    .highlight-box {
+      background: rgba(99, 102, 241, 0.08);
+      border: 1px solid rgba(99, 102, 241, 0.25);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin: 20px 0;
+    }
+
+    .highlight-box p {
+      margin-bottom: 0;
+      color: #e0e7ff;
+      font-size: 0.925rem;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 32px 0;
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 0.875rem;
+      margin-top: auto;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 14px;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    @media (max-width: 640px) {
+      .policy-card {
+        padding: 24px 18px;
+      }
+      .brand-name {
+        display: none;
+      }
+      .nav-inner {
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container nav-inner">
+      <div class="brand-group">
+        <a href="index.html" class="back-home" id="btn-back">← Support</a>
+        <a href="index.html" class="brand">
+          <img src="icon.png" alt="Calendario Turni" class="brand-icon">
+          <span class="brand-name">Calendario Turni</span>
+        </a>
+      </div>
+
+      <div class="lang-switcher">
+        <button class="lang-btn" data-lang="it">IT</button>
+        <button class="lang-btn active" data-lang="en">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="policy-header">
+        <div class="badge" id="badge-text">Legal & Privacy</div>
+        <h1 id="title-text">Privacy Policy</h1>
+        <p class="last-updated" id="updated-text">Last updated: September 20, 2026</p>
+      </div>
+
+      <div class="policy-card" id="policy-content">
+        <!-- Injected via JavaScript based on selected language -->
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="index.html" id="footer-support">Support & Help</a>
+        <a href="privacy.html" id="footer-privacy">Privacy Policy</a>
+        <a href="mailto:info@danielesforza.dev">Contact Developer</a>
+      </div>
+      <p id="footer-copy">&copy; 2026 Daniele Sforza • Calendario Turni. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const content = {
+      en: {
+        metaTitle: "Privacy Policy — Calendario Turni",
+        metaDesc: "Official Privacy Policy for Calendario Turni (iOS and Android).",
+        btnBack: "← Support",
+        badgeText: "Legal & Privacy",
+        titleText: "Privacy Policy",
+        updatedText: "Last updated: September 20, 2026",
+        footerSupport: "Support & Help",
+        footerPrivacy: "Privacy Policy",
+        footerCopy: "&copy; 2026 Daniele Sforza • Calendario Turni. All rights reserved.",
+        body: `
+          <h2>1. Introduction & Overview</h2>
+          <p>This Privacy Policy explains how <strong>Calendario Turni</strong> ("Application", "We", "Us", or "Our"), developed by <strong>Daniele Sforza</strong>, handles information when you use our mobile application on iOS and Android devices.</p>
+          
+          <div class="highlight-box">
+            <p><strong>🔒 Privacy First Principle:</strong> Calendario Turni is designed from the ground up with a privacy-first, offline-capable architecture. Your calendar events, shift schedules, custom notes, earnings calculations, and settings remain stored locally on your device and are never uploaded to our servers.</p>
+          </div>
+
+          <h2>2. Personal Data & Local Processing</h2>
+          <h3>Local Device Storage</h3>
+          <p>All data entered into the Application—including work shifts, rotations, hourly wages, notes, and calendar preferences—is stored locally on your device using encrypted/sandboxed local databases (Hive). We do not operate remote databases storing your personal shift schedules.</p>
+
+          <h3>On-Device Artificial Intelligence</h3>
+          <p>Features powered by artificial intelligence (such as local theme generation or on-device assistance using Google Gemma) run entirely locally on your smartphone hardware. Your prompt inputs and schedule data are never transmitted to external cloud AI servers.</p>
+
+          <h2>3. Device Permissions</h2>
+          <p>The Application may request specific operating system permissions strictly to provide core features:</p>
+          <ul>
+            <li><strong>Calendar Permission (Read/Write):</strong> Used solely to allow you to export, synchronize, or view your work shifts within your device's native system calendar (e.g. Apple Calendar, Google Calendar). This synchronization is executed directly on-device.</li>
+            <li><strong>Notifications & Alarms:</strong> Used to deliver shift reminders, alarms, and schedule notifications scheduled locally on your device.</li>
+            <li><strong>Storage / Files:</strong> Used only when you explicitly choose to backup, export, or import your shift database as a local file.</li>
+          </ul>
+
+          <h2>4. Third-Party Services & Diagnostics</h2>
+          <p>To ensure application stability, troubleshoot crashes, and manage in-app purchases, we integrate trusted third-party SDKs:</p>
+
+          <h3>A. Crash Reporting & Diagnostics (Sentry)</h3>
+          <p>We use <strong>Sentry</strong> (provided by Functional Software, Inc., USA) to automatically monitor application errors, crashes, and performance bottlenecks. When a crash occurs, Sentry collects:</p>
+          <ul>
+            <li>Technical crash logs, stack traces, and error context.</li>
+            <li>Device hardware specifications, operating system version, and app release version.</li>
+            <li>An anonymous installation UUID to measure crash frequency and crash-free session rates.</li>
+            <li>Performance diagnostics (such as app startup duration).</li>
+          </ul>
+          <p><strong>Privacy Safeguards:</strong> Automatic screenshot capture is permanently disabled in our configuration. Sentry never captures your calendar data, shift notes, or personal identifying information. All diagnostic data is transmitted securely over TLS/HTTPS encryption.</p>
+          <p>For more details, visit <a href="https://sentry.io/privacy/" target="_blank" rel="noopener">Sentry's Privacy Policy</a>.</p>
+
+          <h3>B. Subscriptions & In-App Purchases (RevenueCat)</h3>
+          <p>We use <strong>RevenueCat</strong> (RevenueCat, Inc., USA) to manage premium feature access and subscription states across devices. RevenueCat processes anonymous app user identifiers, purchase receipts, and subscription status generated by the Apple App Store or Google Play Store.</p>
+          <p>All monetary transactions and payment details (such as credit cards or billing addresses) are handled exclusively by Apple or Google and are never accessible to Us or RevenueCat.</p>
+          <p>For more details, visit <a href="https://www.revenuecat.com/privacy/" target="_blank" rel="noopener">RevenueCat's Privacy Policy</a>.</p>
+
+          <h2>5. Legal Bases for Processing (GDPR)</h2>
+          <p>If you are located in the European Economic Area (EEA), our legal bases for processing telemetry under the General Data Protection Regulation (GDPR) are:</p>
+          <ul>
+            <li><strong>Performance of a Contract (Art. 6(1)(b) GDPR):</strong> To deliver app functionality, manage subscription access, and fulfill your feature requests.</li>
+            <li><strong>Legitimate Interests (Art. 6(1)(f) GDPR):</strong> To monitor app performance, fix software bugs, maintain security, and optimize user experience.</li>
+          </ul>
+
+          <h2>6. California Privacy Disclosures (CCPA / CPRA)</h2>
+          <p>Under the California Consumer Privacy Act (CCPA) and California Privacy Rights Act (CPRA):</p>
+          <ul>
+            <li>We <strong>do not sell</strong> your personal information.</li>
+            <li>We <strong>do not share</strong> your personal information with third parties for cross-context behavioral advertising.</li>
+            <li>You have the right to request information about the diagnostic data collected and request its deletion by contacting us.</li>
+          </ul>
+
+          <h2>7. Data Retention & Deletion</h2>
+          <p>Since your schedule data is stored locally on your device, deleting the Application or clearing its local storage permanently erases all your stored shifts and settings. Diagnostic logs collected by Sentry are retained temporarily for troubleshooting (typically 30 to 90 days) and then permanently expunged.</p>
+
+          <h2>8. Children's Privacy</h2>
+          <p>Our Service is not directed to children under the age of 13 (or 16 in the EEA). We do not knowingly collect personal information from children.</p>
+
+          <h2>9. Changes to This Privacy Policy</h2>
+          <p>We may update this Privacy Policy from time to time. Any changes will be posted directly on this page with an updated "Last updated" revision date.</p>
+
+          <h2>10. Contact Us</h2>
+          <p>If you have any questions, suggestions, or requests regarding this Privacy Policy, please contact us at:</p>
+          <p><strong>Email:</strong> <a href="mailto:info@danielesforza.dev">info@danielesforza.dev</a><br>
+          <strong>Developer:</strong> Daniele Sforza</p>
+        `
+      },
+      it: {
+        metaTitle: "Informativa sulla Privacy — Calendario Turni",
+        metaDesc: "Informativa sulla privacy ufficiale per Calendario Turni (iOS e Android).",
+        btnBack: "← Supporto",
+        badgeText: "Note Legali & Privacy",
+        titleText: "Informativa sulla Privacy",
+        updatedText: "Ultimo aggiornamento: 20 Settembre 2026",
+        footerSupport: "Supporto & Assistenza",
+        footerPrivacy: "Informativa sulla Privacy",
+        footerCopy: "&copy; 2026 Daniele Sforza • Calendario Turni. Tutti i diritti riservati.",
+        body: `
+          <h2>1. Introduzione e Principi Generali</h2>
+          <p>La presente Informativa sulla Privacy descrive le modalità di gestione delle informazioni da parte di <strong>Calendario Turni</strong> ("Applicazione", "Noi"), sviluppata da <strong>Daniele Sforza</strong>, per i dispositivi iOS e Android.</p>
+          
+          <div class="highlight-box">
+            <p><strong>🔒 Principio di Privacy Locale (Offline-First):</strong> Calendario Turni è progettata con un'architettura che privilegia la privacy e il funzionamento offline. I tuoi turni, gli schemi di rotazione, le note personali, i conteggi economici e le impostazioni rimangono salvati esclusivamente sul tuo dispositivo e non vengono mai caricati su server remoti.</p>
+          </div>
+
+          <h2>2. Dati Personali e Trattamento Locale</h2>
+          <h3>Archiviazione Locale sul Dispositivo</h3>
+          <p>Tutti i dati inseriti nell'Applicazione (turni lavorativi, schemi, compensi orari, note personali) sono memorizzati localmente sul dispositivo all'interno di database sicuri (Hive). Non gestiamo database cloud per l'archiviazione dei tuoi turni.</p>
+
+          <h3>Intelligenza Artificiale su Dispositivo</h3>
+          <p>Le funzionalità basate su intelligenza artificiale (come la generazione di temi personalizzati o suggerimenti tramite Google Gemma) vengono elaborate interamente sul processore del tuo smartphone. Nessun dato o testo viene inviato a server cloud di intelligenza artificiale.</p>
+
+          <h2>3. Permessi del Dispositivo</h2>
+          <p>L'Applicazione può richiedere alcuni permessi di sistema al solo fine di fornire le funzionalità richieste dall'utente:</p>
+          <ul>
+            <li><strong>Calendario di Sistema (Lettura/Scrittura):</strong> Utilizzato esclusivamente per consentire la sincronizzazione e l'esportazione dei turni nel calendario nativo del telefono (es. Google Calendar, Apple Calendario). L'operazione avviene interamente sul dispositivo.</li>
+            <li><strong>Notifiche e Sveglie:</strong> Utilizzate per la programmazione locale di promemoria e avvisi relativi ai turni di lavoro.</li>
+            <li><strong>Archiviazione / File:</strong> Utilizzata esclusivamente nel momento in cui l'utente decide manualmente di creare o ripristinare una copia di backup dei propri dati.</li>
+          </ul>
+
+          <h2>4. Servizi Terzi e Diagnostica</h2>
+          <p>Per garantire la stabilità dell'applicazione, monitorare i crash e gestire gli acquisti in-app, utilizziamo SDK di terze parti fidate:</p>
+
+          <h3>A. Monitoraggio Crash e Diagnostica (Sentry)</h3>
+          <p>Utilizziamo <strong>Sentry</strong> (Functional Software, Inc., USA) per rilevare automaticamente errori software, arresti anomali e prestazioni. In caso di errore o crash, Sentry raccoglie:</p>
+          <ul>
+            <li>Log tecnici, stack trace ed errori dell'applicazione.</li>
+            <li>Specifiche del dispositivo (modello, versione del sistema operativo, versione dell'app).</li>
+            <li>Un identificatore di installazione anonimo per raggruppare i report e misurare il tasso di sessioni prive di crash.</li>
+            <li>Parametri diagnostici di prestazioni (es. tempi di avvio dell'app).</li>
+          </ul>
+          <p><strong>Misure di Tutela:</strong> Gli screenshot automatici sono disabilitati. Sentry non ha accesso ai tuoi turni, note o dati del calendario. Tutte le informazioni diagnostiche viaggiano su canali cifrati TLS/HTTPS.</p>
+          <p>Per maggiori informazioni, consulta l'<a href="https://sentry.io/privacy/" target="_blank" rel="noopener">Informativa Privacy di Sentry</a>.</p>
+
+          <h3>B. Gestione Abbonamenti e Acquisti In-App (RevenueCat)</h3>
+          <p>Utilizziamo <strong>RevenueCat</strong> (RevenueCat, Inc., USA) per gestire la convalida degli acquisti in-app e lo stato della Versione Pro. RevenueCat elabora identificatori utente anonimi e ricevute d'acquisto generate da Apple App Store o Google Play Store.</p>
+          <p>I dati di pagamento e le carte di credito sono gestiti direttamente da Apple o Google e non sono mai accessibili a Noi o a RevenueCat.</p>
+          <p>Per maggiori informazioni, consulta l'<a href="https://www.revenuecat.com/privacy/" target="_blank" rel="noopener">Informativa Privacy di RevenueCat</a>.</p>
+
+          <h2>5. Basi Giuridiche del Trattamento (GDPR)</h2>
+          <p>Ai sensi del Regolamento Generale sulla Protezione dei Dati (GDPR - UE 2016/679), le basi giuridiche per il trattamento sono:</p>
+          <ul>
+            <li><strong>Esecuzione di un contratto (Art. 6(1)(b) GDPR):</strong> Per consentire il corretto funzionamento dell'app e la gestione degli acquisti.</li>
+            <li><strong>Legittimo interesse (Art. 6(1)(f) GDPR):</strong> Per garantire la sicurezza, correggere anomalie software e prevenire malfunzionamenti.</li>
+          </ul>
+
+          <h2>6. Diritti dell'Utente</h2>
+          <p>In conformità al GDPR e alle normative internazionali sulla privacy, hai il diritto di richiedere informazioni sui dati diagnostici raccolti o richiederne la cancellazione contattando il titolare del trattamento.</p>
+
+          <h2>7. Conservazione e Cancellazione dei Dati</h2>
+          <p>Poiché i dati del calendario sono archiviati localmente sul dispositivo, la disinstallazione dell'app o la cancellazione dei dati dell'app comporta la rimozione istantanea e irreversibile di tutti i turni salvati. I log di crash su Sentry vengono conservati temporaneamente (30-90 giorni) e poi eliminati.</p>
+
+          <h2>8. Privacy dei Minori</h2>
+          <p>L'Applicazione non è destinata a minori di 13 anni (o 16 anni nello Spazio Economico Europeo) e non raccoglie consapevolmente informazioni relative a minori.</p>
+
+          <h2>9. Modifiche alla Privacy Policy</h2>
+          <p>Eventuali aggiornamenti alla presente informativa saranno pubblicati su questa pagina con l'indicazione della data di revisione.</p>
+
+          <h2>10. Contatti e Titolare del Trattamento</h2>
+          <p>Per qualsiasi domanda o chiarimento riguardante la presente Privacy Policy, puoi contattarci all'indirizzo:</p>
+          <p><strong>Email:</strong> <a href="mailto:info@danielesforza.dev">info@danielesforza.dev</a><br>
+          <strong>Sviluppatore:</strong> Daniele Sforza</p>
+        `
+      }
+    };
+
+    function setLanguage(lang) {
+      if (!content[lang]) lang = 'en';
+      const c = content[lang];
+
+      document.documentElement.lang = lang;
+      document.getElementById('meta-title').textContent = c.metaTitle;
+      document.getElementById('btn-back').textContent = c.btnBack;
+      document.getElementById('badge-text').textContent = c.badgeText;
+      document.getElementById('title-text').textContent = c.titleText;
+      document.getElementById('updated-text').textContent = c.updatedText;
+      document.getElementById('policy-content').innerHTML = c.body;
+      document.getElementById('footer-support').textContent = c.footerSupport;
+      document.getElementById('footer-privacy').textContent = c.footerPrivacy;
+      document.getElementById('footer-copy').innerHTML = c.footerCopy;
+
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+
+      localStorage.setItem('privacy_preferred_lang', lang);
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+    });
+
+    const saved = localStorage.getItem('privacy_preferred_lang') || localStorage.getItem('preferred_lang');
+    const browserLang = (navigator.language || 'it').substring(0, 2).toLowerCase();
+    const initialLang = saved || (content[browserLang] ? browserLang : 'it');
+    setLanguage(initialLang);
+  </script>
+</body>
+</html>
