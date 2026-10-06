@@ -340,7 +340,7 @@
       <div class="policy-header">
         <div class="badge" id="badge-text">Legal & Privacy</div>
         <h1 id="title-text">Privacy Policy</h1>
-        <p class="last-updated" id="updated-text">Last updated: September 20, 2026</p>
+        <p class="last-updated" id="updated-text">Last updated: October 6, 2026</p>
       </div>
 
       <div class="policy-card" id="policy-content">
@@ -368,69 +368,82 @@
         btnBack: "← Support",
         badgeText: "Legal & Privacy",
         titleText: "Privacy Policy",
-        updatedText: "Last updated: September 20, 2026",
+        updatedText: "Last updated: October 6, 2026",
         footerSupport: "Support & Help",
         footerPrivacy: "Privacy Policy",
         footerCopy: "&copy; 2026 Daniele Sforza • Calendario Turni. All rights reserved.",
         body: `
           <h2>1. Introduction & Overview</h2>
-          <p>This Privacy Policy explains how <strong>Calendario Turni</strong> ("Application", "We", "Us", or "Our"), developed by <strong>Daniele Sforza</strong>, handles information when you use our mobile application on iOS and Android devices.</p>
-          
+          <p>This Privacy Policy explains how <strong>Calendario Turni</strong> ("Application", "We", "Us", or "Our"), developed by <strong>Daniele Sforza</strong>, handles information when you use our mobile application on iOS and Android devices. Daniele Sforza is the data controller for the limited data described in Section 4.</p>
+
           <div class="highlight-box">
             <p><strong>🔒 Privacy First Principle:</strong> Calendario Turni is designed from the ground up with a privacy-first, offline-capable architecture. Your calendar events, shift schedules, custom notes, earnings calculations, and settings remain stored locally on your device and are never uploaded to our servers.</p>
           </div>
 
           <h2>2. Personal Data & Local Processing</h2>
           <h3>Local Device Storage</h3>
-          <p>All data entered into the Application—including work shifts, rotations, hourly wages, notes, and calendar preferences—is stored locally on your device using encrypted/sandboxed local databases (Hive). We do not operate remote databases storing your personal shift schedules.</p>
+          <p>All data entered into the Application—including work shifts, rotations, hourly wages, notes, attachments, and calendar preferences—is stored locally on your device, inside the Application's private, sandboxed storage (Hive databases). We do not operate remote databases storing your personal shift schedules.</p>
+
+          <h3>Backups</h3>
+          <p>Copies of this data exist outside the Application only in two cases: the device backup provided by your operating system (Google or iCloud backup, linked to your own account), and the backup files you export yourself. We have no access to either.</p>
 
           <h3>On-Device Artificial Intelligence</h3>
-          <p>Features powered by artificial intelligence (such as local theme generation or on-device assistance using Google Gemma) run entirely locally on your smartphone hardware. Your prompt inputs and schedule data are never transmitted to external cloud AI servers.</p>
+          <p>Features powered by artificial intelligence (such as theme generation) run on your device, using the on-device models provided by your operating system (Gemini Nano through Android AICore, or Apple's on-device models on iOS). Your prompt inputs and schedule data are never transmitted to cloud AI servers.</p>
 
           <h2>3. Device Permissions</h2>
           <p>The Application may request specific operating system permissions strictly to provide core features:</p>
           <ul>
-            <li><strong>Calendar Permission (Read/Write):</strong> Used solely to allow you to export, synchronize, or view your work shifts within your device's native system calendar (e.g. Apple Calendar, Google Calendar). This synchronization is executed directly on-device.</li>
-            <li><strong>Notifications & Alarms:</strong> Used to deliver shift reminders, alarms, and schedule notifications scheduled locally on your device.</li>
-            <li><strong>Storage / Files:</strong> Used only when you explicitly choose to backup, export, or import your shift database as a local file.</li>
+            <li><strong>Calendar Permission (Read/Write):</strong> Used solely to allow you to export, synchronize, or view your work shifts within your device's native system calendar (e.g. Apple Calendar, Google Calendar). This synchronization is executed directly on-device. If the calendar you choose belongs to an online account (for example Google or iCloud), the events written to it are then synchronized by that account's provider.</li>
+            <li><strong>Camera, Microphone & Photos:</strong> Used only when you choose to attach a photo, a video, or a scanned document to a day. Attachments stay on your device.</li>
+            <li><strong>Storage / Files:</strong> Used only when you explicitly choose to attach a file, or to backup, export, or import your shift database as a local file.</li>
           </ul>
 
           <h2>4. Third-Party Services & Diagnostics</h2>
-          <p>To ensure application stability, troubleshoot issues, allow user feedback, and manage in-app purchases, we integrate trusted third-party SDKs:</p>
+          <p>To ensure application stability, troubleshoot issues, allow user feedback, and manage in-app purchases, we integrate trusted third-party services:</p>
 
           <h3>A. Crash Reporting & Diagnostics (Sentry)</h3>
-          <p>We use <strong>Sentry</strong> (provided by Functional Software, Inc., USA) to monitor application stability, crashes, and performance bottlenecks. When an unexpected error occurs, Sentry collects:</p>
+          <p>We use <strong>Sentry</strong> (provided by Functional Software, Inc., USA) to monitor application stability, crashes, and performance bottlenecks. Our Sentry data is stored in Sentry's European Union data region (Germany). When an unexpected error occurs, Sentry collects:</p>
           <ul>
             <li>Technical crash logs, stack traces, and error context.</li>
             <li>Device hardware specifications, operating system version, and app release version.</li>
-            <li>An anonymous installation UUID to measure crash frequency and crash-free session rates.</li>
+            <li>Pseudonymous identifiers: an installation ID and the Application's purchase identifier (the <strong>Customer ID</strong> shown in Settings). They are used to measure crash frequency and to match a report with a support request, and they do not contain your name or email address.</li>
             <li>Performance diagnostics (such as app startup duration).</li>
           </ul>
-          <p><strong>Privacy Safeguards & In-App Control:</strong> Automatic screenshot capture during crashes is permanently disabled. Sentry never accesses your calendar entries or shift notes during crash reporting. Furthermore, you can disable automatic crash reporting at any time in the app via <strong>Settings &rarr; Privacy &amp; Security &rarr; Share Crash Reports</strong>.</p>
+          <p><strong>Privacy Safeguards & In-App Control:</strong> Automatic screenshot capture during crashes is permanently disabled, and the names of files you attach are removed from reports before they leave your device. Sentry never accesses your calendar entries or shift notes during crash reporting. Furthermore, you can disable automatic crash reporting at any time in the app via <strong>Settings &rarr; Terms &amp; Privacy &rarr; Anonymous Crash Reports</strong>.</p>
           <p>For more details, visit <a href="https://sentry.io/privacy/" target="_blank" rel="noopener">Sentry's Privacy Policy</a>.</p>
 
           <h3>B. User-Initiated Feedback & Support (Sentry)</h3>
-          <p>When you choose to use the in-app <strong>Send Feedback</strong> or <strong>Bug Report</strong> tool, the following information is transmitted securely to Sentry solely to diagnose your issue and provide support:</p>
+          <p>When you choose to use the in-app <strong>Send Visual Feedback</strong> tool (available only while crash reports are enabled), the following information is transmitted securely to Sentry solely to diagnose your issue and provide support:</p>
           <ul>
             <li>Your written feedback description.</li>
-            <li>A visual screenshot of the app screen where the tool was opened (including any drawings or annotations you choose to add).</li>
+            <li>A visual screenshot of the app screen where the tool was opened, which may show the shifts and notes visible on that screen (including any drawings or annotations you choose to add).</li>
             <li><strong>Optional Contact Information:</strong> You may optionally provide your <strong>Name</strong> and <strong>Email address</strong> if you wish to receive a reply or follow-up from the developer. Providing this information is entirely voluntary.</li>
           </ul>
 
-          <h3>C. Subscriptions & In-App Purchases (RevenueCat)</h3>
-          <p>We use <strong>RevenueCat</strong> (RevenueCat, Inc., USA) to manage premium feature access and subscription states across devices. RevenueCat processes anonymous app user identifiers, purchase receipts, and subscription status generated by the Apple App Store or Google Play Store.</p>
+          <h3>C. In-App Purchases (RevenueCat)</h3>
+          <p>We use <strong>RevenueCat</strong> (RevenueCat, Inc., USA) to verify in-app purchases and unlock the PRO version, including when you restore a purchase on a new device. RevenueCat processes a pseudonymous app user identifier (the <strong>Customer ID</strong> shown in Settings), purchase receipts, and the purchase status generated by the Apple App Store or Google Play Store.</p>
           <p>All monetary transactions and payment details (such as credit cards or billing addresses) are handled exclusively by Apple or Google and are never accessible to Us or RevenueCat.</p>
           <p>For more details, visit <a href="https://www.revenuecat.com/privacy/" target="_blank" rel="noopener">RevenueCat's Privacy Policy</a>.</p>
+
+          <h3>D. Other Network Requests</h3>
+          <ul>
+            <li><strong>Public holidays:</strong> To show public holidays, the Application downloads the list for your country and year from the public <strong>Nager.Date</strong> service (date.nager.at). The request contains only the year and the country code.</li>
+            <li><strong>Fonts:</strong> The Application may download font files from <strong>Google Fonts</strong> (Google LLC) the first time they are needed, and then keeps them on your device.</li>
+            <li><strong>Google Calendar:</strong> When you choose to create an event in Google Calendar from the Application, the details of that shift are passed to Google Calendar, which opens outside the Application.</li>
+          </ul>
+          <p>As with any internet connection, the services listed in this section technically receive your device's IP address when the Application contacts them.</p>
 
           <h2>5. Legal Bases for Processing (GDPR)</h2>
           <p>If you are located in the European Economic Area (EEA), our legal bases for processing data under the General Data Protection Regulation (GDPR) are:</p>
           <ul>
             <li><strong>Consent (Art. 6(1)(a) GDPR):</strong> When you voluntarily submit feedback, screenshots, or optional contact information (name and email) via the in-app feedback tool.</li>
-            <li><strong>Performance of a Contract (Art. 6(1)(b) GDPR):</strong> To deliver app functionality, manage subscription access, and fulfill your feature requests.</li>
-            <li><strong>Legitimate Interests (Art. 6(1)(f) GDPR):</strong> To monitor app performance, fix software bugs, maintain security, and optimize user experience.</li>
+            <li><strong>Performance of a Contract (Art. 6(1)(b) GDPR):</strong> To deliver app functionality and give you access to the features you purchased.</li>
+            <li><strong>Legitimate Interests (Art. 6(1)(f) GDPR):</strong> To monitor app performance, fix software bugs, and maintain security. You can object at any time by turning off crash reports in Settings.</li>
           </ul>
+          <p><strong>International transfers:</strong> Sentry data is stored in the European Union. RevenueCat, Google, and Apple may process data in the United States or in other countries outside the EEA; these transfers rely on the safeguards provided for by the GDPR, such as Standard Contractual Clauses or the EU–U.S. Data Privacy Framework.</p>
 
-          <h2>6. California Privacy Disclosures (CCPA / CPRA) & User Rights</h2>
+          <h2>6. Your Rights (GDPR, CCPA / CPRA)</h2>
+          <p>If you are located in the EEA, you have the right to access, rectify, or erase your personal data, to restrict or object to its processing, to data portability, and to withdraw your consent at any time. To exercise these rights, write to <a href="mailto:info@danielesforza.dev">info@danielesforza.dev</a> and include the <strong>Customer ID</strong> shown in the app's Settings, so that we can locate the data linked to your installation. You also have the right to lodge a complaint with the data protection authority of your country of residence.</p>
           <p>Under the California Consumer Privacy Act (CCPA) and California Privacy Rights Act (CPRA):</p>
           <ul>
             <li>We <strong>do not sell</strong> your personal information.</li>
@@ -440,7 +453,7 @@
           </ul>
 
           <h2>7. Data Retention & Deletion</h2>
-          <p>Since your schedule data is stored locally on your device, deleting the Application or clearing its local storage permanently erases all your stored shifts and settings. Diagnostic logs and user feedback collected by Sentry are retained temporarily for troubleshooting (typically 30 to 90 days) and then permanently expunged.</p>
+          <p>Since your schedule data is stored locally on your device, deleting the Application or clearing its local storage permanently erases all your stored shifts and settings. Diagnostic reports and user feedback stored by Sentry are deleted automatically within 90 days. Purchase records are kept by RevenueCat for as long as needed to keep your purchase available to you, and are deleted on request.</p>
 
           <h2>8. Children's Privacy</h2>
           <p>Our Service is not directed to children under the age of 13 (or 16 in the EEA). We do not knowingly collect personal information from children.</p>
@@ -448,10 +461,10 @@
           <h2>9. Changes to This Privacy Policy</h2>
           <p>We may update this Privacy Policy from time to time. Any changes will be posted directly on this page with an updated "Last updated" revision date.</p>
 
-          <h2>10. Contact Us</h2>
+          <h2>10. Contact Us & Data Controller</h2>
           <p>If you have any questions, suggestions, or requests regarding this Privacy Policy, please contact us at:</p>
           <p><strong>Email:</strong> <a href="mailto:info@danielesforza.dev">info@danielesforza.dev</a><br>
-          <strong>Developer:</strong> Daniele Sforza</p>
+          <strong>Developer and data controller:</strong> Daniele Sforza</p>
         `
       },
       it: {
@@ -460,73 +473,86 @@
         btnBack: "← Supporto",
         badgeText: "Note Legali & Privacy",
         titleText: "Informativa sulla Privacy",
-        updatedText: "Ultimo aggiornamento: 20 Settembre 2026",
+        updatedText: "Ultimo aggiornamento: 6 Ottobre 2026",
         footerSupport: "Supporto & Assistenza",
         footerPrivacy: "Informativa sulla Privacy",
         footerCopy: "&copy; 2026 Daniele Sforza • Calendario Turni. Tutti i diritti riservati.",
         body: `
           <h2>1. Introduzione e Principi Generali</h2>
-          <p>La presente Informativa sulla Privacy descrive le modalità di gestione delle informazioni da parte di <strong>Calendario Turni</strong> ("Applicazione", "Noi"), sviluppata da <strong>Daniele Sforza</strong>, per i dispositivi iOS e Android.</p>
-          
+          <p>La presente Informativa sulla Privacy descrive le modalità di gestione delle informazioni da parte di <strong>Calendario Turni</strong> ("Applicazione", "Noi"), sviluppata da <strong>Daniele Sforza</strong>, per i dispositivi iOS e Android. Daniele Sforza è il titolare del trattamento per i dati limitati descritti nella Sezione 4.</p>
+
           <div class="highlight-box">
             <p><strong>🔒 Principio di Privacy Locale (Offline-First):</strong> Calendario Turni è progettata con un'architettura che privilegia la privacy e il funzionamento offline. I tuoi turni, gli schemi di rotazione, le note personali, i conteggi economici e le impostazioni rimangono salvati esclusivamente sul tuo dispositivo e non vengono mai caricati su server remoti.</p>
           </div>
 
           <h2>2. Dati Personali e Trattamento Locale</h2>
           <h3>Archiviazione Locale sul Dispositivo</h3>
-          <p>Tutti i dati inseriti nell'Applicazione (turni lavorativi, schemi, compensi orari, note personali) sono memorizzati localmente sul dispositivo all'interno di database sicuri (Hive). Non gestiamo database cloud per l'archiviazione dei tuoi turni.</p>
+          <p>Tutti i dati inseriti nell'Applicazione (turni lavorativi, schemi, compensi orari, note personali, allegati) sono memorizzati localmente sul dispositivo, nello spazio privato e isolato dell'Applicazione (database Hive). Non gestiamo database cloud per l'archiviazione dei tuoi turni.</p>
+
+          <h3>Backup</h3>
+          <p>Copie di questi dati esistono al di fuori dell'Applicazione solo in due casi: il backup del dispositivo offerto dal sistema operativo (backup Google o iCloud, collegato al tuo account personale) e i file di backup che esporti tu stesso. Non abbiamo accesso a nessuno dei due.</p>
 
           <h3>Intelligenza Artificiale su Dispositivo</h3>
-          <p>Le funzionalità basate su intelligenza artificiale (come la generazione di temi personalizzati o suggerimenti tramite Google Gemma) vengono elaborate interamente sul processore del tuo smartphone. Nessun dato o testo viene inviato a server cloud di intelligenza artificiale.</p>
+          <p>Le funzionalità basate su intelligenza artificiale (come la generazione di temi personalizzati) vengono elaborate sul tuo dispositivo, tramite i modelli locali forniti dal sistema operativo (Gemini Nano tramite Android AICore, oppure i modelli on-device di Apple su iOS). Nessun dato o testo viene inviato a server cloud di intelligenza artificiale.</p>
 
           <h2>3. Permessi del Dispositivo</h2>
           <p>L'Applicazione può richiedere alcuni permessi di sistema al solo fine di fornire le funzionalità richieste dall'utente:</p>
           <ul>
-            <li><strong>Calendario di Sistema (Lettura/Scrittura):</strong> Utilizzato esclusivamente per consentire la sincronizzazione e l'esportazione dei turni nel calendario nativo del telefono (es. Google Calendar, Apple Calendario). L'operazione avviene interamente sul dispositivo.</li>
-            <li><strong>Notifiche e Sveglie:</strong> Utilizzate per la programmazione locale di promemoria e avvisi relativi ai turni di lavoro.</li>
-            <li><strong>Archiviazione / File:</strong> Utilizzata esclusivamente nel momento in cui l'utente decide manualmente di creare o ripristinare una copia di backup dei propri dati.</li>
+            <li><strong>Calendario di Sistema (Lettura/Scrittura):</strong> Utilizzato esclusivamente per consentire la sincronizzazione e l'esportazione dei turni nel calendario nativo del telefono (es. Google Calendar, Apple Calendario). L'operazione avviene interamente sul dispositivo. Se il calendario scelto appartiene a un account online (ad esempio Google o iCloud), gli eventi scritti vengono poi sincronizzati dal fornitore di quell'account.</li>
+            <li><strong>Fotocamera, Microfono e Foto:</strong> Utilizzati solo quando scegli di allegare a un giorno una foto, un video o un documento scansionato. Gli allegati restano sul tuo dispositivo.</li>
+            <li><strong>Archiviazione / File:</strong> Utilizzata esclusivamente nel momento in cui l'utente decide manualmente di allegare un file oppure di creare o ripristinare una copia di backup dei propri dati.</li>
           </ul>
 
           <h2>4. Servizi Terzi e Diagnostica</h2>
-          <p>Per garantire la stabilità dell'applicazione, monitorare i crash, consentire l'invio di feedback e gestire gli acquisti in-app, utilizziamo SDK di terze parti fidate:</p>
+          <p>Per garantire la stabilità dell'applicazione, monitorare i crash, consentire l'invio di feedback e gestire gli acquisti in-app, utilizziamo servizi di terze parti fidate:</p>
 
           <h3>A. Monitoraggio Crash e Diagnostica (Sentry)</h3>
-          <p>Utilizziamo <strong>Sentry</strong> (Functional Software, Inc., USA) per rilevare automaticamente errori software, arresti anomali e prestazioni. In caso di errore o crash, Sentry raccoglie:</p>
+          <p>Utilizziamo <strong>Sentry</strong> (Functional Software, Inc., USA) per rilevare automaticamente errori software, arresti anomali e prestazioni. I nostri dati Sentry sono conservati nella regione dati dell'Unione Europea di Sentry (Germania). In caso di errore o crash, Sentry raccoglie:</p>
           <ul>
             <li>Log tecnici, stack trace ed errori dell'applicazione.</li>
             <li>Specifiche del dispositivo (modello, versione del sistema operativo, versione dell'app).</li>
-            <li>Un identificatore di installazione anonimo per raggruppare i report e misurare il tasso di sessioni prive di crash.</li>
+            <li>Identificatori pseudonimi: un ID di installazione e l'identificatore di acquisto dell'Applicazione (l'<strong>ID cliente</strong> mostrato nelle Impostazioni). Servono a misurare la frequenza dei crash e ad associare un report a una richiesta di assistenza, e non contengono il tuo nome né il tuo indirizzo email.</li>
             <li>Parametri diagnostici di prestazioni (es. tempi di avvio dell'app).</li>
           </ul>
-          <p><strong>Misure di Tutela e Controllo In-App:</strong> L'acquisizione automatica di screenshot in caso di crash è disabilitata in modo permanente. Sentry non ha accesso ai tuoi turni o note personali. Inoltre, puoi disattivare in qualsiasi momento l'invio automatico dei report diagnostici direttamente nell'app da <strong>Impostazioni &rarr; Privacy e Sicurezza &rarr; Condividi report di crash</strong>.</p>
+          <p><strong>Misure di Tutela e Controllo In-App:</strong> L'acquisizione automatica di screenshot in caso di crash è disabilitata in modo permanente, e i nomi dei file che alleghi vengono rimossi dai report prima che lascino il dispositivo. Sentry non ha accesso ai tuoi turni o note personali durante la segnalazione dei crash. Inoltre, puoi disattivare in qualsiasi momento l'invio automatico dei report diagnostici direttamente nell'app da <strong>Impostazioni &rarr; Termini e Privacy &rarr; Report anonimi di crash ed errori</strong>.</p>
           <p>Per maggiori informazioni, consulta l'<a href="https://sentry.io/privacy/" target="_blank" rel="noopener">Informativa Privacy di Sentry</a>.</p>
 
           <h3>B. Feedback e Segnalazioni Inviate dall'Utente (Sentry)</h3>
-          <p>Quando utilizzi la funzione <strong>Invia Feedback</strong> o <strong>Segnala Bug</strong> presente nell'app, i seguenti dati vengono trasmessi in modo sicuro a Sentry al solo scopo di analizzare la richiesta e fornire supporto:</p>
+          <p>Quando utilizzi la funzione <strong>Invia feedback visivo</strong> presente nell'app (disponibile solo se i report di crash sono attivi), i seguenti dati vengono trasmessi in modo sicuro a Sentry al solo scopo di analizzare la richiesta e fornire supporto:</p>
           <ul>
             <li>Il testo del messaggio o della descrizione fornita.</li>
-            <li>Uno screenshot della schermata da cui è stato avviato lo strumento di feedback (inclusi eventuali disegni o annotazioni inseriti dall'utente).</li>
+            <li>Uno screenshot della schermata da cui è stato avviato lo strumento di feedback, che può mostrare i turni e le note visibili in quella schermata (inclusi eventuali disegni o annotazioni inseriti dall'utente).</li>
             <li><strong>Dati di Contatto Opzionali:</strong> È possibile inserire facoltativamente <strong>Nome</strong> e <strong>Indirizzo Email</strong> qualora si desideri essere ricontattati dallo sviluppatore. L'inserimento di tali dati è puramente facoltativo.</li>
           </ul>
 
-          <h3>C. Gestione Abbonamenti e Acquisti In-App (RevenueCat)</h3>
-          <p>Utilizziamo <strong>RevenueCat</strong> (RevenueCat, Inc., USA) per gestire la convalida degli acquisti in-app e lo stato della Versione Pro. RevenueCat elabora identificatori utente anonimi e ricevute d'acquisto generate da Apple App Store o Google Play Store.</p>
+          <h3>C. Acquisti In-App (RevenueCat)</h3>
+          <p>Utilizziamo <strong>RevenueCat</strong> (RevenueCat, Inc., USA) per verificare gli acquisti in-app e sbloccare la Versione PRO, anche quando ripristini un acquisto su un nuovo dispositivo. RevenueCat elabora un identificatore utente pseudonimo (l'<strong>ID cliente</strong> mostrato nelle Impostazioni), le ricevute d'acquisto e lo stato dell'acquisto generati da Apple App Store o Google Play Store.</p>
           <p>I dati di pagamento e le carte di credito sono gestiti direttamente da Apple o Google e non sono mai accessibili a Noi o a RevenueCat.</p>
           <p>Per maggiori informazioni, consulta l'<a href="https://www.revenuecat.com/privacy/" target="_blank" rel="noopener">Informativa Privacy di RevenueCat</a>.</p>
+
+          <h3>D. Altre Richieste di Rete</h3>
+          <ul>
+            <li><strong>Festività:</strong> Per mostrare i giorni festivi, l'Applicazione scarica l'elenco relativo al tuo paese e all'anno dal servizio pubblico <strong>Nager.Date</strong> (date.nager.at). La richiesta contiene solo l'anno e il codice del paese.</li>
+            <li><strong>Font:</strong> L'Applicazione può scaricare i file dei caratteri da <strong>Google Fonts</strong> (Google LLC) la prima volta che servono, conservandoli poi sul dispositivo.</li>
+            <li><strong>Google Calendar:</strong> Quando scegli di creare un evento in Google Calendar dall'Applicazione, i dettagli di quel turno vengono passati a Google Calendar, che si apre al di fuori dell'Applicazione.</li>
+          </ul>
+          <p>Come per ogni connessione a Internet, i servizi elencati in questa sezione ricevono tecnicamente l'indirizzo IP del tuo dispositivo quando l'Applicazione li contatta.</p>
 
           <h2>5. Basi Giuridiche del Trattamento (GDPR)</h2>
           <p>Ai sensi del Regolamento Generale sulla Protezione dei Dati (GDPR - UE 2016/679), le basi giuridiche per il trattamento sono:</p>
           <ul>
             <li><strong>Consenso (Art. 6(1)(a) GDPR):</strong> Nel momento in cui invii volontariamente feedback, screenshot o informazioni di contatto opzionali (nome ed email) tramite lo strumento integrato nell'app.</li>
-            <li><strong>Esecuzione di un contratto (Art. 6(1)(b) GDPR):</strong> Per consentire il corretto funzionamento dell'app e la gestione degli acquisti.</li>
-            <li><strong>Legittimo interesse (Art. 6(1)(f) GDPR):</strong> Per garantire la sicurezza, correggere anomalie software e prevenire malfunzionamenti.</li>
+            <li><strong>Esecuzione di un contratto (Art. 6(1)(b) GDPR):</strong> Per consentire il corretto funzionamento dell'app e darti accesso alle funzionalità acquistate.</li>
+            <li><strong>Legittimo interesse (Art. 6(1)(f) GDPR):</strong> Per garantire la sicurezza, correggere anomalie software e prevenire malfunzionamenti. Puoi opporti in qualsiasi momento disattivando i report di crash nelle Impostazioni.</li>
           </ul>
+          <p><strong>Trasferimenti internazionali:</strong> I dati di Sentry sono conservati nell'Unione Europea. RevenueCat, Google e Apple possono trattare dati negli Stati Uniti o in altri paesi al di fuori dello SEE; tali trasferimenti si basano sulle garanzie previste dal GDPR, come le Clausole Contrattuali Standard o il Data Privacy Framework UE–USA.</p>
 
           <h2>6. Diritti dell'Utente</h2>
-          <p>In conformità al GDPR e alle normative internazionali sulla privacy, hai il diritto di disattivare la telemetria dalle impostazioni dell'app, richiedere informazioni sui dati diagnostici o di feedback raccolti, o richiederne la cancellazione contattando il titolare del trattamento.</p>
+          <p>In conformità al GDPR, hai il diritto di accedere ai tuoi dati personali, di rettificarli o cancellarli, di limitarne il trattamento o di opporti ad esso, alla portabilità dei dati e di revocare il consenso in qualsiasi momento. Per esercitare questi diritti scrivi a <a href="mailto:info@danielesforza.dev">info@danielesforza.dev</a> indicando l'<strong>ID cliente</strong> mostrato nelle Impostazioni dell'app, così da permetterci di individuare i dati collegati alla tua installazione. Hai inoltre il diritto di proporre reclamo all'autorità per la protezione dei dati del tuo paese di residenza (in Italia, il Garante per la protezione dei dati personali).</p>
+          <p>Puoi inoltre disattivare la telemetria in qualsiasi momento dalle impostazioni dell'app. Non vendiamo i tuoi dati personali e non li condividiamo con terzi a fini pubblicitari.</p>
 
           <h2>7. Conservazione e Cancellazione dei Dati</h2>
-          <p>Poiché i dati del calendario sono archiviati localmente sul dispositivo, la disinstallazione dell'app o la cancellazione dei dati dell'app comporta la rimozione istantanea e irreversibile di tutti i turni salvati. I log diagnostici e i feedback su Sentry vengono conservati temporaneamente (30-90 giorni) e poi eliminati.</p>
+          <p>Poiché i dati del calendario sono archiviati localmente sul dispositivo, la disinstallazione dell'app o la cancellazione dei dati dell'app comporta la rimozione istantanea e irreversibile di tutti i turni salvati. I report diagnostici e i feedback conservati da Sentry vengono eliminati automaticamente entro 90 giorni. I dati relativi agli acquisti sono conservati da RevenueCat per il tempo necessario a mantenere disponibile il tuo acquisto e vengono cancellati su richiesta.</p>
 
           <h2>8. Privacy dei Minori</h2>
           <p>L'Applicazione non è destinata a minori di 13 anni (o 16 anni nello Spazio Economico Europeo) e non raccoglie consapevolmente informazioni relative a minori.</p>
@@ -537,7 +563,7 @@
           <h2>10. Contatti e Titolare del Trattamento</h2>
           <p>Per qualsiasi domanda o chiarimento riguardante la presente Privacy Policy, puoi contattarci all'indirizzo:</p>
           <p><strong>Email:</strong> <a href="mailto:info@danielesforza.dev">info@danielesforza.dev</a><br>
-          <strong>Sviluppatore:</strong> Daniele Sforza</p>
+          <strong>Sviluppatore e titolare del trattamento:</strong> Daniele Sforza</p>
         `
       }
     };
