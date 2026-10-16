@@ -204,6 +204,60 @@
       margin: 0 auto 32px;
     }
 
+    /* Store badges */
+    .store-badges {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .store-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 190px;
+      padding: 10px 20px;
+      border-radius: 12px;
+      background: #000;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      text-decoration: none;
+      text-align: left;
+      transition: var(--transition);
+    }
+
+    .store-btn:hover {
+      transform: translateY(-2px);
+      border-color: var(--card-hover-border);
+      box-shadow: 0 6px 20px rgba(99, 102, 241, 0.35);
+    }
+
+    .store-btn svg {
+      width: 26px;
+      height: 26px;
+      flex-shrink: 0;
+    }
+
+    .store-btn-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+
+    .store-btn-small {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .store-btn-big {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
     /* Contact Card */
     .contact-card {
       background: var(--card-bg);
@@ -493,6 +547,22 @@
       <div class="hero-badge" id="hero-badge">Supporto Ufficiale</div>
       <h1 id="hero-title">L'agenda intelligente per i tuoi turni</h1>
       <p id="hero-desc">Organizza i tuoi cicli di turni, sincronizza gli orari con il calendario del tuo dispositivo e tieni sempre sotto controllo il tuo lavoro con la massima privacy.</p>
+      <div class="store-badges">
+        <a href="https://apps.apple.com/it/app/calendario-turni-smart/id6807097670" class="store-btn" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="appstore-grad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1AC8FC"/><stop offset="1" stop-color="#1D6FF2"/></linearGradient></defs><rect width="24" height="24" rx="5.4" fill="url(#appstore-grad)"/><g fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><path d="M13.3 5.6 7.4 15.8"/><path d="M10.7 5.6l5.9 10.2"/><path d="M5.8 13.4h12.4"/></g></svg>
+          <span class="store-btn-text">
+            <span class="store-btn-small" id="store-apple-small">Scarica su</span>
+            <span class="store-btn-big">App Store</span>
+          </span>
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=dev.danielesforza.calendario_turni" class="store-btn" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924z"/><path fill="#34A853" d="M13.544 10.989l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l11.04 10.973z"/><path fill="#FBBC04" d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594z"/><path fill="#EA4335" d="M13.544 13.056l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54-3.23-3.21z"/></svg>
+          <span class="store-btn-text">
+            <span class="store-btn-small" id="store-google-small">Disponibile su</span>
+            <span class="store-btn-big">Google Play</span>
+          </span>
+        </a>
+      </div>
     </section>
 
     <!-- Support Contact Card -->
@@ -600,6 +670,8 @@
         heroBadge: "Supporto Ufficiale",
         heroTitle: "L'agenda intelligente per i tuoi turni",
         heroDesc: "Organizza i tuoi cicli di turni, sincronizza gli orari con il calendario del tuo dispositivo e tieni sempre sotto controllo il tuo lavoro con la massima privacy.",
+        storeAppleSmall: "Scarica su",
+        storeGoogleSmall: "Disponibile su",
         contactTitle: "Hai bisogno di assistenza?",
         contactDesc: "Siamo qui per aiutarti. Se riscontri problemi, hai domande sull'applicazione o desideri suggerire nuove funzionalità, scrivici direttamente.",
         btnEmail: "✉️ Invia un'email al supporto",
@@ -631,6 +703,8 @@
         heroBadge: "Official Support",
         heroTitle: "The smart calendar for your work shifts",
         heroDesc: "Organize your shift rotations, sync schedules with your device calendar, and stay on top of your work schedule with complete privacy.",
+        storeAppleSmall: "Download on the",
+        storeGoogleSmall: "Get it on",
         contactTitle: "Need assistance?",
         contactDesc: "We're here to help. If you experience any issues, have questions, or want to suggest new features, feel free to contact us.",
         btnEmail: "✉️ Send an email to support",
@@ -662,6 +736,8 @@
         heroBadge: "Soporte Oficial",
         heroTitle: "La agenda inteligente para tus turnos de trabajo",
         heroDesc: "Organiza tus ciclos rotativos, sincroniza horarios con el calendario del dispositivo y mantén el control con total privacidad.",
+        storeAppleSmall: "Descárgalo en el",
+        storeGoogleSmall: "Disponible en",
         contactTitle: "¿Necesitas ayuda?",
         contactDesc: "Estamos a tu disposición. Si tienes problemas, consultas o sugerencias, contáctanos directamente.",
         btnEmail: "✉️ Enviar un correo a soporte",
@@ -693,6 +769,8 @@
         heroBadge: "Support Officiel",
         heroTitle: "L'agenda intelligent pour vos horaires et gardes",
         heroDesc: "Gérez vos roulements d'équipe, synchronisez avec le calendrier de votre téléphone et gardez le contrôle de votre planning.",
+        storeAppleSmall: "Télécharger dans l'",
+        storeGoogleSmall: "Disponible sur",
         contactTitle: "Besoin d'aide ?",
         contactDesc: "Nous sommes là pour vous aider. Si vous rencontrez un souci ou avez une suggestion, écrivez-nous.",
         btnEmail: "✉️ Envoyer un e-mail à l'assistance",
@@ -724,6 +802,8 @@
         heroBadge: "Offizieller Support",
         heroTitle: "Der intelligente Kalender für Ihre Arbeitsschichten",
         heroDesc: "Verwalten Sie Ihre Schichtzyklen, synchronisieren Sie Termine mit Ihrem Gerätekalender und behalten Sie Ihre Arbeitszeiten im Blick.",
+        storeAppleSmall: "Laden im",
+        storeGoogleSmall: "Jetzt bei",
         contactTitle: "Brauchen Sie Hilfe?",
         contactDesc: "Wir sind für Sie da. Wenn Sie Fragen haben oder ein Problem melden möchten, kontaktieren Sie uns direkt.",
         btnEmail: "✉️ E-Mail an den Support senden",
@@ -760,6 +840,8 @@
       document.getElementById('hero-badge').textContent = t.heroBadge;
       document.getElementById('hero-title').textContent = t.heroTitle;
       document.getElementById('hero-desc').textContent = t.heroDesc;
+      document.getElementById('store-apple-small').textContent = t.storeAppleSmall;
+      document.getElementById('store-google-small').textContent = t.storeGoogleSmall;
       document.getElementById('contact-title').textContent = t.contactTitle;
       document.getElementById('contact-desc').textContent = t.contactDesc;
       document.getElementById('btn-email').innerHTML = t.btnEmail;

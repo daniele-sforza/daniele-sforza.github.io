@@ -355,6 +355,59 @@
       transform: translateX(4px);
     }
 
+    /* Store badges */
+    .store-badges {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+    }
+
+    .store-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 12px;
+      background: #000;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      text-decoration: none;
+      text-align: left;
+      transition: var(--transition);
+    }
+
+    .store-btn:hover {
+      transform: translateY(-2px);
+      border-color: var(--card-hover);
+      box-shadow: 0 6px 20px rgba(99, 102, 241, 0.35);
+    }
+
+    .store-btn svg {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+
+    .store-btn-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+
+    .store-btn-small {
+      font-size: 0.65rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .store-btn-big {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
     .project-card.upcoming {
       border-style: dashed;
       background: rgba(17, 24, 39, 0.4);
@@ -525,6 +578,22 @@
             </div>
           </div>
           <p id="cal-desc">L'agenda intelligente per pianificare i tuoi turni di lavoro. Sincronizzazione automatica con il calendario di sistema, ciclazione dei turni e 100% privacy locale.</p>
+          <div class="store-badges">
+            <a href="https://apps.apple.com/it/app/calendario-turni-smart/id6807097670" class="store-btn" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="appstore-grad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1AC8FC"/><stop offset="1" stop-color="#1D6FF2"/></linearGradient></defs><rect width="24" height="24" rx="5.4" fill="url(#appstore-grad)"/><g fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><path d="M13.3 5.6 7.4 15.8"/><path d="M10.7 5.6l5.9 10.2"/><path d="M5.8 13.4h12.4"/></g></svg>
+              <span class="store-btn-text">
+                <span class="store-btn-small" id="store-apple-small">Scarica su</span>
+                <span class="store-btn-big">App Store</span>
+              </span>
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=dev.danielesforza.calendario_turni" class="store-btn" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924z"/><path fill="#34A853" d="M13.544 10.989l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l11.04 10.973z"/><path fill="#FBBC04" d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594z"/><path fill="#EA4335" d="M13.544 13.056l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54-3.23-3.21z"/></svg>
+              <span class="store-btn-text">
+                <span class="store-btn-small" id="store-google-small">Disponibile su</span>
+                <span class="store-btn-big">Google Play</span>
+              </span>
+            </a>
+          </div>
           <a href="calendario-turni/index.html" class="project-link" id="cal-link">
             Scopri l'app &amp; Assistenza &rarr;
           </a>
@@ -597,6 +666,8 @@
         secProjectsDesc: "Applicazioni mobile progettate per semplificare la vita quotidiana.",
         calDesc: "L'agenda intelligente per pianificare i tuoi turni di lavoro. Sincronizzazione automatica con il calendario di sistema, ciclazione dei turni e 100% privacy locale.",
         calLink: "Scopri l'app & Assistenza &rarr;",
+        storeAppleSmall: "Scarica su",
+        storeGoogleSmall: "Disponibile su",
         upTitle: "Nuovi Progetti",
         upTag: "In Sviluppo",
         upDesc: "Nuove applicazioni, tool e soluzioni innovative in arrivo presto su App Store e Google Play Store. Resta sintonizzato!",
@@ -619,6 +690,8 @@
         secProjectsDesc: "Mobile applications designed to simplify daily routines.",
         calDesc: "The smart calendar for managing work shifts. Automatic device calendar sync, recurring shift patterns, and 100% on-device privacy.",
         calLink: "Explore App & Support &rarr;",
+        storeAppleSmall: "Download on the",
+        storeGoogleSmall: "Get it on",
         upTitle: "Upcoming Projects",
         upTag: "In Development",
         upDesc: "New applications and innovative tools coming soon to the App Store and Google Play Store. Stay tuned!",
@@ -647,6 +720,8 @@
       document.getElementById('sec-projects-desc').textContent = t.secProjectsDesc;
       document.getElementById('cal-desc').textContent = t.calDesc;
       document.getElementById('cal-link').innerHTML = t.calLink;
+      document.getElementById('store-apple-small').textContent = t.storeAppleSmall;
+      document.getElementById('store-google-small').textContent = t.storeGoogleSmall;
       document.getElementById('up-title').textContent = t.upTitle;
       document.getElementById('up-tag').textContent = t.upTag;
       document.getElementById('up-desc').textContent = t.upDesc;
