@@ -1,0 +1,7 @@
+# tasteskill working files (checks, shots, history): not part of the published site
+.taste-skill/
+*/.taste-skill/
+
+# impeccable: per-machine cache and consent (config.json and design.json are shared)
+.impeccable/hook.cache.json
+.impeccable/config.local.json

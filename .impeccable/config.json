@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "design-system-font",
+        "value": "google sans flex",
+        "createdAt": "2026-11-11T11:40:12.175Z",
+        "reason": "user decision 2026-11-10: product subpages follow their product's design system; Google Sans Flex is the Calendario Turni app's own typeface (lib/theme.dart), used only on calendario-turni/"
+      }
+    ]
+  }
+}

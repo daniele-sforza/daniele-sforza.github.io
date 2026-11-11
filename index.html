@@ -1,758 +1,439 @@
-<!DOCTYPE html>
-<html lang="it">
+<!doctype html>
+<html lang="it" data-type="software" data-radius="round" data-buttons="tonal" data-motion>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title id="meta-title">Daniele Sforza — Software & Mobile Developer</title>
-  <meta name="description" id="meta-desc" content="Sito personale e portfolio di Daniele Sforza. Sviluppo applicazioni mobile native e multipiattaforma per iOS e Android.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #0a0e17;
-      --card-bg: rgba(17, 24, 39, 0.7);
-      --card-border: rgba(255, 255, 255, 0.08);
-      --card-hover: rgba(99, 102, 241, 0.35);
-      --primary: #6366f1;
-      --primary-hover: #4f46e5;
-      --primary-light: rgba(99, 102, 241, 0.12);
-      --accent: #38bdf8;
-      --text: #f8fafc;
-      --text-muted: #94a3b8;
-      --text-dim: #64748b;
-      --radius: 16px;
-      --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Daniele Sforza: app iOS, Android e siti web su misura</title>
+<meta name="description" content="Portfolio di Daniele Sforza, sviluppatore di app per iOS e Android e di siti web. Progetti: Calendario Turni e il sito di Garage Bissolati a Roma.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Daniele Sforza: app iOS, Android e siti web su misura">
+<meta property="og:description" content="Sviluppatore di app per iOS e Android e di siti web: Calendario Turni e Garage Bissolati.">
+<meta property="og:image" content="https://danielesforza.dev/share.jpg">
+<meta property="og:url" content="https://danielesforza.dev/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://danielesforza.dev/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.png">
+<meta name="theme-color" content="#EBE6DC">
+<meta name="site-kind" content="software">
+<meta name="page-type" content="software">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400..700&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400..500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/system.css">
+<link rel="stylesheet" href="assets/ui/cards.css">
+<link rel="stylesheet" href="assets/motion/motion.css">
+<link rel="stylesheet" href="assets/backgrounds/backgrounds.css">
+<link rel="stylesheet" href="assets/layout/layout.css">
+<link rel="stylesheet" href="assets/icons/icon.css">
+<style>
+/* InstaLanding design system · Agentic · agentic@1.0.0 (the tokens as supplied), then mapped onto the kit's --p-* */
+:root {
+  --ag-bg: #EBE6DC; --ag-surface: #F7F4EE; --ag-ink: #0D0C0B; --ag-panel: #0B0A09; --ag-on-panel: #EFE9DF;
+  --ag-accent: #D7FF3F; --ag-ember: #FF5A2E;
+  --ag-muted: color-mix(in oklab, var(--ag-ink) 54%, var(--ag-bg));
+  --ag-line: color-mix(in oklab, var(--ag-ink) 13%, transparent);
+  --ag-shade: color-mix(in oklab, var(--ag-ink) 9%, var(--ag-bg));
+  --ag-panel-muted: color-mix(in oklab, var(--ag-on-panel) 56%, var(--ag-panel));
+  --ag-panel-line: color-mix(in oklab, var(--ag-on-panel) 15%, transparent);
+  --ag-font-display: "Host Grotesk", system-ui, sans-serif;
+  --ag-font-text: "Host Grotesk", system-ui, sans-serif;
+  --ag-font-serif: "Instrument Serif", Georgia, serif;
+  --ag-font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --ag-t-giant: clamp(62px, 11.2vw, 168px);
+  --ag-t-h2: clamp(32px, 4.2vw, 62px);
+  --ag-statement: clamp(28px, 3.5vw, 52px);
+  --ag-card: clamp(24px, 2.3vw, 34px);
+  --ag-lede: clamp(19px, 1.7vw, 24px);
+  --ag-intro: clamp(19px, 1.6vw, 23px);
+  --ag-text: 17px; --ag-small: 15px; --ag-caption: 13px; --ag-label: 11.5px;
+  --ag-r-xl: 30px; --ag-r-lg: 22px; --ag-r-md: 16px; --ag-r-sm: 10px; --ag-r-pill: 999px;
+  --ag-hairline: 1px;
+  --ag-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --ag-grain-soft: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --ag-shadow-float: 0 40px 80px -40px color-mix(in oklab, var(--ag-ink) 35%, transparent);
+  --ag-ease: cubic-bezier(.7,0,.2,1);
+  --ag-dur-quick: .35s; --ag-dur: .4s;
+  --ag-frame: 10px;
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+  /* the kit's tokens, from the system: paper ground and ink; the inverse is the near-black panel with lime */
+  --p-bg: #EBE6DC; --p-surface: #F7F4EE; --p-ink: #0D0C0B; --p-muted: #64615c;
+  --p-accent: #0D0C0B; --p-accent-ink: #EFE9DF; --p-action: #0D0C0B; --p-action-ink: #EFE9DF;
+  --p-inv-bg: #0B0A09; --p-inv-surface: #1a1816; --p-inv-ink: #EFE9DF; --p-inv-muted: #9a938a;
+  --p-inv-accent: #D7FF3F; --p-inv-accent-ink: #0D0C0B; --p-inv-action: #D7FF3F; --p-inv-action-ink: #0D0C0B;
+  --font-display: var(--ag-font-display);
+  --font-text: var(--ag-font-text);
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --display-weight: 500;
+  --display-tracking: -0.035em;
+  --display-tracking-xl: -0.045em;
+}
+html[data-radius] { --r-sm: var(--ag-r-sm); --r-md: var(--ag-r-md); --r-lg: var(--ag-r-lg); --r-btn: var(--ag-r-pill); }
+</style>
+<style>
+  /* ------------------------------------------------------------ the Agentic layer over the kit */
+  body { background: var(--ag-bg); }
+  ::selection { background: var(--ag-accent); color: var(--ag-ink); }
+  /* paper grain over the whole page: the system's noise, in ink, very light */
+  body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-events: none; opacity: .05; mix-blend-mode: multiply;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .7 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  @media (prefers-reduced-transparency: reduce) { body::after { display: none; } }
 
-    body {
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      background-image: 
-        radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.15), transparent 45%),
-        radial-gradient(circle at 90% 70%, rgba(56, 189, 248, 0.12), transparent 45%);
-      background-attachment: fixed;
-      -webkit-font-smoothing: antialiased;
-    }
+  /* headings: Host Grotesk tight, one word in Instrument Serif italic */
+  h1 em, h2 em { font-family: var(--ag-font-serif); font-style: italic; font-weight: 400; letter-spacing: -0.01em; font-size: 1.06em; line-height: .9; }
+  main h2, footer.closing h2 { font-size: var(--ag-t-h2); line-height: 1.02; letter-spacing: -0.035em; font-weight: 500; }
+  /* the mono label over a heading: number, kind */
+  .ag-label, .section-head p.ag-label, .closing__cta p.ag-label { display: flex; align-items: center; gap: 10px; margin: 0 0 var(--s-5); font: 500 var(--ag-label)/1.4 var(--ag-font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  .ag-label::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; flex: none; }
+  .ground-inverse .ag-label::before, .ag-hero .ag-label::before { background: var(--ag-accent); }
 
-    .container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 24px;
-      width: 100%;
-    }
+  /* buttons: pills; the primary carries the system's dot */
+  .ag-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ag-accent); flex: none; }
+  .ground-inverse .btn--primary .ag-dot, .ag-hero .btn--primary .ag-dot { background: var(--ag-ink); }
+  .btn { gap: 10px; font-weight: 500; transition: background var(--ag-dur-quick) var(--ag-ease), transform var(--ag-dur-quick) var(--ag-ease); }
+  .btn--secondary { background: transparent !important; border: 1px solid var(--line-strong) !important; }
+  .btn--secondary:hover { background: color-mix(in oklab, var(--ink) 6%, transparent) !important; }
+  .link { font-weight: 500; }
 
-    /* Header */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      background: rgba(10, 14, 23, 0.85);
-      border-bottom: 1px solid var(--card-border);
-      padding: 18px 0;
-    }
+  /* the bar on paper: the initial in lime on ink, mono language switch */
+  .nav { background: color-mix(in oklab, var(--ag-bg) 92%, transparent); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom-color: transparent; }
+  .nav .mark.mark--initial { background: var(--ag-ink); color: var(--ag-accent); font-weight: 600; border-radius: 8px; }
+  .lang { display: flex; align-items: center; }
+  .lang > .nav__link { border: 0; background: none; cursor: pointer; min-width: 44px; justify-content: center; font: 500 12px/1 var(--ag-font-mono); letter-spacing: .08em; }
+  .lang > .nav__link[aria-pressed="true"]::after { content: ""; position: absolute; left: 50%; bottom: 6px; width: 5px; height: 5px; margin-left: -2.5px; border-radius: 50%; background: currentColor; }
+  @media (max-width: 1023px) { .nav.is-open .lang { justify-content: center; } .nav.is-open .lang > .nav__link { height: 44px; } }
 
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+  /* the Projects menu: Calendario Turni as the phone on the app's own dark ground, cut by the panel's foot */
+  .menu-card .panel { border-radius: var(--ag-r-md); }
+  .nav .menu-card .panel.panel--ct { background: #0e1513 !important; background-image: none !important; }  /* over the kit's lit ground, which outranks any page selector */
+  .menu-card .panel--ct::before { display: none; }
+  .menu-card .panel--ct > .menu-phone { position: absolute; left: 50%; top: 22px; width: 42%; max-width: 190px; transform: translateX(-50%);
+    border: 6px solid #050807; border-bottom: 0; border-radius: 30px 30px 0 0; overflow: hidden; background: #0e1513; }
+  .menu-card .panel--ct > .menu-phone > img { display: block; width: 100%; height: auto; }
 
-    .brand {
-      font-weight: 800;
-      font-size: 1.25rem;
-      letter-spacing: -0.03em;
-      color: var(--text);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+  /* ------------------------------------------------------------ the hero: a dark panel inset by the frame */
+  /* the panel is the section's own ground; the paper border is the system's 10px frame */
+  main > .hero.ag-hero, footer.ag-framed { background: var(--ag-grain-soft) padding-box, var(--ag-panel) padding-box; border: var(--ag-frame) solid var(--ag-bg);
+    border-radius: calc(var(--ag-r-xl) + var(--ag-frame)); }
+  main > .hero.ag-hero { height: auto; min-height: calc(100vh - var(--nav)); min-height: calc(100svh - var(--nav)); margin-top: var(--nav); border-top-width: 0;
+    border-radius: calc(var(--ag-r-xl) + var(--ag-frame)) / var(--ag-r-xl) var(--ag-r-xl) calc(var(--ag-r-xl) + var(--ag-frame)) calc(var(--ag-r-xl) + var(--ag-frame));
+    padding: clamp(28px, 4vw, 56px) 0 clamp(28px, 3.4vw, 48px); color: var(--ag-on-panel); }
+  .ag-hero { --ink: var(--ag-on-panel); --muted: var(--ag-panel-muted); --line: var(--ag-panel-line); --line-strong: color-mix(in oklab, var(--ag-on-panel) 30%, transparent);
+    --action: var(--ag-accent); --action-ink: var(--ag-ink); --bg: var(--ag-panel); }
+  .ag-hero > .wrap { position: relative; z-index: 1; height: auto; min-height: calc(100svh - var(--nav) - var(--ag-frame) - clamp(56px, 7.4vw, 104px));
+    display: flex; flex-direction: column; justify-content: space-between; gap: clamp(40px, 6vh, 72px); }
+  .ag-hero__top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--s-3); }
+  .ag-hero__top .ag-label { margin: 0; }
+  .ag-pill { display: inline-flex; align-items: center; gap: 10px; height: 34px; padding: 0 14px; border: 1px solid var(--ag-panel-line); border-radius: 999px;
+    font: 500 var(--ag-label)/1 var(--ag-font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ag-on-panel); }
+  .ag-pill > .ag-dot { background: var(--ag-accent); }
+  .ag-hero h1 { margin: 0; color: var(--ag-on-panel); font-weight: 500; }
+  .ag-hero .ag-name { display: block; font-size: var(--ag-t-giant); line-height: .88; letter-spacing: -0.055em; margin-left: -0.04em; }
+  .ag-hero .ag-sub { display: block; margin-top: clamp(14px, 1.6vw, 24px); font-size: var(--ag-statement); line-height: 1.08; letter-spacing: -0.03em; color: var(--ag-panel-muted); }
+  .ag-hero .ag-sub em { color: var(--ag-accent); }
+  .ag-hero__foot { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); row-gap: var(--s-7); align-items: start; }
+  .ag-hero__foot > .ag-intro { grid-column: 1 / span 6; }
+  .ag-hero__foot > .ag-work { grid-column: 7 / span 6; }
+  .ag-hero .hero__lead { margin: 0 0 var(--s-6); max-width: 34ch; font-size: var(--ag-intro); line-height: 1.4; color: var(--ag-on-panel); }
+  .ag-hero .hero__proof { margin: var(--s-3) 0 0; font-size: var(--ag-caption); color: var(--ag-panel-muted); }
+  .ag-hero .hero__proof a { display: inline-flex; align-items: center; min-height: 44px; color: var(--ag-on-panel); text-decoration: underline; text-decoration-color: var(--ag-panel-line); text-underline-offset: 4px; }
+  /* the two projects, as small cards on the panel */
+  .ag-work { display: grid; gap: var(--s-3); margin: 0; padding: 0; list-style: none; }
+  .ag-work a { display: grid; grid-template-columns: 64px minmax(0, 1fr) auto; align-items: center; gap: var(--s-4); padding: 10px 18px 10px 10px;
+    border-radius: var(--ag-r-lg); background: var(--ag-surface); color: var(--ag-ink); text-decoration: none;
+    transition: transform var(--ag-dur) var(--ag-ease), box-shadow var(--ag-dur) var(--ag-ease); }
+  .ag-work a:hover { transform: translateY(-2px); box-shadow: var(--ag-shadow-float); }
+  .ag-work__thumb { width: 64px; height: 64px; border-radius: var(--ag-r-md); overflow: hidden; display: grid; place-items: center; }
+  .ag-work__thumb--ct { background: #0e1513; }
+  .ag-work__thumb--ct img { width: 44px; height: 44px; border-radius: 10px; }
+  .ag-work__thumb--gb img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.02); transition: transform var(--ag-dur) var(--ag-ease); }
+  .ag-work a:hover .ag-work__thumb--gb img { transform: scale(1.05); }
+  .ag-work__name { display: block; font-size: 19px; font-weight: 500; letter-spacing: -0.015em; line-height: 1.2; }
+  .ag-work__kind { display: block; margin-top: 4px; font: 500 var(--ag-label)/1.3 var(--ag-font-mono); letter-spacing: .1em; text-transform: uppercase; color: #64615c; }
+  .ag-work__go { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--ag-ink); color: var(--ag-accent);
+    transition: transform var(--ag-dur) var(--ag-ease); }
+  .ag-work a:hover .ag-work__go { transform: translateX(3px); }
+  .ag-work__go svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 
-    .brand-dot {
-      width: 8px;
-      height: 8px;
-      background: var(--primary);
-      border-radius: 50%;
-      box-shadow: 0 0 10px var(--primary);
-    }
+  /* ------------------------------------------------------------ the projects */
+  .device { position: relative; overflow: hidden; background: #0e1513; }
+  .device > img, .device > picture > img { display: block; width: 100%; height: auto; }
+  .device--phone { border-radius: 34px; border: 7px solid #10100e; }
+  .device--browser { border-radius: var(--ag-r-md); border: 1px solid var(--ag-line); background: #f3ecd8; }
+  .device__bar { display: flex; align-items: center; gap: 6px; height: 34px; padding: 0 var(--s-3); background: var(--ag-surface); border-bottom: 1px solid var(--ag-line); font: 400 12px/1 var(--ag-font-mono); color: #4a4842; }
+  .device__bar i { width: 9px; height: 9px; border-radius: 50%; background: color-mix(in oklab, var(--ag-ink) 18%, var(--ag-surface)); }
+  .device__bar span { margin-inline: auto; padding: 5px 12px; border-radius: 999px; background: var(--ag-bg); }
+  .device__bar span::before { content: attr(data-url); }
+  /* Calendario Turni: two phones rising out of the dark panel, cut by its foot */
+  #progetti .frame { padding: 0; align-items: flex-start; background: var(--ag-panel); border: 0; border-radius: var(--ag-r-xl); overflow: hidden; }
+  #progetti .frame::after { content: ""; position: absolute; inset: 0; background: var(--ag-grain); opacity: .06; pointer-events: none; border-radius: inherit; }
+  .phones { position: absolute; inset: var(--s-8) 0 0; display: flex; justify-content: center; }
+  .phones--two > svg { display: block; width: min(88%, 572px); height: auto; }
+  .phones--one { display: none; }
+  #progetti ul.stack-2 { display: grid; gap: 0; border-top: 1px solid var(--ag-line); }
+  #progetti ul.stack-2 > li { padding: 12px 0; border-bottom: 1px solid var(--ag-line); font-size: var(--ag-small); }
+  #ct-h a { color: inherit; text-decoration: underline; text-decoration-thickness: .05em; text-underline-offset: .12em; text-decoration-color: var(--ag-line); transition: text-decoration-color var(--ag-dur) var(--ag-ease); }
+  #ct-h a:hover { text-decoration-color: currentColor; }
+  /* Garage Bissolati: the browser window and a phone on a shaded tray */
+  main > #garage-bissolati, footer.closing#contact { height: auto; min-height: 0; }
+  main > #garage-bissolati > .wrap, footer.closing#contact > .wrap { height: auto; }
+  #garage-bissolati { background: var(--ag-bg); }
+  #garage-bissolati .gb-links { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-6); }
+  .gb-tray { padding: clamp(16px, 2.6vw, 40px); border-radius: var(--ag-r-xl); background: var(--ag-shade); }
+  .gb-stage { display: flex; gap: var(--gutter); align-items: stretch; }
+  .gb-stage > .device--browser { flex: 1 1 0; min-width: 0; box-shadow: var(--ag-shadow-float); }
+  .gb-stage > .device--browser img { width: 100%; height: auto; }
+  .gb-stage > .device--phone { flex: none; width: 220px; box-shadow: var(--ag-shadow-float); }
+  .gb-stage > .device--phone > picture { position: absolute; inset: 0; }
+  .gb-stage > .device--phone img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; }
 
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-    }
+  /* ------------------------------------------------------------ the footer: the second dark panel */
+  /* the frame border narrows the box: widen the .wrap back so its lines match every other section */
+  main > .hero.ag-hero > .wrap, footer.ag-framed > .wrap { width: min(100% + 2 * var(--ag-frame) - 2 * var(--gut), var(--container)); }
+  footer.ag-framed { padding-top: clamp(56px, 7vw, 104px); padding-bottom: var(--s-7); }
+  footer.ag-framed h2 { max-width: 14ch; }
+  footer.ag-framed h2 em { color: var(--ag-accent); }
+  footer.ag-framed .footer__lede { font-size: var(--ag-intro); }
+  footer.ag-framed :is(h3, h4):not(.closing__cta *) { font: 500 var(--ag-label)/1.4 var(--ag-font-mono); letter-spacing: .1em; text-transform: uppercase; }
+  footer.ag-framed .footer__legal { font: 400 var(--ag-caption)/1.5 var(--ag-font-text); }
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.9rem;
-      transition: var(--transition);
-    }
-
-    .nav-links a:hover {
-      color: #fff;
-    }
-
-    .lang-switcher {
-      display: flex;
-      background: rgba(255, 255, 255, 0.05);
-      padding: 3px;
-      border-radius: 20px;
-      border: 1px solid var(--card-border);
-    }
-
-    .lang-btn {
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      font-family: inherit;
-      font-size: 0.775rem;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 16px;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .lang-btn.active {
-      background: var(--primary);
-      color: #fff;
-    }
-
-    /* Hero */
-    .hero {
-      padding: 80px 0 60px;
-      text-align: left;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--primary-light);
-      border: 1px solid rgba(99, 102, 241, 0.3);
-      color: #a5b4fc;
-      font-size: 0.85rem;
-      font-weight: 600;
-      padding: 6px 16px;
-      border-radius: 30px;
-      margin-bottom: 24px;
-    }
-
-    .hero-badge::before {
-      content: "";
-      width: 7px;
-      height: 7px;
-      background: #4ade80;
-      border-radius: 50%;
-      box-shadow: 0 0 8px #4ade80;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.4rem, 6vw, 4rem);
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      line-height: 1.1;
-      margin-bottom: 20px;
-      background: linear-gradient(135deg, #ffffff 40%, #c7d2fe 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero p {
-      font-size: clamp(1.1rem, 2.2vw, 1.3rem);
-      color: var(--text-muted);
-      max-width: 680px;
-      margin-bottom: 32px;
-      line-height: 1.55;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: inherit;
-      font-size: 0.95rem;
-      font-weight: 600;
-      padding: 12px 24px;
-      border-radius: 12px;
-      text-decoration: none;
-      cursor: pointer;
-      transition: var(--transition);
-      border: none;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--primary), var(--primary-hover));
-      color: #ffffff;
-      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
-    }
-
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.07);
-      color: var(--text);
-      border: 1px solid var(--card-border);
-    }
-
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.12);
-      color: #fff;
-    }
-
-    /* Section styling */
-    .section {
-      padding: 48px 0;
-    }
-
-    .section-header {
-      margin-bottom: 28px;
-    }
-
-    .section-title {
-      font-size: 1.8rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      margin-bottom: 8px;
-    }
-
-    .section-desc {
-      color: var(--text-muted);
-      font-size: 1rem;
-    }
-
-    /* Projects Grid */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px;
-    }
-
-    .project-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: var(--radius);
-      padding: 30px;
-      backdrop-filter: blur(12px);
-      transition: var(--transition);
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .project-card:hover {
-      border-color: var(--card-hover);
-      transform: translateY(-3px);
-      box-shadow: 0 16px 32px -10px rgba(0, 0, 0, 0.5);
-    }
-
-    .project-header {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 18px;
-    }
-
-    .project-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: 14px;
-      box-shadow: 0 6px 16px rgba(99, 102, 241, 0.35);
-      object-fit: cover;
-    }
-
-    .project-title-group h3 {
-      font-size: 1.35rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-    }
-
-    .project-tags {
-      display: flex;
-      gap: 6px;
-      margin-top: 4px;
-      flex-wrap: wrap;
-    }
-
-    .tag {
-      font-size: 0.725rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      padding: 3px 8px;
-      border-radius: 6px;
-      background: rgba(255, 255, 255, 0.06);
-      color: var(--text-muted);
-    }
-
-    .tag-live {
-      background: rgba(74, 222, 128, 0.15);
-      color: #4ade80;
-      border: 1px solid rgba(74, 222, 128, 0.3);
-    }
-
-    .tag-upcoming {
-      background: rgba(56, 189, 248, 0.15);
-      color: var(--accent);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-    }
-
-    .project-card p {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      line-height: 1.6;
-      margin-bottom: 24px;
-      flex-grow: 1;
-    }
-
-    .project-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--primary);
-      font-weight: 700;
-      font-size: 0.95rem;
-      text-decoration: none;
-      transition: var(--transition);
-      margin-top: auto;
-    }
-
-    .project-link:hover {
-      color: #a5b4fc;
-      transform: translateX(4px);
-    }
-
-    /* Store badges */
-    .store-badges {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 22px;
-      flex-wrap: wrap;
-    }
-
-    .store-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 14px;
-      border-radius: 12px;
-      background: #000;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: #fff;
-      text-decoration: none;
-      text-align: left;
-      transition: var(--transition);
-    }
-
-    .store-btn:hover {
-      transform: translateY(-2px);
-      border-color: var(--card-hover);
-      box-shadow: 0 6px 20px rgba(99, 102, 241, 0.35);
-    }
-
-    .store-btn svg {
-      width: 22px;
-      height: 22px;
-      flex-shrink: 0;
-    }
-
-    .store-btn-text {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.15;
-    }
-
-    .store-btn-small {
-      font-size: 0.65rem;
-      font-weight: 500;
-      color: rgba(255, 255, 255, 0.8);
-    }
-
-    .store-btn-big {
-      font-size: 1rem;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-    }
-
-    .project-card.upcoming {
-      border-style: dashed;
-      background: rgba(17, 24, 39, 0.4);
-    }
-
-    .project-card.upcoming:hover {
-      border-color: rgba(56, 189, 248, 0.4);
-    }
-
-    /* Contact Card */
-    .contact-box {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: var(--radius);
-      padding: 40px;
-      text-align: center;
-      margin: 40px 0;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .contact-box::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-    }
-
-    .contact-box h2 {
-      font-size: 1.8rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      margin-bottom: 12px;
-    }
-
-    .contact-box p {
-      color: var(--text-muted);
-      max-width: 520px;
-      margin: 0 auto 24px;
-      font-size: 1.05rem;
-    }
-
-    .email-chip {
-      display: inline-block;
-      font-family: ui-monospace, monospace;
-      font-size: 1.05rem;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--card-border);
-      padding: 8px 18px;
-      border-radius: 10px;
-      color: var(--accent);
-      margin-bottom: 24px;
-    }
-
-    /* Footer */
-    footer {
-      margin-top: auto;
-      border-top: 1px solid var(--card-border);
-      padding: 32px 0;
-      text-align: center;
-      color: var(--text-dim);
-      font-size: 0.875rem;
-    }
-
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 20px;
-    }
-
-    .footer-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: var(--transition);
-    }
-
-    .footer-links a:hover {
-      color: #fff;
-    }
-
-    /* Toast */
-    .toast {
-      position: fixed;
-      bottom: 24px;
-      left: 50%;
-      transform: translateX(-50%) translateY(100px);
-      background: #1e293b;
-      color: #fff;
-      padding: 10px 20px;
-      border-radius: 30px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-      border: 1px solid rgba(255,255,255,0.1);
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      z-index: 1000;
-      pointer-events: none;
-    }
-
-    .toast.show {
-      transform: translateX(-50%) translateY(0);
-    }
-  </style>
+  @media (min-width: 640px) and (max-width: 1023px) { .footer .footer__col { grid-column: auto / span 4; } }
+  @media (max-width: 1023px) {
+    .phones { inset: var(--s-6) 0 0; }
+    .gb-stage > .device--phone { display: none; }
+    .ag-hero__foot > .ag-intro, .ag-hero__foot > .ag-work { grid-column: 1 / -1; }
+  }
+  /* a 320px phone: the bar keeps the mark, the button and the menu; the name is in the h1 */
+  @media (max-width: 399px) { .nav .nav__logo .logo-name { display: none; } }
+  @media (max-width: 639px) {
+    :root { --ag-frame: 6px; }
+    .ag-hero .ag-name { line-height: .92; }
+    .ag-pill { height: auto; min-height: 30px; padding: 6px 12px; line-height: 1.3; }
+    .ag-hero .btn-row > .btn { width: 100%; }
+    #progetti .grid.fill { flex: none; }  /* the section grows with what it holds, it does not squeeze it */
+    #progetti .grid.fill > .frame--fill { flex: none; height: auto; }
+    .phones--two { display: none; }
+    .phones--one { display: flex; position: static; padding: var(--s-6) 0; }
+    .phones--one > .device--phone { width: 76%; border-width: 6px; border-radius: 30px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .ag-work a, .ag-work a:hover, .ag-work__go, .ag-work__thumb--gb img { transition: none; transform: none; } }
+</style>
+<script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
+<script src="assets/backgrounds/backgrounds.js"></script>
 </head>
 <body>
+<!-- type: software (a developer selling his own software work)
+     look: the Agentic design system (agentic@1.0.0, supplied by the client): paper #EBE6DC with ink grain, near-black
+     panels #0B0A09 inset by the 10px frame (hero and footer), lime #D7FF3F as the dot and the accent on dark, Host
+     Grotesk set tight with one Instrument Serif italic word per heading, JetBrains Mono labels, pill buttons
+     effect: none (the three.js scene was removed at the client's request); the hero shows the two projects -->
+<header class="nav">
+  <div class="wrap nav__bar">
+    <a class="skip-link" href="#top" data-i18n="skip">Vai al contenuto</a>
+    <a class="nav__logo" href="#top" aria-label="Daniele Sforza"><span class="mark mark--initial" aria-hidden="true">D</span><span class="logo-name">Daniele Sforza</span></a>
+    <nav class="nav__links" aria-label="Principale" data-i18n-attr="aria-label:navLabel">
+      <div class="nav__item">
+        <a class="nav__link" href="#progetti"><span data-i18n="navProjects">Progetti</span> <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="nav__menu">
+          <div class="wrap grid">
+            <a class="menu-card span-6" href="calendario-turni/">
+              <div class="panel panel--ct"><div class="menu-phone"><img src="img/ct-calendar-it-400.jpg" data-lang-src="img/ct-calendar-{l}-400.jpg" data-langs="it,en" alt="" width="400" height="869" loading="lazy"></div></div>
+              <span class="t-card">Calendario Turni</span>
+              <span class="t-small muted" data-i18n="menuCt">App per iOS e Android: assistenza e domande</span>
+            </a>
+            <a class="menu-card span-6" href="https://www.garagebissolati.it" target="_blank" rel="noopener">
+              <div class="panel"><img class="frame__img" src="img/gb-menu-it.jpg" data-lang-src="img/gb-menu-{l}.jpg" data-langs="it,en" alt="" width="720" height="405" loading="lazy" style="object-position: 50% 0"></div>
+              <span class="t-card">Garage Bissolati</span>
+              <span class="t-small muted" data-i18n="menuGb">Il sito di un parcheggio a Roma</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="nav__actions">
+      <div class="lang" role="group" aria-label="Lingua" data-i18n-attr="aria-label:langLabel">
+        <button class="nav__link" type="button" data-set-lang="it" aria-pressed="true" lang="it" aria-label="Italiano">IT</button>
+        <button class="nav__link" type="button" data-set-lang="en" aria-pressed="false" lang="en" aria-label="English">EN</button>
+      </div>
+      <a class="btn btn--primary" href="mailto:info@danielesforza.dev"><span data-i18n="cta">Scrivimi</span><span class="ag-dot" aria-hidden="true"></span></a>
+    </div>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menu">
+      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
 
-  <!-- Navbar -->
-  <header>
-    <div class="container nav-inner">
-      <a href="#" class="brand">
-        <span class="brand-dot"></span>
-        <span>Daniele Sforza</span>
-      </a>
-      <div class="nav-right">
-        <ul class="nav-links">
-          <li><a href="#progetti" id="nav-projects">Progetti</a></li>
-          <li><a href="#contatti" id="nav-contact">Contatti</a></li>
+<main id="top">
+  <section class="hero ag-hero" data-enter aria-labelledby="hero-h">
+    <div class="wrap">
+      <div class="ag-hero__top">
+        <p class="ag-label">Portfolio · iOS · Android · Web</p>
+        <p class="ag-pill"><span class="ag-dot" aria-hidden="true"></span><span data-i18n="proof">Disponibile per nuovi progetti</span></p>
+      </div>
+      <h1 id="hero-h" data-i18n-html="h1"><span class="ag-name">Daniele Sforza</span><span class="sr-only">, </span><span class="ag-sub">sviluppatore di app e <em>siti web</em></span></h1>
+      <div class="ag-hero__foot">
+        <div class="ag-intro">
+          <p class="hero__lead" data-i18n="lead">Progetto e sviluppo app per iOS e Android e siti web, fino alla pubblicazione.</p>
+          <div class="btn-row">
+            <a class="btn btn--primary" href="mailto:info@danielesforza.dev"><span data-i18n="cta">Scrivimi</span><span class="ag-dot" aria-hidden="true"></span></a>
+            <a class="btn btn--secondary" href="#progetti" data-i18n="ctaProjects">Guarda i progetti</a>
+          </div>
+          <p class="hero__proof"><a href="mailto:info@danielesforza.dev">info@danielesforza.dev</a></p>
+        </div>
+        <ul class="ag-work">
+          <li><a href="#progetti">
+            <span class="ag-work__thumb ag-work__thumb--ct"><img src="calendario-turni/icon-128.png" alt="" width="44" height="44"></span>
+            <span><span class="ag-work__name">Calendario Turni</span><span class="ag-work__kind" data-i18n="kCt">App · iOS e Android</span></span>
+            <span class="ag-work__go" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M1 6h9M6.5 2.5 10 6l-3.5 3.5"/></svg></span>
+          </a></li>
+          <li><a href="#garage-bissolati">
+            <span class="ag-work__thumb ag-work__thumb--gb"><img src="img/gb-thumb-it.jpg" data-lang-src="img/gb-thumb-{l}.jpg" data-langs="it,en" alt="" width="128" height="128"></span>
+            <span><span class="ag-work__name">Garage Bissolati</span><span class="ag-work__kind" data-i18n="kGb">Sito web · 6 lingue</span></span>
+            <span class="ag-work__go" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M1 6h9M6.5 2.5 10 6l-3.5 3.5"/></svg></span>
+          </a></li>
         </ul>
-        <div class="lang-switcher">
-          <button class="lang-btn active" data-lang="it">IT</button>
-          <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="progetti" aria-labelledby="ct-h">
+    <div class="wrap">
+      <div class="grid grid--top fill">
+        <div class="span-5 split-col">
+          <p class="ag-label" data-i18n="lbCt">01 — App · iOS e Android</p>
+          <h2 id="ct-h" data-i18n-html="ctH"><a href="calendario-turni/">Calendario Turni</a>, l’app per i <em>turni</em> di lavoro</h2>
+          <p class="t-lead" data-i18n="ctP">Scrivi il ciclo una volta, per esempio Mat Pom Sera R, e l’app lo ripete su tutti i mesi. Turni, note e allegati restano sul telefono.</p>
+          <ul class="stack-2">
+            <li data-i18n="ctF1">iOS e Android, scritta in Flutter</li>
+            <li data-i18n="ctF2">In italiano, inglese, tedesco, francese e spagnolo</li>
+            <li data-i18n="ctF3">20 temi e un generatore di temi con l’IA sul dispositivo</li>
+          </ul>
+          <div class="btn-row">
+            <a class="btn btn--secondary" href="https://apps.apple.com/it/app/calendario-turni-smart/id6807097670" target="_blank" rel="noopener"><img class="ic ic-20" data-icon="app-store" src="assets/icons/app-store.svg" alt="" width="20" height="20" loading="lazy"><span data-i18n="appStore">Scarica da App Store</span></a>
+            <a class="btn btn--secondary" href="https://play.google.com/store/apps/details?id=dev.danielesforza.calendario_turni" target="_blank" rel="noopener"><img class="ic ic-20" data-icon="google-play" src="assets/icons/google-play.svg" alt="" width="20" height="20" loading="lazy"><span data-i18n="playStore">Scarica da Google Play</span></a>
+          </div>
+          <p class="split-col__end"><a class="link" href="calendario-turni/" data-i18n="ctLink">Vedi assistenza e domande frequenti</a></p>
+        </div>
+        <div class="frame frame--fill span-6 start-7" role="img" aria-label="Calendario Turni su due telefoni: la vista mese di ottobre 2026 con i turni Mat, Pom, Sera e i riposi R in rosso, e la vista programma giorno per giorno" data-i18n-attr="aria-label:ctAlt">
+          <div class="phones phones--two" aria-hidden="true"><svg viewBox="0 0 592 608" width="592" height="608"><defs><clipPath id="home-ph"><rect x="7" y="7" width="266" height="594" rx="29"/></clipPath></defs><g transform="translate(0 0)"><rect width="280" height="608" rx="36" fill="#1c1b19"/><image href="img/ct-calendar-it.jpg" data-lang-src="img/ct-calendar-{l}.jpg" data-langs="it,en" x="7" y="7" width="266" height="594" clip-path="url(#home-ph)" preserveAspectRatio="xMidYMin slice"/></g><g transform="translate(312 0)"><rect width="280" height="608" rx="36" fill="#1c1b19"/><image href="img/ct-schedule-it.jpg" data-lang-src="img/ct-schedule-{l}.jpg" data-langs="it,en" x="7" y="7" width="266" height="594" clip-path="url(#home-ph)" preserveAspectRatio="xMidYMin slice"/></g></svg></div>
+          <div class="phones phones--one" aria-hidden="true"><div class="device device--phone"><img src="img/ct-calendar-it.jpg" data-lang-src="img/ct-calendar-{l}.jpg" data-langs="it,en" width="600" height="1304" loading="lazy" decoding="async" alt=""></div></div>
         </div>
       </div>
     </div>
-  </header>
+  </section>
 
-  <main class="container">
-    <!-- Hero -->
-    <section class="hero">
-      <div class="hero-badge" id="hero-badge">Disponibile per nuovi progetti</div>
-      <h1 id="hero-title">Sviluppatore Mobile &amp; Software Engineer</h1>
-      <p id="hero-desc">Creo applicazioni e strumenti digitali curati nell'esperienza utente, performanti e rispettosi della privacy, per iOS, Android e web.</p>
-      <div class="hero-actions">
-        <a href="#progetti" class="btn btn-primary" id="btn-view-projects">Esplora le App</a>
-        <a href="mailto:info@danielesforza.dev" class="btn btn-secondary">info@danielesforza.dev</a>
-      </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section class="section" id="progetti">
-      <div class="section-header">
-        <h2 class="section-title" id="sec-projects-title">Progetti &amp; Applicazioni</h2>
-        <p class="section-desc" id="sec-projects-desc">Applicazioni mobile progettate per semplificare la vita quotidiana.</p>
-      </div>
-
-      <div class="projects-grid">
-        <!-- Calendario Turni Card -->
-        <div class="project-card">
-          <div class="project-header">
-            <img src="calendario-turni/icon.png" alt="Calendario Turni" class="project-icon" onerror="this.style.display='none'">
-            <div class="project-title-group">
-              <h3>Calendario Turni</h3>
-              <div class="project-tags">
-                <span class="tag tag-live">Disponibile</span>
-                <span class="tag">iOS</span>
-                <span class="tag">Android</span>
-              </div>
-            </div>
-          </div>
-          <p id="cal-desc">L'agenda intelligente per pianificare i tuoi turni di lavoro. Sincronizzazione automatica con il calendario di sistema, ciclazione dei turni e 100% privacy locale.</p>
-          <div class="store-badges">
-            <a href="https://apps.apple.com/it/app/calendario-turni-smart/id6807097670" class="store-btn" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="appstore-grad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1AC8FC"/><stop offset="1" stop-color="#1D6FF2"/></linearGradient></defs><rect width="24" height="24" rx="5.4" fill="url(#appstore-grad)"/><g fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><path d="M13.3 5.6 7.4 15.8"/><path d="M10.7 5.6l5.9 10.2"/><path d="M5.8 13.4h12.4"/></g></svg>
-              <span class="store-btn-text">
-                <span class="store-btn-small" id="store-apple-small">Scarica su</span>
-                <span class="store-btn-big">App Store</span>
-              </span>
-            </a>
-            <a href="https://play.google.com/store/apps/details?id=dev.danielesforza.calendario_turni" class="store-btn" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924z"/><path fill="#34A853" d="M13.544 10.989l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l11.04 10.973z"/><path fill="#FBBC04" d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594z"/><path fill="#EA4335" d="M13.544 13.056l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54-3.23-3.21z"/></svg>
-              <span class="store-btn-text">
-                <span class="store-btn-small" id="store-google-small">Disponibile su</span>
-                <span class="store-btn-big">Google Play</span>
-              </span>
-            </a>
-          </div>
-          <a href="calendario-turni/index.html" class="project-link" id="cal-link">
-            Scopri l'app &amp; Assistenza &rarr;
-          </a>
+  <section class="section" id="garage-bissolati" aria-labelledby="gb-h">
+    <div class="wrap">
+      <div class="section-head section-head--split">
+        <div>
+          <p class="ag-label" data-i18n="lbGb">02 — Sito web · 6 lingue</p>
+          <h2 id="gb-h" data-i18n-html="gbH">Garage Bissolati, il sito di un parcheggio <em>romano</em></h2>
+          <p data-i18n="gbP">Parcheggio custodito vicino a Via Veneto, fuori dalla ZTL. Il sito mostra le tariffe, raccoglie le richieste di posto e ha una pagina per ognuna delle sei lingue.</p>
         </div>
-
-        <!-- Upcoming Projects Card -->
-        <div class="project-card upcoming">
-          <div class="project-header">
-            <div class="project-icon" style="background: rgba(56, 189, 248, 0.15); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; color: var(--accent);">
-              🚀
-            </div>
-            <div class="project-title-group">
-              <h3 id="up-title">Nuovi Progetti</h3>
-              <div class="project-tags">
-                <span class="tag tag-upcoming" id="up-tag">In Sviluppo</span>
-                <span class="tag">Mobile &amp; Web</span>
-              </div>
-            </div>
-          </div>
-          <p id="up-desc">Nuove applicazioni, tool e soluzioni innovative in arrivo presto su App Store e Google Play Store. Resta sintonizzato!</p>
-          <span class="project-link" style="color: var(--text-dim);" id="up-link">Prossimamente &rarr;</span>
+        <div class="gb-links">
+          <a class="link" href="https://www.garagebissolati.it" target="_blank" rel="noopener" data-i18n="gbOpen">Apri il sito</a>
         </div>
       </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact-box" id="contatti">
-      <h2 id="contact-title">Parliamo del tuo prossimo progetto</h2>
-      <p id="contact-desc">Hai una domanda, un feedback su un'app o vuoi collaborare? Scrivimi direttamente all'indirizzo ufficiale.</p>
-      <div class="email-chip">info@danielesforza.dev</div>
-      <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
-        <a href="mailto:info@danielesforza.dev" class="btn btn-primary" id="btn-email-me">
-          ✉️ Invia un'email
-        </a>
-        <button class="btn btn-secondary" onclick="copyEmail()">
-          📋 Copia email
-        </button>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container footer-inner">
-      <p>&copy; <span id="year"></span> Daniele Sforza. Tutti i diritti riservati.</p>
-      <div class="footer-links">
-        <a href="calendario-turni/index.html">Calendario Turni</a>
-        <a href="calendario-turni/privacy.html">Privacy</a>
-        <a href="mailto:info@danielesforza.dev">Contatti</a>
+      <div class="gb-tray">
+        <div class="gb-stage" role="img" aria-label="garagebissolati.it su computer e telefono: la home con l’intestazione color senape e il riquadro “Parcheggio custodito nel centro di Roma”, e il modulo di prenotazione “Assicurati il tuo posto”" data-i18n-attr="aria-label:gbAlt">
+          <div class="device device--browser">
+            <div class="device__bar" aria-hidden="true"><i></i><i></i><i></i><span data-url="garagebissolati.it"></span></div>
+            <picture><source type="image/avif" srcset="img/gb-desk-home-it.avif" data-lang-src="img/gb-desk-home-{l}.avif" data-langs="it,en"><img src="img/gb-desk-home-it.jpg" data-lang-src="img/gb-desk-home-{l}.jpg" data-langs="it,en" width="1440" height="780" loading="lazy" decoding="async" alt="" data-source="client" data-subject="garagebissolati.it home page"></picture>
+          </div>
+          <div class="device device--phone"><picture><source type="image/avif" srcset="img/gb-phone-form-it.avif" data-lang-src="img/gb-phone-form-{l}.avif" data-langs="it,en"><img src="img/gb-phone-form-it.jpg" data-lang-src="img/gb-phone-form-{l}.jpg" data-langs="it,en" width="390" height="844" loading="lazy" decoding="async" alt="" data-source="client" data-subject="garagebissolati.it booking form on a phone"></picture></div>
+        </div>
       </div>
     </div>
-  </footer>
+  </section>
+</main>
 
-  <div class="toast" id="toast">Email copiata negli appunti!</div>
+<footer class="footer closing footer--dark ground-inverse ag-framed" id="contact" aria-labelledby="close-h">
+  <div class="wrap">
+    <div class="closing__cta">
+      <p class="ag-label" data-i18n="lbContact">03 — Contatti</p>
+      <div class="section-head--split">
+        <div><h2 id="close-h" data-i18n-html="closeH">Contatti per un <em>nuovo</em> progetto</h2><p class="t-lead" data-i18n="closeP">Scrivi a info@danielesforza.dev cosa vuoi costruire e per quali dispositivi.</p></div>
+        <a class="btn btn--primary" href="mailto:info@danielesforza.dev"><span data-i18n="cta">Scrivimi</span><span class="ag-dot" aria-hidden="true"></span></a>
+      </div>
+    </div>
+    <div class="closing__links">
+      <div class="grid">
+        <div class="span-4 stack-4">
+          <p class="footer__lede" data-i18n="lede">Sviluppatore di app iOS, Android e siti web.</p>
+        </div>
+        <div class="span-2 start-7 footer__col"><h3 data-i18n="fProjects">Progetti</h3><ul><li><a href="calendario-turni/">Calendario Turni</a></li><li><a href="https://www.garagebissolati.it" target="_blank" rel="noopener">Garage Bissolati</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>Calendario Turni</h3><ul><li><a href="calendario-turni/" data-i18n="fSupport">Assistenza</a></li><li><a href="calendario-turni/privacy.html">Privacy</a></li></ul></div>
+        <div class="span-2 footer__col"><h3 data-i18n="fContact">Contatti</h3><ul><li><a href="mailto:info@danielesforza.dev">Email</a></li></ul></div>
+      </div>
+      <div class="footer__legal">
+        <span>&copy; <span data-year>2026</span> Daniele Sforza. <span data-i18n="rights">Tutti i diritti riservati.</span></span>
+        <span data-i18n="marks">I nomi e i loghi dei prodotti sono marchi dei rispettivi proprietari.</span>
+      </div>
+    </div>
+  </div>
+</footer>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    const tData = {
+<script src="js/lang.js"></script>
+<script>
+  document.querySelectorAll('[data-year]').forEach(function (el) { el.textContent = new Date().getFullYear(); });
+  initLang({
+    key: 'portfolio_lang', def: 'it',
+    dict: {
       it: {
-        metaTitle: "Daniele Sforza — Software & Mobile Developer",
-        metaDesc: "Sito personale e portfolio di Daniele Sforza. Sviluppo applicazioni mobile native e multipiattaforma per iOS e Android.",
-        navProjects: "Progetti",
-        navContact: "Contatti",
-        heroBadge: "Disponibile per nuovi progetti",
-        heroTitle: "Sviluppatore Mobile & Software Engineer",
-        heroDesc: "Creo applicazioni e strumenti digitali curati nell'esperienza utente, performanti e rispettosi della privacy, per iOS, Android e web.",
-        btnProjects: "Esplora le App",
-        secProjectsTitle: "Progetti & Applicazioni",
-        secProjectsDesc: "Applicazioni mobile progettate per semplificare la vita quotidiana.",
-        calDesc: "L'agenda intelligente per pianificare i tuoi turni di lavoro. Sincronizzazione automatica con il calendario di sistema, ciclazione dei turni e 100% privacy locale.",
-        calLink: "Scopri l'app & Assistenza &rarr;",
-        storeAppleSmall: "Scarica su",
-        storeGoogleSmall: "Disponibile su",
-        upTitle: "Nuovi Progetti",
-        upTag: "In Sviluppo",
-        upDesc: "Nuove applicazioni, tool e soluzioni innovative in arrivo presto su App Store e Google Play Store. Resta sintonizzato!",
-        upLink: "Prossimamente &rarr;",
-        contactTitle: "Parliamo del tuo prossimo progetto",
-        contactDesc: "Hai una domanda, un feedback su un'app o vuoi collaborare? Scrivimi direttamente all'indirizzo ufficiale.",
-        btnEmailMe: "✉️ Invia un'email",
-        toastCopied: "Email copiata negli appunti!"
+        _title: 'Daniele Sforza: app iOS, Android e siti web su misura',
+        _desc: 'Portfolio di Daniele Sforza, sviluppatore di app per iOS e Android e di siti web. Progetti: Calendario Turni e il sito di Garage Bissolati a Roma.',
+        skip: 'Vai al contenuto', navLabel: 'Principale', langLabel: 'Lingua', navProjects: 'Progetti',
+        menuCt: 'App per iOS e Android: assistenza e domande', menuGb: 'Il sito di un parcheggio a Roma',
+        cta: 'Scrivimi', ctaProjects: 'Guarda i progetti',
+        h1: '<span class="ag-name">Daniele Sforza</span><span class="sr-only">, </span><span class="ag-sub">sviluppatore di app e <em>siti web</em></span>',
+        lead: 'Progetto e sviluppo app per iOS e Android e siti web, fino alla pubblicazione.',
+        proof: 'Disponibile per nuovi progetti',
+        kCt: 'App · iOS e Android', kGb: 'Sito web · 6 lingue',
+        lbCt: '01 — App · iOS e Android', lbGb: '02 — Sito web · 6 lingue', lbContact: '03 — Contatti',
+        ctH: '<a href="calendario-turni/">Calendario Turni</a>, l’app per i <em>turni</em> di lavoro',
+        ctP: 'Scrivi il ciclo una volta, per esempio Mat Pom Sera R, e l’app lo ripete su tutti i mesi. Turni, note e allegati restano sul telefono.',
+        ctF1: 'iOS e Android, scritta in Flutter', ctF2: 'In italiano, inglese, tedesco, francese e spagnolo', ctF3: '20 temi e un generatore di temi con l’IA sul dispositivo',
+        appStore: 'Scarica da App Store', playStore: 'Scarica da Google Play', ctLink: 'Vedi assistenza e domande frequenti',
+        ctAlt: 'Calendario Turni su due telefoni: la vista mese di ottobre 2026 con i turni Mat, Pom, Sera e i riposi R in rosso, e la vista programma giorno per giorno',
+        gbH: 'Garage Bissolati, il sito di un parcheggio <em>romano</em>',
+        gbP: 'Parcheggio custodito vicino a Via Veneto, fuori dalla ZTL. Il sito mostra le tariffe, raccoglie le richieste di posto e ha una pagina per ognuna delle sei lingue.',
+        gbOpen: 'Apri il sito',
+        gbAlt: 'garagebissolati.it su computer e telefono: la home con l’intestazione color senape e il riquadro “Parcheggio custodito nel centro di Roma”, e il modulo di prenotazione “Assicurati il tuo posto”',
+        closeH: 'Contatti per un <em>nuovo</em> progetto', closeP: 'Scrivi a info@danielesforza.dev cosa vuoi costruire e per quali dispositivi.',
+        copy: 'Copia l’indirizzo', copied: 'Indirizzo copiato', lede: 'Sviluppatore di app iOS, Android e siti web.',
+        fProjects: 'Progetti', fSupport: 'Assistenza', fContact: 'Contatti', rights: 'Tutti i diritti riservati.',
+        marks: 'I nomi e i loghi dei prodotti sono marchi dei rispettivi proprietari.'
       },
       en: {
-        metaTitle: "Daniele Sforza — Software & Mobile Developer",
-        metaDesc: "Personal portfolio of Daniele Sforza. Building crafted, high-performance mobile apps for iOS and Android.",
-        navProjects: "Projects",
-        navContact: "Contact",
-        heroBadge: "Available for new projects",
-        heroTitle: "Mobile Developer & Software Engineer",
-        heroDesc: "Crafting polished, high-performance, and privacy-focused digital tools for iOS, Android, and the web.",
-        btnProjects: "Explore Apps",
-        secProjectsTitle: "Projects & Applications",
-        secProjectsDesc: "Mobile applications designed to simplify daily routines.",
-        calDesc: "The smart calendar for managing work shifts. Automatic device calendar sync, recurring shift patterns, and 100% on-device privacy.",
-        calLink: "Explore App & Support &rarr;",
-        storeAppleSmall: "Download on the",
-        storeGoogleSmall: "Get it on",
-        upTitle: "Upcoming Projects",
-        upTag: "In Development",
-        upDesc: "New applications and innovative tools coming soon to the App Store and Google Play Store. Stay tuned!",
-        upLink: "Coming Soon &rarr;",
-        contactTitle: "Let's build something together",
-        contactDesc: "Have a question, feedback on an app, or interested in collaborating? Send me a message.",
-        btnEmailMe: "✉️ Send an Email",
-        toastCopied: "Email copied to clipboard!"
+        _title: 'Daniele Sforza: custom iOS and Android apps and websites',
+        _desc: 'Portfolio of Daniele Sforza, developer of iOS and Android apps and websites. Projects: Calendario Turni and the Garage Bissolati website in Rome.',
+        skip: 'Skip to content', navLabel: 'Main', langLabel: 'Language', navProjects: 'Projects',
+        menuCt: 'iOS and Android app: support and questions', menuGb: 'A Rome car park’s website',
+        cta: 'Email me', ctaProjects: 'See the projects',
+        h1: '<span class="ag-name">Daniele Sforza</span><span class="sr-only">, </span><span class="ag-sub">developer of apps and <em>websites</em></span>',
+        lead: 'I design and build apps for iOS and Android, and websites, through to release.',
+        proof: 'Available for new projects',
+        kCt: 'App · iOS and Android', kGb: 'Website · 6 languages',
+        lbCt: '01 — App · iOS and Android', lbGb: '02 — Website · 6 languages', lbContact: '03 — Contact',
+        ctH: '<a href="calendario-turni/">Calendario Turni</a>, an app for work <em>shifts</em>',
+        ctP: 'Type the cycle once, say M A N OFF, and the app repeats it across every month. Shifts, notes and attachments stay on the phone.',
+        ctF1: 'iOS and Android, built in Flutter', ctF2: 'In Italian, English, German, French and Spanish', ctF3: '20 themes and an on-device AI theme generator',
+        appStore: 'Download on the App Store', playStore: 'Get it on Google Play', ctLink: 'See support and FAQ',
+        ctAlt: 'Calendario Turni on two phones: the October 2026 month view with M, A and N shifts and the OFF days in red, and the day-by-day schedule view',
+        gbH: 'Garage Bissolati, the website of a car park in <em>Rome</em>',
+        gbP: 'A guarded car park near Via Veneto, outside the ZTL. The site shows the rates, takes requests for a space and has its own page in each of six languages.',
+        gbOpen: 'Open the site',
+        gbAlt: 'garagebissolati.it on a computer and a phone: the home page with its mustard header and the “Secure parking in central Rome” panel, and the “Secure your spot” booking form',
+        closeH: 'Contact for a <em>new</em> project', closeP: 'Write to info@danielesforza.dev about what you want built and for which devices.',
+        copy: 'Copy the address', copied: 'Address copied', lede: 'Developer of iOS and Android apps and websites.',
+        fProjects: 'Projects', fSupport: 'Support', fContact: 'Contact', rights: 'All rights reserved.',
+        marks: 'Product names and logos are trademarks of their owners.'
       }
-    };
-
-    function setLanguage(lang) {
-      if (!tData[lang]) lang = 'it';
-      const t = tData[lang];
-
-      document.documentElement.lang = lang;
-      document.getElementById('meta-title').textContent = t.metaTitle;
-      document.getElementById('meta-desc').content = t.metaDesc;
-      document.getElementById('nav-projects').textContent = t.navProjects;
-      document.getElementById('nav-contact').textContent = t.navContact;
-      document.getElementById('hero-badge').textContent = t.heroBadge;
-      document.getElementById('hero-title').innerHTML = t.heroTitle;
-      document.getElementById('hero-desc').textContent = t.heroDesc;
-      document.getElementById('btn-view-projects').textContent = t.btnProjects;
-      document.getElementById('sec-projects-title').textContent = t.secProjectsTitle;
-      document.getElementById('sec-projects-desc').textContent = t.secProjectsDesc;
-      document.getElementById('cal-desc').textContent = t.calDesc;
-      document.getElementById('cal-link').innerHTML = t.calLink;
-      document.getElementById('store-apple-small').textContent = t.storeAppleSmall;
-      document.getElementById('store-google-small').textContent = t.storeGoogleSmall;
-      document.getElementById('up-title').textContent = t.upTitle;
-      document.getElementById('up-tag').textContent = t.upTag;
-      document.getElementById('up-desc').textContent = t.upDesc;
-      document.getElementById('up-link').innerHTML = t.upLink;
-      document.getElementById('contact-title').textContent = t.contactTitle;
-      document.getElementById('contact-desc').textContent = t.contactDesc;
-      document.getElementById('btn-email-me').innerHTML = t.btnEmailMe;
-      document.getElementById('toast').textContent = t.toastCopied;
-
-      document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.lang === lang);
-      });
-      localStorage.setItem('portfolio_lang', lang);
     }
-
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-      btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
-    });
-
-    const saved = localStorage.getItem('portfolio_lang');
-    const browserLang = (navigator.language || 'it').substring(0, 2).toLowerCase();
-    const initial = saved || (tData[browserLang] ? browserLang : 'it');
-    setLanguage(initial);
-
-    function copyEmail() {
-      navigator.clipboard.writeText('info@danielesforza.dev').then(() => {
-        const toast = document.getElementById('toast');
-        toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), 2500);
-      });
-    }
-  </script>
+  });
+</script>
+<script type="module" src="assets/system.js"></script>
+<script type="module" src="assets/motion/motion.js"></script>
+<script type="module" src="assets/layout/layout.js"></script>
 </body>
 </html>

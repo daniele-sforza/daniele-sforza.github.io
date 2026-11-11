@@ -1,913 +1,479 @@
-<!DOCTYPE html>
-<html lang="it">
+<!doctype html>
+<html lang="it" data-type="software" data-radius="round" data-ground="sage" data-buttons="pill" data-motion>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title id="meta-title">Calendario Turni - Supporto & Assistenza</title>
-  <meta name="description" id="meta-desc" content="Pagina di supporto e assistenza ufficiale per Calendario Turni (iOS e Android).">
-  <link rel="icon" type="image/png" href="icon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #0b0f19;
-      --card-bg: rgba(18, 24, 38, 0.75);
-      --card-border: rgba(255, 255, 255, 0.08);
-      --card-hover-border: rgba(99, 102, 241, 0.4);
-      --primary: #6366f1;
-      --primary-hover: #4f46e5;
-      --primary-light: rgba(99, 102, 241, 0.12);
-      --accent: #38bdf8;
-      --text: #f8fafc;
-      --text-muted: #94a3b8;
-      --text-dim: #64748b;
-      --radius: 16px;
-      --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      background-image: 
-        radial-gradient(circle at 15% 15%, rgba(99, 102, 241, 0.15), transparent 45%),
-        radial-gradient(circle at 85% 65%, rgba(56, 189, 248, 0.12), transparent 40%);
-      background-attachment: fixed;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 24px;
-      width: 100%;
-    }
-
-    /* Navbar */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      background: rgba(11, 15, 25, 0.85);
-      border-bottom: 1px solid var(--card-border);
-      padding: 14px 0;
-    }
-
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-
-    .brand-group {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .back-home {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 0.85rem;
-      font-weight: 600;
-      padding: 6px 12px;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--card-border);
-      transition: var(--transition);
-    }
-
-    .back-home:hover {
-      color: #fff;
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: var(--text);
-    }
-
-    .brand-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-      object-fit: cover;
-    }
-
-    .brand-name {
-      font-weight: 700;
-      font-size: 1.1rem;
-      letter-spacing: -0.02em;
-    }
-
-    /* Lang selector */
-    .lang-switcher {
-      display: flex;
-      align-items: center;
-      background: rgba(255, 255, 255, 0.05);
-      padding: 3px;
-      border-radius: 30px;
-      border: 1px solid var(--card-border);
-      gap: 2px;
-    }
-
-    .lang-btn {
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      font-family: inherit;
-      font-size: 0.775rem;
-      font-weight: 600;
-      padding: 5px 10px;
-      border-radius: 20px;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .lang-btn:hover {
-      color: var(--text);
-    }
-
-    .lang-btn.active {
-      background: var(--primary);
-      color: #fff;
-      box-shadow: 0 2px 8px rgba(99, 102, 241, 0.4);
-    }
-
-    /* Hero */
-    .hero {
-      padding: 56px 0 36px;
-      text-align: center;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: var(--primary-light);
-      border: 1px solid rgba(99, 102, 241, 0.3);
-      color: #a5b4fc;
-      font-size: 0.825rem;
-      font-weight: 600;
-      padding: 6px 16px;
-      border-radius: 30px;
-      margin-bottom: 20px;
-    }
-
-    .hero-badge::before {
-      content: "";
-      width: 7px;
-      height: 7px;
-      background: #818cf8;
-      border-radius: 50%;
-      display: inline-block;
-      box-shadow: 0 0 8px #818cf8;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.2rem, 5vw, 3.2rem);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.15;
-      margin-bottom: 18px;
-      background: linear-gradient(135deg, #ffffff 40%, #a5b4fc 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero p {
-      font-size: clamp(1.05rem, 2vw, 1.2rem);
-      color: var(--text-muted);
-      max-width: 640px;
-      margin: 0 auto 32px;
-    }
-
-    /* Store badges */
-    .store-badges {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .store-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 190px;
-      padding: 10px 20px;
-      border-radius: 12px;
-      background: #000;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: #fff;
-      text-decoration: none;
-      text-align: left;
-      transition: var(--transition);
-    }
-
-    .store-btn:hover {
-      transform: translateY(-2px);
-      border-color: var(--card-hover-border);
-      box-shadow: 0 6px 20px rgba(99, 102, 241, 0.35);
-    }
-
-    .store-btn svg {
-      width: 26px;
-      height: 26px;
-      flex-shrink: 0;
-    }
-
-    .store-btn-text {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.15;
-    }
-
-    .store-btn-small {
-      font-size: 0.7rem;
-      font-weight: 500;
-      color: rgba(255, 255, 255, 0.8);
-    }
-
-    .store-btn-big {
-      font-size: 1.15rem;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-    }
-
-    /* Contact Card */
-    .contact-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: var(--radius);
-      padding: 36px 32px;
-      backdrop-filter: blur(12px);
-      text-align: center;
-      margin-bottom: 48px;
-      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .contact-card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-    }
-
-    .contact-card h2 {
-      font-size: 1.6rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-      letter-spacing: -0.02em;
-    }
-
-    .contact-card p {
-      color: var(--text-muted);
-      max-width: 540px;
-      margin: 0 auto 24px;
-      font-size: 1rem;
-    }
-
-    .email-display {
-      display: inline-block;
-      font-family: ui-monospace, monospace;
-      font-size: 0.95rem;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--card-border);
-      padding: 6px 14px;
-      border-radius: 8px;
-      color: var(--accent);
-      margin-bottom: 20px;
-    }
-
-    .contact-actions {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: inherit;
-      font-size: 0.95rem;
-      font-weight: 600;
-      padding: 12px 24px;
-      border-radius: 12px;
-      text-decoration: none;
-      cursor: pointer;
-      transition: var(--transition);
-      border: none;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--primary), var(--primary-hover));
-      color: #ffffff;
-      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
-    }
-
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--text);
-      border: 1px solid var(--card-border);
-    }
-
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.14);
-      color: #fff;
-    }
-
-    /* Feature pills */
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
-      margin-bottom: 56px;
-    }
-
-    .feature-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: var(--radius);
-      padding: 24px;
-      transition: var(--transition);
-    }
-
-    .feature-card:hover {
-      border-color: var(--card-hover-border);
-      transform: translateY(-2px);
-    }
-
-    .feature-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 10px;
-      background: var(--primary-light);
-      color: #a5b4fc;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.25rem;
-      margin-bottom: 14px;
-    }
-
-    .feature-card h3 {
-      font-size: 1.05rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .feature-card p {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-
-    /* FAQ Section */
-    .faq-section {
-      margin-bottom: 64px;
-    }
-
-    .section-title {
-      font-size: 1.8rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      margin-bottom: 24px;
-      text-align: center;
-    }
-
-    .faq-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .faq-item {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
-      overflow: hidden;
-      transition: var(--transition);
-    }
-
-    .faq-item:hover {
-      border-color: var(--card-hover-border);
-    }
-
-    .faq-question {
-      padding: 18px 22px;
-      font-weight: 600;
-      font-size: 1rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      user-select: none;
-    }
-
-    .faq-icon {
-      transition: transform 0.25s ease;
-      font-size: 1.2rem;
-      color: var(--text-dim);
-    }
-
-    .faq-item.open .faq-icon {
-      transform: rotate(45deg);
-      color: var(--primary);
-    }
-
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease, padding 0.3s ease;
-      padding: 0 22px;
-      color: var(--text-muted);
-      font-size: 0.925rem;
-      line-height: 1.6;
-    }
-
-    .faq-item.open .faq-answer {
-      max-height: 300px;
-      padding: 0 22px 20px 22px;
-    }
-
-    /* Footer */
-    footer {
-      margin-top: auto;
-      border-top: 1px solid var(--card-border);
-      padding: 36px 0;
-      text-align: center;
-      color: var(--text-dim);
-      font-size: 0.875rem;
-    }
-
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
-    }
-
-    .footer-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: var(--transition);
-    }
-
-    .footer-links a:hover {
-      color: #fff;
-    }
-
-    /* Toast */
-    .toast {
-      position: fixed;
-      bottom: 24px;
-      left: 50%;
-      transform: translateX(-50%) translateY(100px);
-      background: #1e293b;
-      color: #fff;
-      padding: 10px 20px;
-      border-radius: 30px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-      border: 1px solid rgba(255,255,255,0.1);
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      z-index: 1000;
-      pointer-events: none;
-    }
-
-    .toast.show {
-      transform: translateX(-50%) translateY(0);
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Calendario Turni: assistenza e domande frequenti per iOS e Android</title>
+<meta name="description" content="Pagina di assistenza ufficiale di Calendario Turni, l’agenda dei turni per iOS e Android: contatti, versione Pro e domande frequenti.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Calendario Turni: assistenza e domande frequenti">
+<meta property="og:description" content="L’agenda dei turni per iOS e Android: contatti, versione Pro e domande frequenti.">
+<meta property="og:image" content="https://danielesforza.dev/calendario-turni/share.jpg">
+<meta property="og:url" content="https://danielesforza.dev/calendario-turni/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://danielesforza.dev/calendario-turni/">
+<link rel="icon" type="image/png" href="icon-128.png">
+<link rel="apple-touch-icon" href="icon.png">
+<meta name="theme-color" content="#0e1513">
+<meta name="site-kind" content="software">
+<meta name="page-type" content="software">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400..600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/system.css">
+<link rel="stylesheet" href="../assets/ui/cards.css">
+<link rel="stylesheet" href="../assets/motion/motion.css">
+<link rel="stylesheet" href="../assets/backgrounds/backgrounds.css">
+<link rel="stylesheet" href="../assets/layout/layout.css">
+<link rel="stylesheet" href="../assets/icons/icon.css">
+<!-- the palette through the brand path (start.mjs brand), from the app's own theme in lib/theme_presets.dart:
+     the default preset Teal Sage, dark scheme (surface #0e1513, surfaceContainer #1a2120, onSurface #dde4e1,
+     onSurfaceVariant #bec9c6, primary #82d5c8, onPrimary #003731); the inverse ground is the same preset's
+     light scheme (surface #edf4f1, onSurface #161d1c, primary #006a60). The face is the app's on Android,
+     Google Sans Flex (lib/theme.dart), in place of the dealt Figtree. -->
+<style>
+:root {
+  --p-bg: #0e1513; --p-surface: #1a2120; --p-ink: #dde4e1; --p-muted: #bec9c6;
+  --p-accent: #82d5c8; --p-accent-ink: #003731; --p-action: #82d5c8; --p-action-ink: #003731;
+  --p-inv-bg: #edf4f1; --p-inv-surface: #dfe7e4; --p-inv-ink: #161d1c; --p-inv-muted: #3f4947;
+  --p-inv-accent: #006a60; --p-inv-accent-ink: #ffffff; --p-inv-action: #006a60; --p-inv-action-ink: #ffffff;
+  --font-display: "Google Sans Flex", system-ui, sans-serif;
+  --font-text: "Google Sans Flex", system-ui, sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --display-weight: 500;
+  --display-tracking: -0.025em;
+  --display-tracking-xl: -0.035em;
+}
+</style>
+<style>
+  /* page CSS, inside the visuals only */
+  .app-icon { width: 28px; height: 28px; border-radius: 7px; flex: none; }
+  .hero--centred h1 .app-icon { display: inline-block; width: .82em; height: .82em; border-radius: .2em; vertical-align: -.08em; margin-right: .12em; }
+  .lang { display: flex; align-items: center; flex-wrap: wrap; }
+  .lang > .nav__link { border: 0; background: none; cursor: pointer; min-width: 40px; justify-content: center; padding-inline: var(--s-2); }
+  .lang > .nav__link[aria-pressed="true"]::after { content: ""; position: absolute; left: var(--s-2); right: var(--s-2); bottom: -2px; height: 2px; border-radius: 2px; background: currentColor; }
+  @media (min-width: 1024px) and (max-width: 1439px) { .nav__actions > .lang { display: none; } }
+  @media (min-width: 1024px) { .nav__actions > .lang { flex-wrap: nowrap; } }
+  @media (min-width: 640px) and (max-width: 1279px) { #funzioni, #domande { --h: 2; } }
+  @media (min-width: 640px) and (max-width: 1023px) { .footer .footer__col { grid-column: auto / span 4; } #domande .faq-shot { height: 520px; } }
+  @media (max-width: 1023px) { .nav.is-open .lang { justify-content: center; } .nav.is-open .lang > .nav__link { height: 44px; } }
+  /* a phone as the app shows it: the real screenshot in a dark rounded body */
+  .device { position: relative; overflow: hidden; background: #0e1513; }
+  .device > img { display: block; width: 100%; height: auto; }
+  .device--phone { border-radius: 36px; border: 7px solid #050807; }
+  /* the hero's window: three screens of the app rising out of the lit frame */
+  .hero--centred .hero__window > .ly-piece.hero-phones { width: min(904px, calc(100% - 2 * var(--s-6))); }
+  .hero-phones > svg { display: block; width: 100%; height: auto; }
+  .hero-phones--one { display: none; }
+  @media (max-width: 639px) { .hero-phones--wide { display: none; } .hero--centred .hero__window > .ly-piece.hero-phones--one { display: block; width: 240px; left: 50%; transform: translateX(-50%); } }
+  @media (max-height: 820px) and (min-width: 640px) { .hero--centred .pill { display: none; } }
+  /* the feature cards: the app's screen fills the panel from the top, cut by its foot */
+  #funzioni .panel { --p-h: 270px; }
+  #funzioni .panel > .frame__img { object-position: 50% 0; }
+  /* the three cards share their rows (title, text, screen), so the screens start on one line at one height */
+  @media (min-width: 640px) {
+    #funzioni .grid:has(> .card--open) { align-items: stretch; }
+    #funzioni .grid > .card--open { display: grid; grid-row: span 3; grid-template-rows: subgrid; row-gap: 0; }
+  }
+  /* the sync screen is shorter than the panel: it sits at the top on the app's own background and fades out */
+  #funzioni .panel:has(> .frame__img[data-subject="device calendar settings"]) { background: #0e1513; }
+  #funzioni .panel:has(> .frame__img[data-subject="device calendar settings"])::before { display: none; }
+  #funzioni .panel > .frame__img[data-subject="device calendar settings"] { height: auto; bottom: auto; aspect-ratio: 1320 / 530; object-fit: fill; -webkit-mask-image: linear-gradient(#000 80%, transparent 100%); mask-image: linear-gradient(#000 80%, transparent 100%); }
+  /* the theme ribbon: a label names it, the swatch matches the ribbon's dots */
+  .themes-label { display: flex; align-items: center; margin-top: var(--s-7); font: 500 var(--t-body)/1.4 var(--font-text); letter-spacing: 0; }
+  /* on a phone the kit keeps the ribbon still: one row the visitor swipes, from the text line to the screen's edge */
+  @media (max-width: 639px) {
+    .mo-themes.mo-mq:not(.is-live) { padding-block: var(--s-2) 0; }
+    .mo-themes.mo-mq:not(.is-live) .mo-mq__track {
+      flex-wrap: nowrap; white-space: nowrap; gap: 28px; overflow-x: auto; overscroll-behavior-x: contain;
+      margin-inline: calc(-1 * var(--gut)); padding: var(--s-2) var(--gut) var(--s-3); scroll-padding-inline: var(--gut);
+      scroll-snap-type: x proximity; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+      -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 48px), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 48px), transparent); }
+    .mo-themes.mo-mq:not(.is-live) .mo-mq__track::-webkit-scrollbar { display: none; }
+    .mo-themes.mo-mq:not(.is-live) .mo-mq__track > li { scroll-snap-align: start; flex: none; }
+  }
+  @media (max-width: 399px) { .nav .nav__logo .logo-name { display: none; } }
+  .swatch { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 10px; vertical-align: 1px; background: var(--c); box-shadow: inset 0 0 0 1px rgb(0 0 0 / .12); }
+  /* Pro: the screen beside the list */
+  #pro .frame { padding: 0; align-items: flex-start; }
+  #pro .frame > .device--phone { position: absolute; top: var(--s-8); left: 50%; transform: translateX(-50%); width: min(62%, 300px); }
+  #pro ul { display: grid; gap: var(--s-3); }
+  #pro li { padding-left: 28px; position: relative; }
+  #pro li::before { content: ""; position: absolute; left: 0; top: .55em; width: 12px; height: 2px; border-radius: 2px; background: var(--accent); }
+  .faq-shot { position: relative; overflow: hidden; height: 220px; border-radius: var(--r-md); }
+  .faq-shot > .frame__img { object-position: 50% 0; }
+  .faq strong { font-weight: 500; color: var(--accent); }
+  .close__word { font-size: clamp(44px, 9.6vw, 140px); line-height: 1.08; overflow: visible; }
+  @media (max-width: 1023px) {
+  }
+  @media (max-width: 639px) {
+    .hero--centred .pill { display: none; }
+    #funzioni .panel { --p-h: 170px; }
+    #pro .grid.fill { flex: none; }
+    #pro .grid.fill > .frame--fill { flex: none; height: 900px; }
+    #pro .frame > .device--phone { width: 300px; }
+    .close__word { font-size: clamp(36px, 11vw, 56px); }
+  }
+</style>
+<script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
+<script src="../assets/backgrounds/backgrounds.js"></script>
+<script>document.documentElement.classList.add('mo-js');setTimeout(()=>document.documentElement.classList.add('mo-safe'),2500)</script>
+<link rel="modulepreload" href="../assets/moments/moments.js">
+<link rel="modulepreload" href="../assets/moments/lib.js">
+<link rel="modulepreload" href="../assets/moments/marquee-row/moment.js">
 </head>
 <body>
-
-  <!-- Navbar -->
-  <header>
-    <div class="container nav-inner">
-      <div class="brand-group">
-        <a href="../index.html" class="back-home">← danielesforza.dev</a>
-        <a href="#" class="brand">
-          <img src="icon.png" alt="Calendario Turni" class="brand-icon" onerror="this.style.display='none'">
-          <span class="brand-name">Calendario Turni</span>
-        </a>
+<!-- type: software (the support page of Daniele's own app)
+     deal: hero centred, palette the app's own (brand path: Teal Sage dark, its light scheme as the inverse band), type
+     Google Sans Flex (the app's face, in place of the dealt Figtree), radius round (the app's 16 and 24 corners),
+     nav-centre, close-word, footer-statement (ground sage), rhythm dark-band (#funzioni on the app's light scheme),
+     buttons pill (the app's navigation pill), mark: the app's own icon
+     moments: marquee-row in #funzioni (the 20 themes of the app, in the page's language) -->
+<header class="nav nav--centre">
+  <div class="wrap nav__bar">
+    <a class="skip-link" href="#top" data-i18n="skip">Vai al contenuto</a>
+    <a class="nav__logo" href="#top" aria-label="Calendario Turni"><img class="app-icon" src="icon-128.png" alt="" width="28" height="28"><span class="logo-name">Calendario Turni</span></a>
+    <nav class="nav__links" aria-label="Principale" data-i18n-attr="aria-label:navLabel">
+      <div class="nav__item"><a class="nav__link" href="#funzioni" data-i18n="navFeatures">Funzioni</a></div>
+      <div class="nav__item"><a class="nav__link" href="#pro">Pro</a></div>
+      <div class="nav__item"><a class="nav__link" href="#domande" data-i18n="navFaq">Domande</a></div>
+      <div class="nav__item"><a class="nav__link" href="../">Portfolio</a></div>
+    </nav>
+    <div class="nav__actions">
+      <div class="lang" role="group" aria-label="Lingua" data-i18n-attr="aria-label:langLabel">
+        <button class="nav__link" type="button" data-set-lang="it" aria-pressed="true" lang="it" aria-label="Italiano">IT</button>
+        <button class="nav__link" type="button" data-set-lang="en" aria-pressed="false" lang="en" aria-label="English">EN</button>
+        <button class="nav__link" type="button" data-set-lang="es" aria-pressed="false" lang="es" aria-label="Español">ES</button>
+        <button class="nav__link" type="button" data-set-lang="fr" aria-pressed="false" lang="fr" aria-label="Français">FR</button>
+        <button class="nav__link" type="button" data-set-lang="de" aria-pressed="false" lang="de" aria-label="Deutsch">DE</button>
       </div>
-      <div class="lang-switcher">
-        <button class="lang-btn active" data-lang="it">IT</button>
-        <button class="lang-btn" data-lang="en">EN</button>
-        <button class="lang-btn" data-lang="es">ES</button>
-        <button class="lang-btn" data-lang="fr">FR</button>
-        <button class="lang-btn" data-lang="de">DE</button>
+      <a class="btn btn--primary" href="mailto:info@danielesforza.dev?subject=Assistenza%20Calendario%20Turni" data-i18n="cta">Scrivi all’assistenza</a>
+    </div>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menu">
+      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero hero--centred" data-enter aria-labelledby="hero-h">
+    <div class="wrap"><div class="hero-text">
+      <div class="hero__c">
+        <span class="pill" data-i18n="badge">Assistenza ufficiale · iOS e Android</span>
+        <h1 id="hero-h"><img class="app-icon" src="icon-128.png" alt="" width="64" height="64"><span data-i18n="h1">L’agenda per chi lavora a turni</span></h1>
+        <p class="hero__lead" data-i18n="lead">Su iOS e Android: scrivi il ciclo dei turni una volta e Calendario Turni lo riporta su tutti i mesi, con i dati salvati solo sul tuo telefono.</p>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="mailto:info@danielesforza.dev?subject=Assistenza%20Calendario%20Turni" data-i18n="cta">Scrivi all’assistenza</a>
+          <a class="btn btn--secondary" href="https://apps.apple.com/it/app/calendario-turni-smart/id6807097670" target="_blank" rel="noopener"><img class="ic ic-20" data-icon="app-store" src="../assets/icons/app-store.svg" alt="" width="20" height="20"><span data-i18n="appStore">Scarica su App Store</span></a>
+          <a class="btn btn--secondary" href="https://play.google.com/store/apps/details?id=dev.danielesforza.calendario_turni" target="_blank" rel="noopener"><img class="ic ic-20" data-icon="google-play" src="../assets/icons/google-play.svg" alt="" width="20" height="20"><span data-i18n="playStore">Disponibile su Google Play</span></a>
+        </div>
+      </div>
+      <div class="hero__window" role="img" aria-label="Tre schermate di Calendario Turni: la vista programma, il mese di ottobre con i turni e la modifica di un giorno" data-i18n-attr="aria-label:heroAlt">
+        <div class="ly-piece hero-phones hero-phones--one" aria-hidden="true"><div class="device device--phone"><img src="../img/ct-calendar-it.jpg" data-lang-src="../img/ct-calendar-{l}.jpg" data-langs="it,en,es,fr,de" width="600" height="1304" alt=""></div></div>
+        <div class="ly-piece hero-phones hero-phones--wide" aria-hidden="true"><svg viewBox="0 0 904 608" width="904" height="608"><defs><clipPath id="ct-ph"><rect x="7" y="7" width="266" height="594" rx="29"/></clipPath></defs><g transform="translate(0 0)"><rect width="280" height="608" rx="36" fill="#050807"/><image href="../img/ct-schedule-it.jpg" data-lang-src="../img/ct-schedule-{l}.jpg" data-langs="it,en,es,fr,de" x="7" y="7" width="266" height="594" clip-path="url(#ct-ph)" preserveAspectRatio="xMidYMin slice"/></g><g transform="translate(312 0)"><rect width="280" height="608" rx="36" fill="#050807"/><image href="../img/ct-calendar-it.jpg" data-lang-src="../img/ct-calendar-{l}.jpg" data-langs="it,en,es,fr,de" x="7" y="7" width="266" height="594" clip-path="url(#ct-ph)" preserveAspectRatio="xMidYMin slice"/></g><g transform="translate(624 0)"><rect width="280" height="608" rx="36" fill="#050807"/><image href="../img/ct-dayedit-it.jpg" data-lang-src="../img/ct-dayedit-{l}.jpg" data-langs="it,en,es,fr,de" x="7" y="7" width="266" height="594" clip-path="url(#ct-ph)" preserveAspectRatio="xMidYMin slice"/></g></svg></div>
+      </div>
+    </div></div>
+  </section>
+
+  <section class="section ground-inverse" id="funzioni" aria-labelledby="feat-h">
+    <div class="wrap">
+      <div class="section-head"><h2 id="feat-h" data-i18n="featH">Le funzioni di Calendario Turni</h2></div>
+      <div class="grid">
+        <article class="card card--open span-4 m-nolift">
+          <h3 data-i18n="f1T">Ripete il ciclo dei turni</h3>
+          <p data-i18n="f1D">Scrivi la sequenza, per esempio Sera Pom Pom Mat Mat R, e la data di inizio: l’app la proietta su tutti i mesi.</p>
+          <div class="panel"><img class="frame__img" src="../img/ct-cycle-it.jpg" srcset="../img/ct-cycle-it-660.jpg 660w, ../img/ct-cycle-it.jpg 1320w" sizes="(min-width: 1280px) 411px, (min-width: 640px) 864px, 342px" data-lang-src="../img/ct-cycle-{l}.jpg" data-lang-srcset="../img/ct-cycle-{l}-660.jpg 660w, ../img/ct-cycle-{l}.jpg 1320w" data-langs="it,en,es,fr,de" width="1320" height="1300" loading="lazy" decoding="async" alt="Impostazioni › Calendario: la data di inizio ciclazione e il ciclo Sera Pom Pom Mat Mat R" data-i18n-attr="alt:f1A" data-source="client" data-subject="cycle settings"></div>
+        </article>
+        <article class="card card--open span-4 m-nolift">
+          <h3 data-i18n="f2T">Sincronizza il calendario</h3>
+          <p data-i18n="f2D">Con la versione Pro i turni vanno in Apple Calendario o Google Calendar e gli eventi del telefono compaiono nell’app.</p>
+          <div class="panel"><img class="frame__img" src="../img/ct-sync-it.jpg" srcset="../img/ct-sync-it-660.jpg 660w, ../img/ct-sync-it.jpg 1320w" sizes="(min-width: 1280px) 411px, (min-width: 640px) 864px, 342px" data-lang-src="../img/ct-sync-{l}.jpg" data-lang-srcset="../img/ct-sync-{l}-660.jpg 660w, ../img/ct-sync-{l}.jpg 1320w" data-langs="it,en,es,fr,de" width="1320" height="530" loading="lazy" decoding="async" alt="Impostazioni › Calendari del dispositivo: sincronizzazione con il calendario del telefono" data-i18n-attr="alt:f2A" data-source="client" data-subject="device calendar settings"></div>
+        </article>
+        <article class="card card--open span-4 m-nolift">
+          <h3 data-i18n="f3T">20 temi, o uno creato dall’IA</h3>
+          <p data-i18n="f3D">Temi scuri e OLED, naturali, vivaci o minimal. Oppure, con Pro, descrivi il tema che vuoi e l’IA sul telefono lo crea, anche offline.</p>
+          <div class="panel"><img class="frame__img" src="../img/ct-themes-it.jpg" srcset="../img/ct-themes-it-660.jpg 660w, ../img/ct-themes-it.jpg 1320w" sizes="(min-width: 1280px) 411px, (min-width: 640px) 864px, 342px" data-lang-src="../img/ct-themes-{l}.jpg" data-lang-srcset="../img/ct-themes-{l}-660.jpg 660w, ../img/ct-themes-{l}.jpg 1320w" data-langs="it,en,es,fr,de" width="1320" height="1300" loading="lazy" decoding="async" alt="La scelta dei temi: Salvia e Verde Acqua attivo, con le categorie Scuri &amp; OLED e Natura &amp; Terra" data-i18n-attr="alt:f3A" data-source="client" data-subject="theme picker"></div>
+        </article>
+      </div>
+      <h3 class="themes-label" id="themes-l"><span class="swatch" style="--c:#006a60"></span><span data-i18n="themesLabel">I 20 temi dell’app</span></h3>
+      <div class="mo-themes" data-edge-free data-moment="marquee-row" data-moment-opts='{"speed": 32, "gap": 48}'>
+        <ul class="mo-mq__track" aria-labelledby="themes-l">
+          <li><span class="swatch" style="--c:#006a60"></span><span data-i18n="th0">Salvia e Verde Acqua</span></li>
+          <li><span class="swatch" style="--c:#286b3b"></span><span data-i18n="th1">Foresta Smeraldo</span></li>
+          <li><span class="swatch" style="--c:#4a6b3d"></span><span data-i18n="th2">Matcha Latte</span></li>
+          <li><span class="swatch" style="--c:#0284c7"></span><span data-i18n="th3">Oasi nel Deserto</span></li>
+          <li><span class="swatch" style="--c:#9c4221"></span><span data-i18n="th4">Rame Brunito</span></li>
+          <li><span class="swatch" style="--c:#d4af37"></span><span data-i18n="th5">Oro e Ossidiana</span></li>
+          <li><span class="swatch" style="--c:#44474f"></span><span data-i18n="th6">Monocromo Carbone</span></li>
+          <li><span class="swatch" style="--c:#00f0ff"></span><span data-i18n="th7">Neon Cyberpunk</span></li>
+          <li><span class="swatch" style="--c:#3730a3"></span><span data-i18n="th8">Crepuscolo Profondo</span></li>
+          <li><span class="swatch" style="--c:#00639b"></span><span data-i18n="th9">Oceano e Ardesia</span></li>
+          <li><span class="swatch" style="--c:#7a5933"></span><span data-i18n="th10">Terracotta e Rosa</span></li>
+          <li><span class="swatch" style="--c:#8c4f27"></span><span data-i18n="th11">Ambra Tramonto</span></li>
+          <li><span class="swatch" style="--c:#8b0029"></span><span data-i18n="th12">Velluto Cremisi</span></li>
+          <li><span class="swatch" style="--c:#c2410c"></span><span data-i18n="th13">Bagliore Solare</span></li>
+          <li><span class="swatch" style="--c:#b83280"></span><span data-i18n="th14">Fiori di Ciliegio</span></li>
+          <li><span class="swatch" style="--c:#3b5f7d"></span><span data-i18n="th15">Gelo Nordico</span></li>
+          <li><span class="swatch" style="--c:#6750a4"></span><span data-i18n="th16">Lavanda Crepuscolo</span></li>
+          <li><span class="swatch" style="--c:#0d766e"></span><span data-i18n="th17">Menta Glaciale</span></li>
+          <li><span class="swatch" style="--c:#6a26cd"></span><span data-i18n="th18">Aurora Ametista</span></li>
+          <li><span class="swatch" style="--c:#6f4e37"></span><span data-i18n="th19">Schiuma di Cappuccino</span></li>
+        </ul>
       </div>
     </div>
-  </header>
+  </section>
 
-  <main class="container">
-    <!-- Hero -->
-    <section class="hero">
-      <div class="hero-badge" id="hero-badge">Supporto Ufficiale</div>
-      <h1 id="hero-title">L'agenda intelligente per i tuoi turni</h1>
-      <p id="hero-desc">Organizza i tuoi cicli di turni, sincronizza gli orari con il calendario del tuo dispositivo e tieni sempre sotto controllo il tuo lavoro con la massima privacy.</p>
-      <div class="store-badges">
-        <a href="https://apps.apple.com/it/app/calendario-turni-smart/id6807097670" class="store-btn" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="appstore-grad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1AC8FC"/><stop offset="1" stop-color="#1D6FF2"/></linearGradient></defs><rect width="24" height="24" rx="5.4" fill="url(#appstore-grad)"/><g fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><path d="M13.3 5.6 7.4 15.8"/><path d="M10.7 5.6l5.9 10.2"/><path d="M5.8 13.4h12.4"/></g></svg>
-          <span class="store-btn-text">
-            <span class="store-btn-small" id="store-apple-small">Scarica su</span>
-            <span class="store-btn-big">App Store</span>
-          </span>
-        </a>
-        <a href="https://play.google.com/store/apps/details?id=dev.danielesforza.calendario_turni" class="store-btn" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924z"/><path fill="#34A853" d="M13.544 10.989l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l11.04 10.973z"/><path fill="#FBBC04" d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594z"/><path fill="#EA4335" d="M13.544 13.056l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54-3.23-3.21z"/></svg>
-          <span class="store-btn-text">
-            <span class="store-btn-small" id="store-google-small">Disponibile su</span>
-            <span class="store-btn-big">Google Play</span>
-          </span>
-        </a>
-      </div>
-    </section>
-
-    <!-- Support Contact Card -->
-    <section class="contact-card">
-      <h2 id="contact-title">Hai bisogno di assistenza?</h2>
-      <p id="contact-desc">Siamo qui per aiutarti. Se riscontri problemi, hai domande sull'applicazione o desideri suggerire nuove funzionalità, scrivici direttamente.</p>
-      <div class="email-display">info@danielesforza.dev</div>
-      <div class="contact-actions">
-        <a href="mailto:info@danielesforza.dev?subject=Assistenza%20Calendario%20Turni" class="btn btn-primary" id="btn-email">
-          ✉️ Invia un'email al supporto
-        </a>
-        <button class="btn btn-secondary" id="btn-copy" onclick="copyEmail()">
-          📋 Copia indirizzo email
-        </button>
-      </div>
-    </section>
-
-    <!-- Features -->
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">🔄</div>
-        <h3 id="feat-1-title">Ciclazione Automatica</h3>
-        <p id="feat-1-desc">Imposta lo schema dei tuoi turni e l'applicazione calcolerà automaticamente tutti i mesi futuri.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">📅</div>
-        <h3 id="feat-2-title">Sincronizzazione Calendario</h3>
-        <p id="feat-2-desc">Esporta e sincronizza automaticamente i tuoi orari con Apple Calendario e Google Calendar.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🔒</div>
-        <h3 id="feat-3-title">100% Privacy & Offline</h3>
-        <p id="feat-3-desc">I tuoi dati rimangono esclusivamente sul tuo dispositivo. Nessun server esterno, nessuna registrazione.</p>
+  <section class="section" id="pro" aria-labelledby="pro-h">
+    <div class="wrap">
+      <div class="grid grid--top fill">
+        <div class="span-5 split-col">
+          <h2 id="pro-h" data-i18n="proH">Versione Pro, un acquisto singolo</h2>
+          <p class="t-lead" data-i18n="proP">Si paga una volta e resta tua. Su un telefono nuovo la ripristini da Impostazioni › Versione Pro.</p>
+          <ul>
+            <li data-i18n="pro1">Sincronizzazione con iCloud, Google Calendar e i calendari di sistema</li>
+            <li data-i18n="pro2">Vista Programma per scorrere turni ed eventi</li>
+            <li data-i18n="pro3">Temi e palette premium</li>
+            <li data-i18n="pro4">Generatore di temi con l’IA sul dispositivo</li>
+            <li data-i18n="pro5">Allegati, PDF e foto sui giorni di lavoro</li>
+          </ul>
+        </div>
+        <div class="frame frame--lit frame--fill span-6 start-7" role="img" aria-label="La schermata Passa a PRO: acquisto singolo, accesso a vita, con le funzioni Pro" data-i18n-attr="aria-label:proA">
+          <div class="device device--phone"><img src="../img/ct-pro-it.jpg" data-lang-src="../img/ct-pro-{l}.jpg" data-langs="it,en,es,fr,de" width="600" height="1304" loading="lazy" decoding="async" alt="" data-source="client" data-subject="the Pro version screen"></div>
+        </div>
       </div>
     </div>
+  </section>
 
-    <!-- FAQ -->
-    <section class="faq-section">
-      <h2 class="section-title" id="faq-title">Domande Frequenti</h2>
-      <div class="faq-list">
-        <div class="faq-item">
-          <div class="faq-question">
-            <span id="faq-1-q">Come sincronizzo i turni con il calendario del mio smartphone?</span>
-            <span class="faq-icon">+</span>
-          </div>
-          <div class="faq-answer" id="faq-1-a">
-            Apri l'app e vai su <strong>Impostazioni &gt; Calendario dispositivo</strong>. Abilita l'interruttore e seleziona il calendario in cui salvare automaticamente i tuoi turni. L'app sincronizzerà i tuoi turni istantaneamente.
-          </div>
+  <section class="section" id="domande" aria-labelledby="faq-h">
+    <div class="wrap">
+      <div class="grid grid--top">
+        <div class="span-5 stack-5">
+          <h2 id="faq-h" data-i18n="faqTitle">Domande frequenti</h2>
+          <p class="t-lead" data-i18n="contactDesc">Siamo qui per aiutarti. Se riscontri problemi, hai domande sull’applicazione o desideri suggerire nuove funzionalità, scrivici direttamente.</p>
+          <p><a class="link" href="mailto:info@danielesforza.dev?subject=Assistenza%20Calendario%20Turni">info@danielesforza.dev</a></p>
+          <div class="btn-row"><button class="btn btn--secondary" type="button" data-copy="info@danielesforza.dev" data-copied="Email copiata negli appunti" data-i18n-attr="data-copied:toastCopied"><span data-copy-label data-i18n="btnCopy">Copia indirizzo email</span></button></div>
+          <div class="panel faq-shot"><img class="frame__img" src="../img/ct-restore-it.jpg" data-lang-src="../img/ct-restore-{l}.jpg" data-langs="it,en,es,fr,de" width="700" height="456" loading="lazy" decoding="async" alt="La schermata Passa a PRO con il link Ripristina acquisti in alto" data-i18n-attr="alt:restoreA" data-source="client" data-subject="restore purchases in settings"></div>
         </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <span id="faq-2-q">I miei dati e i miei turni sono privati?</span>
-            <span class="faq-icon">+</span>
-          </div>
-          <div class="faq-answer" id="faq-2-a">
-            Sì, al 100%. Calendario Turni memorizza tutte le tue informazioni localmente sul dispositivo. Nessun orario, nota o dato personale viene mai caricato su server esterni o condiviso con terze parti.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <span id="faq-3-q">Come posso ripristinare il mio acquisto (Versione Pro)?</span>
-            <span class="faq-icon">+</span>
-          </div>
-          <div class="faq-answer" id="faq-3-a">
-            Se hai cambiato dispositivo o reinstallato l'app, apri <strong>Impostazioni &gt; Versione Pro</strong> e tocca il pulsante <strong>"Ripristina acquisti"</strong>. Il tuo acquisto verrà ripristinato automaticamente senza costi aggiuntivi.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <span id="faq-4-q">Come imposto una rotazione o un ciclo di turni?</span>
-            <span class="faq-icon">+</span>
-          </div>
-          <div class="faq-answer" id="faq-4-a">
-            Vai su <strong>Impostazioni &gt; Ciclazione Turni</strong>. Inserisci la sequenza del tuo ciclo (es. Mattina, Pomeriggio, Notte, Riposo) e imposta la data di partenza: l'app proietterà lo schema su tutti i mesi a venire.
-          </div>
+        <div class="faq span-6 start-7">
+          <div class="faq__item"><h3 data-i18n="faq1Q">Come sincronizzo i turni con il calendario del mio smartphone?</h3><p data-i18n-html="faq1A">Apri l’app e vai su <strong>Impostazioni &gt; Calendario dispositivo</strong>. Abilita l’interruttore e seleziona il calendario in cui salvare automaticamente i tuoi turni. L’app sincronizzerà i tuoi turni istantaneamente.</p></div>
+          <div class="faq__item"><h3 data-i18n="faq2Q">I miei dati e i miei turni sono privati?</h3><p data-i18n-html="faq2A">Sì, al 100%. Calendario Turni memorizza tutte le tue informazioni localmente sul dispositivo. Nessun orario, nota o dato personale viene mai caricato su server esterni o condiviso con terze parti.</p></div>
+          <div class="faq__item"><h3 data-i18n="faq3Q">Come posso ripristinare il mio acquisto (Versione Pro)?</h3><p data-i18n-html="faq3A">Se hai cambiato dispositivo o reinstallato l’app, apri <strong>Impostazioni &gt; Versione Pro</strong> e tocca il pulsante <strong>“Ripristina acquisti”</strong>. Il tuo acquisto verrà ripristinato automaticamente senza costi aggiuntivi.</p></div>
+          <div class="faq__item"><h3 data-i18n="faq4Q">Come imposto una rotazione o un ciclo di turni?</h3><p data-i18n-html="faq4A">Vai su <strong>Impostazioni &gt; Ciclazione Turni</strong>. Inserisci la sequenza del tuo ciclo (es. Mattina, Pomeriggio, Notte, Riposo) e imposta la data di partenza: l’app proietterà lo schema su tutti i mesi a venire.</p></div>
         </div>
       </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="footer-links">
-        <a href="privacy.html" id="link-privacy">Privacy Policy</a>
-        <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener" id="link-terms">Termini d'uso (EULA)</a>
-        <a href="mailto:info@danielesforza.dev" id="link-contact">Contatta lo sviluppatore</a>
-      </div>
-      <p id="footer-copy">&copy; <span id="year"></span> Daniele Sforza • Calendario Turni. Tutti i diritti riservati.</p>
     </div>
-  </footer>
+  </section>
+</main>
 
-  <div class="toast" id="toast">Email copiata negli appunti!</div>
+<footer class="footer closing footer--statement" id="contact" aria-labelledby="close-h">
+  <div class="wrap">
+    <div class="closing__cta close--word">
+      <div class="section-head--split">
+        <div><h2 id="close-h" data-i18n="closeH">Assistenza via email</h2><p class="t-lead">info@danielesforza.dev</p></div>
+        <a class="btn btn--primary" href="mailto:info@danielesforza.dev?subject=Assistenza%20Calendario%20Turni" data-i18n="cta">Scrivi all’assistenza</a>
+      </div>
+      <p class="close__word" aria-hidden="true">Calendario Turni</p>
+    </div>
+    <div class="closing__links">
+      <div class="grid">
+        <div class="span-4 stack-4">
+          <a class="nav__logo" href="#top"><img class="app-icon" src="icon-128.png" alt="" width="28" height="28" loading="lazy">Calendario Turni</a>
+          <div class="lang" role="group" aria-label="Lingua" data-i18n-attr="aria-label:langLabel">
+            <button class="nav__link" type="button" data-set-lang="it" aria-pressed="true" lang="it" aria-label="Italiano">IT</button>
+            <button class="nav__link" type="button" data-set-lang="en" aria-pressed="false" lang="en" aria-label="English">EN</button>
+            <button class="nav__link" type="button" data-set-lang="es" aria-pressed="false" lang="es" aria-label="Español">ES</button>
+            <button class="nav__link" type="button" data-set-lang="fr" aria-pressed="false" lang="fr" aria-label="Français">FR</button>
+            <button class="nav__link" type="button" data-set-lang="de" aria-pressed="false" lang="de" aria-label="Deutsch">DE</button>
+          </div>
+        </div>
+        <div class="span-2 start-7 footer__col"><h3 data-i18n="fLegal">Note legali</h3><ul><li><a href="privacy.html" data-i18n="linkPrivacy">Informativa sulla Privacy</a></li><li><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener" data-i18n="linkTerms">Termini d’uso (EULA)</a></li></ul></div>
+        <div class="span-2 footer__col"><h3 data-i18n="fContact">Contatti</h3><ul><li><a href="mailto:info@danielesforza.dev" data-i18n="linkContact">Contatta lo sviluppatore</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>danielesforza.dev</h3><ul><li><a href="../">Portfolio</a></li><li><a href="https://www.garagebissolati.it" target="_blank" rel="noopener">Garage Bissolati</a></li></ul></div>
+      </div>
+      <div class="footer__legal">
+        <span data-i18n="footerCopy">© 2026 Daniele Sforza • Calendario Turni. Tutti i diritti riservati.</span>
+        <span data-i18n="marks">App Store e Google Play sono marchi dei rispettivi proprietari.</span>
+      </div>
+    </div>
+  </div>
+</footer>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    const translations = {
+<script src="../js/lang.js"></script>
+<script>
+  (function () {
+    var Y = new Date().getFullYear();
+    var THEMES = {
+      it: ["Salvia e Verde Acqua","Foresta Smeraldo","Matcha Latte","Oasi nel Deserto","Rame Brunito","Oro e Ossidiana","Monocromo Carbone","Neon Cyberpunk","Crepuscolo Profondo","Oceano e Ardesia","Terracotta e Rosa","Ambra Tramonto","Velluto Cremisi","Bagliore Solare","Fiori di Ciliegio","Gelo Nordico","Lavanda Crepuscolo","Menta Glaciale","Aurora Ametista","Schiuma di Cappuccino"],
+      en: ["Teal Sage","Emerald Forest","Matcha Latte","Desert Oasis","Copper Rust","Obsidian Gold","Monochrome Charcoal","Cyberpunk Neon","Deep Twilight","Ocean Slate","Terracotta Rose","Sunset Amber","Crimson Velvet","Solar Flare","Sakura Blossom","Nordic Frost","Lavender Dusk","Glacier Mint","Amethyst Aurora","Cappuccino Foam"],
+      de: ["Salbei & Blaugrün","Smaragdwald","Matcha Latte","Wüstenoase","Kupferrost","Obsidian-Gold","Monochrom Anthrazit","Cyberpunk Neon","Tiefe Dämmerung","Ozeanschiefer","Terrakotta-Rose","Sonnenuntergang Bernstein","Karmesinroter Samt","Sonneneruption","Kirschblüte","Nordischer Frost","Lavendel Dämmerung","Gletscherminze","Amethyst Aurora","Cappuccino-Schaum"],
+      fr: ["Sauge & Sarcelle","Forêt d'Émeraude","Matcha Latte","Oasis du Désert","Cuivre Bruni","Or et Obsidienne","Monochrome Anthracite","Néon Cyberpunk","Crépuscule Profond","Océan Ardoise","Terracotta & Rose","Ambre Crépuscule","Velours Cramoisi","Éruption Solaire","Fleurs de Cerisier","Givre Nordique","Lavande Crépuscule","Menthe Glaciale","Aurore Améthyste","Mousse Cappuccino"],
+      es: ["Salvia y Cerceta","Bosque Esmeralda","Matcha Latte","Oasis del Desierto","Cobre Bruñido","Oro y Obsidiana","Monocromo Carbón","Neón Cyberpunk","Crepúsculo Profundo","Océano y Pizarra","Terracota y Rosa","Ámbar Atardecer","Terciopelo Carmesí","Llamarada Solar","Flor de Cerezo","Helada Nórdica","Lavanda Crepúsculo","Menta Glacial","Aurora Amatista","Espuma de Capuchino"]
+    };
+    var dict = {
       it: {
-        metaTitle: "Calendario Turni - Supporto & Assistenza",
-        metaDesc: "Pagina di supporto e assistenza ufficiale per Calendario Turni.",
-        heroBadge: "Supporto Ufficiale",
-        heroTitle: "L'agenda intelligente per i tuoi turni",
-        heroDesc: "Organizza i tuoi cicli di turni, sincronizza gli orari con il calendario del tuo dispositivo e tieni sempre sotto controllo il tuo lavoro con la massima privacy.",
-        storeAppleSmall: "Scarica su",
-        storeGoogleSmall: "Disponibile su",
-        contactTitle: "Hai bisogno di assistenza?",
-        contactDesc: "Siamo qui per aiutarti. Se riscontri problemi, hai domande sull'applicazione o desideri suggerire nuove funzionalità, scrivici direttamente.",
-        btnEmail: "✉️ Invia un'email al supporto",
-        btnCopy: "📋 Copia indirizzo email",
-        toastCopied: "Email copiata negli appunti!",
-        feat1Title: "Ciclazione Automatica",
-        feat1Desc: "Imposta lo schema dei tuoi turni e l'applicazione calcolerà automaticamente tutti i mesi futuri.",
-        feat2Title: "Sincronizzazione Calendario",
-        feat2Desc: "Esporta e sincronizza automaticamente i tuoi orari con Apple Calendario e Google Calendar.",
-        feat3Title: "100% Privacy & Offline",
-        feat3Desc: "I tuoi dati rimangono esclusivamente sul tuo dispositivo. Nessun server esterno, nessuna registrazione.",
-        faqTitle: "Domande Frequenti",
-        faq1Q: "Come sincronizzo i turni con il calendario del mio smartphone?",
-        faq1A: "Apri l'app e vai su <strong>Impostazioni &gt; Calendario dispositivo</strong>. Abilita l'interruttore e seleziona il calendario in cui salvare automaticamente i tuoi turni.",
-        faq2Q: "I miei dati e i miei turni sono privati?",
-        faq2A: "Sì, al 100%. Calendario Turni memorizza tutte le tue informazioni localmente sul dispositivo. Nessun dato personale viene mai caricato su server esterni.",
-        faq3Q: "Come posso ripristinare il mio acquisto (Versione Pro)?",
-        faq3A: "Apri <strong>Impostazioni &gt; Versione Pro</strong> e tocca il pulsante <strong>\"Ripristina acquisti\"</strong> per riattivare la tua licenza.",
-        faq4Q: "Come imposto una rotazione o un ciclo di turni?",
-        faq4A: "Vai su <strong>Impostazioni &gt; Ciclazione Turni</strong>. Inserisci la sequenza del tuo ciclo e imposta la data di partenza: l'app calcolerà tutto automaticamente.",
-        linkPrivacy: "Informativa sulla Privacy",
-        linkTerms: "Termini d'uso (EULA)",
-        linkContact: "Contatta lo sviluppatore",
-        footerCopy: "&copy; " + new Date().getFullYear() + " Daniele Sforza • Calendario Turni. Tutti i diritti riservati."
+        _title: 'Calendario Turni: assistenza e domande frequenti per iOS e Android',
+        _desc: 'Pagina di assistenza ufficiale di Calendario Turni, l’agenda dei turni per iOS e Android: contatti, versione Pro e domande frequenti.',
+        skip: 'Vai al contenuto', navLabel: 'Principale', langLabel: 'Lingua', navFeatures: 'Funzioni', navFaq: 'Domande', cta: 'Scrivi all’assistenza',
+        badge: 'Assistenza ufficiale · iOS e Android', h1: 'L’agenda per chi lavora a turni',
+        lead: 'Su iOS e Android: scrivi il ciclo dei turni una volta e Calendario Turni lo riporta su tutti i mesi, con i dati salvati solo sul tuo telefono.',
+        appStore: 'Scarica su App Store', playStore: 'Disponibile su Google Play',
+        heroAlt: 'Tre schermate di Calendario Turni: la vista programma, il mese di ottobre con i turni e la modifica di un giorno',
+        featH: 'Le funzioni di Calendario Turni',
+        f1T: 'Ripete il ciclo dei turni', f1D: 'Scrivi la sequenza, per esempio Sera Pom Pom Mat Mat R, e la data di inizio: l’app la proietta su tutti i mesi.', f1A: 'Impostazioni › Calendario: la data di inizio ciclazione e il ciclo Sera Pom Pom Mat Mat R',
+        f2T: 'Sincronizza il calendario', f2D: 'Con la versione Pro i turni vanno in Apple Calendario o Google Calendar e gli eventi del telefono compaiono nell’app.', f2A: 'Impostazioni › Calendari del dispositivo: sincronizzazione con il calendario del telefono',
+        f3T: '20 temi, o uno creato dall’IA', f3D: 'Temi scuri e OLED, naturali, vivaci o minimal. Oppure, con Pro, descrivi il tema che vuoi e l’IA sul telefono lo crea, anche offline.', f3A: 'La scelta dei temi: Salvia e Verde Acqua attivo, con le categorie Scuri & OLED e Natura & Terra',
+        themesLabel: 'I 20 temi dell’app',
+        proH: 'Versione Pro, un acquisto singolo', proP: 'Si paga una volta e resta tua. Su un telefono nuovo la ripristini da Impostazioni › Versione Pro.',
+        pro1: 'Sincronizzazione con iCloud, Google Calendar e i calendari di sistema', pro2: 'Vista Programma per scorrere turni ed eventi', pro3: 'Temi e palette premium', pro4: 'Generatore di temi con l’IA sul dispositivo', pro5: 'Allegati, PDF e foto sui giorni di lavoro',
+        proA: 'La schermata Passa a PRO: acquisto singolo, accesso a vita, con le funzioni Pro',
+        faqTitle: 'Domande frequenti', restoreA: 'La schermata Passa a PRO con il link Ripristina acquisti in alto',
+        contactDesc: 'Siamo qui per aiutarti. Se riscontri problemi, hai domande sull’applicazione o desideri suggerire nuove funzionalità, scrivici direttamente.',
+        btnCopy: 'Copia indirizzo email', toastCopied: 'Email copiata negli appunti',
+        faq1Q: 'Come sincronizzo i turni con il calendario del mio smartphone?',
+        faq1A: 'Apri l’app e vai su <strong>Impostazioni &gt; Calendario dispositivo</strong>. Abilita l’interruttore e seleziona il calendario in cui salvare automaticamente i tuoi turni. L’app sincronizzerà i tuoi turni istantaneamente.',
+        faq2Q: 'I miei dati e i miei turni sono privati?',
+        faq2A: 'Sì, al 100%. Calendario Turni memorizza tutte le tue informazioni localmente sul dispositivo. Nessun orario, nota o dato personale viene mai caricato su server esterni o condiviso con terze parti.',
+        faq3Q: 'Come posso ripristinare il mio acquisto (Versione Pro)?',
+        faq3A: 'Se hai cambiato dispositivo o reinstallato l’app, apri <strong>Impostazioni &gt; Versione Pro</strong> e tocca il pulsante <strong>“Ripristina acquisti”</strong>. Il tuo acquisto verrà ripristinato automaticamente senza costi aggiuntivi.',
+        faq4Q: 'Come imposto una rotazione o un ciclo di turni?',
+        faq4A: 'Vai su <strong>Impostazioni &gt; Ciclazione Turni</strong>. Inserisci la sequenza del tuo ciclo (es. Mattina, Pomeriggio, Notte, Riposo) e imposta la data di partenza: l’app proietterà lo schema su tutti i mesi a venire.',
+        closeH: 'Assistenza via email', fLegal: 'Note legali', fContact: 'Contatti',
+        linkPrivacy: 'Informativa sulla Privacy', linkTerms: 'Termini d’uso (EULA)', linkContact: 'Contatta lo sviluppatore',
+        footerCopy: '© ' + Y + ' Daniele Sforza • Calendario Turni. Tutti i diritti riservati.', marks: 'App Store e Google Play sono marchi dei rispettivi proprietari.'
       },
       en: {
-        metaTitle: "Shift Calendar - Support & Help",
-        metaDesc: "Official support and help desk for Shift Calendar (iOS and Android).",
-        heroBadge: "Official Support",
-        heroTitle: "The smart calendar for your work shifts",
-        heroDesc: "Organize your shift rotations, sync schedules with your device calendar, and stay on top of your work schedule with complete privacy.",
-        storeAppleSmall: "Download on the",
-        storeGoogleSmall: "Get it on",
-        contactTitle: "Need assistance?",
-        contactDesc: "We're here to help. If you experience any issues, have questions, or want to suggest new features, feel free to contact us.",
-        btnEmail: "✉️ Send an email to support",
-        btnCopy: "📋 Copy email address",
-        toastCopied: "Email copied to clipboard!",
-        feat1Title: "Automated Rotations",
-        feat1Desc: "Configure your recurring shift patterns and the app will project your shifts for all upcoming months.",
-        feat2Title: "Calendar Synchronization",
-        feat2Desc: "Sync your shift events directly with Apple Calendar and Google Calendar.",
-        feat3Title: "100% Private & Offline",
-        feat3Desc: "Your schedule stays strictly on your phone. No cloud accounts, no external tracking.",
-        faqTitle: "Frequently Asked Questions",
-        faq1Q: "How do I sync shifts with my phone's calendar?",
-        faq1A: "Go to <strong>Settings &gt; Device Calendar</strong>. Enable synchronization and pick the target calendar.",
-        faq2Q: "Is my personal schedule data kept private?",
-        faq2A: "Yes, 100%. Shift Calendar stores everything locally on your device without sending any data to external servers.",
-        faq3Q: "How do I restore my Pro purchase?",
-        faq3A: "Open <strong>Settings &gt; Pro Version</strong> and tap <strong>\"Restore Purchases\"</strong> to re-activate your purchase.",
-        faq4Q: "How do I set up a recurring shift rotation?",
-        faq4A: "Navigate to <strong>Settings &gt; Shift Rotation</strong>. Enter your rotation cycle and the starting date.",
-        linkPrivacy: "Privacy Policy",
-        linkTerms: "Terms of Use (EULA)",
-        linkContact: "Contact Developer",
-        footerCopy: "&copy; " + new Date().getFullYear() + " Daniele Sforza • Shift Calendar. All rights reserved."
+        _title: 'Shift Calendar (Calendario Turni): support and FAQ for iOS and Android',
+        _desc: 'Official support and help desk for Shift Calendar (Calendario Turni), the shift planner for iOS and Android: contact, Pro version and FAQ.',
+        skip: 'Skip to content', navLabel: 'Main', langLabel: 'Language', navFeatures: 'Features', navFaq: 'Questions', cta: 'Email support',
+        badge: 'Official support · iOS and Android', h1: 'The calendar for shift workers',
+        lead: 'On iOS and Android: type your shift cycle once and Calendario Turni carries it across every month, with your data stored only on your phone.',
+        appStore: 'Download on the App Store', playStore: 'Get it on Google Play',
+        heroAlt: 'Three screens of Calendario Turni: the schedule view, October with its shifts and editing a day',
+        featH: 'What Calendario Turni does',
+        f1T: 'Repeats your shift cycle', f1D: 'Enter the sequence, say M A N OFF, and a start date: the app projects it onto every month.', f1A: 'Settings › Calendar: the cycle start date and the cycle M A N OFF',
+        f2T: 'Syncs with your calendar', f2D: 'With Pro, your shifts go to Apple Calendar or Google Calendar, and your phone’s events show up in the app.', f2A: 'Settings › Device calendars: syncing with the phone’s calendar',
+        f3T: '20 themes, or one made by AI', f3D: 'Dark and OLED, nature, vibrant or minimal themes. Or, with Pro, describe the theme you want and the on-device AI builds it, even offline.', f3A: 'The theme picker: Teal Sage selected, with the Dark & OLED and Nature & Earth categories',
+        themesLabel: 'The app’s 20 themes',
+        proH: 'Pro version, a one-time purchase', proP: 'Pay once and it stays yours. On a new phone, restore it from Settings › Pro Version.',
+        pro1: 'Sync with iCloud, Google Calendar and system calendars', pro2: 'Schedule view to scroll through shifts and events', pro3: 'Premium themes and palettes', pro4: 'On-device AI theme generator', pro5: 'Attachments, PDFs and photos on your work days',
+        proA: 'The Go PRO screen: a one-time purchase with lifetime access and the Pro features',
+        faqTitle: 'Frequently Asked Questions', restoreA: 'The Go PRO screen with the Restore Purchases link at the top',
+        contactDesc: 'We’re here to help. If you experience any issues, have questions, or want to suggest new features, feel free to contact us.',
+        btnCopy: 'Copy email address', toastCopied: 'Email copied to clipboard',
+        faq1Q: 'How do I sync shifts with my phone’s calendar?',
+        faq1A: 'Go to <strong>Settings &gt; Device Calendar</strong>. Enable synchronization and pick the target calendar.',
+        faq2Q: 'Is my personal schedule data kept private?',
+        faq2A: 'Yes, 100%. Shift Calendar stores everything locally on your device without sending any data to external servers.',
+        faq3Q: 'How do I restore my Pro purchase?',
+        faq3A: 'Open <strong>Settings &gt; Pro Version</strong> and tap <strong>“Restore Purchases”</strong> to re-activate your purchase.',
+        faq4Q: 'How do I set up a recurring shift rotation?',
+        faq4A: 'Navigate to <strong>Settings &gt; Shift Rotation</strong>. Enter your rotation cycle and the starting date.',
+        closeH: 'Support by email', fLegal: 'Legal', fContact: 'Contact',
+        linkPrivacy: 'Privacy Policy', linkTerms: 'Terms of Use (EULA)', linkContact: 'Contact Developer',
+        footerCopy: '© ' + Y + ' Daniele Sforza • Shift Calendar. All rights reserved.', marks: 'App Store and Google Play are trademarks of their owners.'
       },
       es: {
-        metaTitle: "Calendario de Turnos - Soporte y Ayuda",
-        metaDesc: "Soporte oficial y asistencia para Calendario de Turnos.",
-        heroBadge: "Soporte Oficial",
-        heroTitle: "La agenda inteligente para tus turnos de trabajo",
-        heroDesc: "Organiza tus ciclos rotativos, sincroniza horarios con el calendario del dispositivo y mantén el control con total privacidad.",
-        storeAppleSmall: "Descárgalo en el",
-        storeGoogleSmall: "Disponible en",
-        contactTitle: "¿Necesitas ayuda?",
-        contactDesc: "Estamos a tu disposición. Si tienes problemas, consultas o sugerencias, contáctanos directamente.",
-        btnEmail: "✉️ Enviar un correo a soporte",
-        btnCopy: "📋 Copiar dirección de correo",
-        toastCopied: "¡Correo copiado al portapapeles!",
-        feat1Title: "Rotación Automática",
-        feat1Desc: "Define tu secuencia de turnos y la app calculará automáticamente todos los meses siguientes.",
-        feat2Title: "Sincronización de Calendario",
-        feat2Desc: "Exporta y sincroniza tus horarios con Google Calendar y Apple Calendario.",
-        feat3Title: "100% Privado y Sin Conexión",
-        feat3Desc: "Tus turnos se guardan únicamente en tu teléfono, sin servidores externos.",
-        faqTitle: "Preguntas Frecuentes",
-        faq1Q: "¿Cómo sincronizo los turnos con el calendario del móvil?",
-        faq1A: "Abre <strong>Ajustes &gt; Calendario del dispositivo</strong>, activa la opción y selecciona el calendario de destino.",
-        faq2Q: "¿Mis datos y turnos están protegidos?",
-        faq2A: "Sí, totalmente. Calendario de Turnos funciona 100% de forma local en tu dispositivo.",
-        faq3Q: "¿Cómo restauro mi compra de la Versión Pro?",
-        faq3A: "Ve a <strong>Ajustes &gt; Versión Pro</strong> y pulsa en <strong>\"Restaurar compras\"</strong>.",
-        faq4Q: "¿Cómo configuro un patrón de turnos?",
-        faq4A: "Entra en <strong>Ajustes &gt; Rotación de Turnos</strong>, indica la secuencia y la fecha de inicio.",
-        linkPrivacy: "Política de Privacidad",
-        linkTerms: "Términos de Uso (EULA)",
-        linkContact: "Contactar con el desarrollador",
-        footerCopy: "&copy; " + new Date().getFullYear() + " Daniele Sforza • Calendario de Turnos. Todos los derechos reservados."
+        _title: 'Calendario de Turnos: soporte y preguntas frecuentes para iOS y Android',
+        _desc: 'Soporte oficial y asistencia para Calendario de Turnos, la agenda de turnos para iOS y Android.',
+        skip: 'Ir al contenido', navLabel: 'Principal', langLabel: 'Idioma', navFeatures: 'Funciones', navFaq: 'Preguntas', cta: 'Escribir a soporte',
+        badge: 'Soporte oficial · iOS y Android', h1: 'La agenda de tus turnos de trabajo',
+        lead: 'En iOS y Android: escribe tu ciclo de turnos una vez y la app lo lleva a todos los meses, con tus datos guardados solo en tu teléfono.',
+        appStore: 'Descárgalo en el App Store', playStore: 'Disponible en Google Play',
+        heroAlt: 'Tres pantallas de Calendario de Turnos: la vista agenda, octubre con sus turnos y la edición de un día',
+        featH: 'Lo que hace la app',
+        f1T: 'Repite tu ciclo de turnos', f1D: 'Escribe la secuencia, por ejemplo M T N D, y la fecha de inicio: la app la proyecta en todos los meses.', f1A: 'Ajustes › Calendario: la fecha de inicio y el ciclo M T N D',
+        f2T: 'Sincroniza el calendario', f2D: 'Con la versión Pro, tus turnos van a Apple Calendario o Google Calendar y los eventos del teléfono aparecen en la app.', f2A: 'Ajustes › Calendarios del dispositivo: sincronización con el calendario del teléfono',
+        f3T: '20 temas, o uno creado por la IA', f3D: 'Temas oscuros y OLED, naturales, vibrantes o minimal. O, con Pro, describe el tema que quieres y la IA del teléfono lo crea, incluso sin conexión.', f3A: 'El selector de temas: Salvia y Cerceta activo, con las categorías Oscuros & OLED y Naturaleza & Tierra',
+        themesLabel: 'Los 20 temas de la app',
+        proH: 'Versión Pro, un pago único', proP: 'Pagas una vez y es tuya. En un teléfono nuevo la restauras desde Ajustes › Versión Pro.',
+        pro1: 'Sincronización con iCloud, Google Calendar y los calendarios del sistema', pro2: 'Vista Agenda para recorrer turnos y eventos', pro3: 'Temas y paletas premium', pro4: 'Generador de temas con IA en el dispositivo', pro5: 'Adjuntos, PDF y fotos en tus días de trabajo',
+        proA: 'La pantalla Pasa a PRO: pago único, acceso de por vida y las funciones Pro',
+        faqTitle: 'Preguntas Frecuentes', restoreA: 'La pantalla Pasa a PRO con el enlace Restaurar compras arriba',
+        contactDesc: 'Estamos a tu disposición. Si tienes problemas, consultas o sugerencias, contáctanos directamente.',
+        btnCopy: 'Copiar dirección de correo', toastCopied: 'Correo copiado al portapapeles',
+        faq1Q: '¿Cómo sincronizo los turnos con el calendario del móvil?',
+        faq1A: 'Abre <strong>Ajustes &gt; Calendario del dispositivo</strong>, activa la opción y selecciona el calendario de destino.',
+        faq2Q: '¿Mis datos y turnos están protegidos?',
+        faq2A: 'Sí, totalmente. Calendario de Turnos funciona 100% de forma local en tu dispositivo.',
+        faq3Q: '¿Cómo restauro mi compra de la Versión Pro?',
+        faq3A: 'Ve a <strong>Ajustes &gt; Versión Pro</strong> y pulsa en <strong>“Restaurar compras”</strong>.',
+        faq4Q: '¿Cómo configuro un patrón de turnos?',
+        faq4A: 'Entra en <strong>Ajustes &gt; Rotación de Turnos</strong>, indica la secuencia y la fecha de inicio.',
+        closeH: 'Soporte por correo', fLegal: 'Legal', fContact: 'Contacto',
+        linkPrivacy: 'Política de Privacidad', linkTerms: 'Términos de Uso (EULA)', linkContact: 'Contactar con el desarrollador',
+        footerCopy: '© ' + Y + ' Daniele Sforza • Calendario de Turnos. Todos los derechos reservados.', marks: 'App Store y Google Play son marcas de sus respectivos propietarios.'
       },
       fr: {
-        metaTitle: "Calendrier de Garde - Support & Aide",
-        metaDesc: "Support officiel et aide pour Calendrier de Garde et planning de travail.",
-        heroBadge: "Support Officiel",
-        heroTitle: "L'agenda intelligent pour vos horaires et gardes",
-        heroDesc: "Gérez vos roulements d'équipe, synchronisez avec le calendrier de votre téléphone et gardez le contrôle de votre planning.",
-        storeAppleSmall: "Télécharger dans l'",
-        storeGoogleSmall: "Disponible sur",
-        contactTitle: "Besoin d'aide ?",
-        contactDesc: "Nous sommes là pour vous aider. Si vous rencontrez un souci ou avez une suggestion, écrivez-nous.",
-        btnEmail: "✉️ Envoyer un e-mail à l'assistance",
-        btnCopy: "📋 Copier l'adresse e-mail",
-        toastCopied: "E-mail copié dans le presse-papiers !",
-        feat1Title: "Cycles Automatiques",
-        feat1Desc: "Configurez votre roulement et l'application calcule automatiquement les plannings futurs.",
-        feat2Title: "Synchronisation Calendrier",
-        feat2Desc: "Synchronisez directement vos gardes avec Apple Calendrier et Google Calendar.",
-        feat3Title: "100% Hors Ligne & Privé",
-        feat3Desc: "Vos horaires restent strictement stockés sur votre smartphone, sans serveurs distants.",
-        faqTitle: "Foire Aux Questions",
-        faq1Q: "Comment synchroniser mes horaires avec mon calendrier ?",
-        faq1A: "Allez dans <strong>Paramètres &gt; Calendrier de l'appareil</strong>, activez la synchronisation et choisissez le calendrier cible.",
-        faq2Q: "Mes données personnelles sont-elles protégées ?",
-        faq2A: "Oui, à 100%. L'application fonctionne en local et ne transmet aucune donnée à des serveurs tiers.",
-        faq3Q: "Comment restaurer mon achat (Version Pro) ?",
-        faq3A: "Dans <strong>Paramètres &gt; Version Pro</strong>, touchez le bouton <strong>\"Restaurer les achats\"</strong>.",
-        faq4Q: "Comment configurer un cycle de roulement ?",
-        faq4A: "Rendez-vous dans <strong>Paramètres &gt; Rotation des horaires</strong> et saisissez votre séquence.",
-        linkPrivacy: "Politique de confidentialité",
-        linkTerms: "Conditions d'utilisation (CLUF)",
-        linkContact: "Contacter le développeur",
-        footerCopy: "&copy; " + new Date().getFullYear() + " Daniele Sforza • Calendrier de Garde. Tous droits réservés."
+        _title: 'Calendrier de Garde : assistance et questions fréquentes pour iOS et Android',
+        _desc: 'Support officiel et aide pour Calendrier de Garde, le planning de travail pour iOS et Android.',
+        skip: 'Aller au contenu', navLabel: 'Principal', langLabel: 'Langue', navFeatures: 'Fonctions', navFaq: 'Questions', cta: 'Écrire à l’assistance',
+        badge: 'Assistance officielle · iOS et Android', h1: 'L’agenda des horaires en roulement',
+        lead: 'Sur iOS et Android : saisissez votre cycle une fois et l’application le reporte sur tous les mois, vos données restant uniquement sur votre téléphone.',
+        appStore: 'Télécharger dans l’App Store', playStore: 'Disponible sur Google Play',
+        heroAlt: 'Trois écrans de Calendrier de Garde : la vue programme, octobre avec ses gardes et la modification d’un jour',
+        featH: 'Ce que fait l’application',
+        f1T: 'Répète votre cycle de gardes', f1D: 'Saisissez la séquence, par exemple M S N R, et la date de début : l’application la projette sur tous les mois.', f1A: 'Paramètres › Calendrier : la date de début et le cycle M S N R',
+        f2T: 'Synchronise le calendrier', f2D: 'Avec la version Pro, vos gardes vont dans Apple Calendrier ou Google Agenda et les événements du téléphone apparaissent dans l’app.', f2A: 'Paramètres › Calendriers de l’appareil : la synchronisation avec le calendrier du téléphone',
+        f3T: '20 thèmes, ou un thème créé par l’IA', f3D: 'Thèmes sombres et OLED, nature, vifs ou épurés. Ou, avec Pro, décrivez le thème que vous voulez et l’IA du téléphone le crée, même hors ligne.', f3A: 'Le choix des thèmes : Sauge & Sarcelle actif, avec les catégories Sombres & OLED et Nature & Terre',
+        themesLabel: 'Les 20 thèmes de l’application',
+        proH: 'Version Pro, un achat unique', proP: 'Vous payez une fois et elle reste à vous. Sur un nouveau téléphone, restaurez-la depuis Paramètres › Version Pro.',
+        pro1: 'Synchronisation avec iCloud, Google Agenda et les calendriers du système', pro2: 'Vue Programme pour parcourir gardes et événements', pro3: 'Thèmes et palettes premium', pro4: 'Générateur de thèmes par IA sur l’appareil', pro5: 'Pièces jointes, PDF et photos sur vos jours de travail',
+        proA: 'L’écran Passer à PRO : achat unique, accès à vie et les fonctions Pro',
+        faqTitle: 'Foire Aux Questions', restoreA: 'L’écran Passer à PRO avec le lien Restaurer les achats en haut',
+        contactDesc: 'Nous sommes là pour vous aider. Si vous rencontrez un souci ou avez une suggestion, écrivez-nous.',
+        btnCopy: 'Copier l’adresse e-mail', toastCopied: 'E-mail copié dans le presse-papiers',
+        faq1Q: 'Comment synchroniser mes horaires avec mon calendrier ?',
+        faq1A: 'Allez dans <strong>Paramètres &gt; Calendrier de l’appareil</strong>, activez la synchronisation et choisissez le calendrier cible.',
+        faq2Q: 'Mes données personnelles sont-elles protégées ?',
+        faq2A: 'Oui, à 100%. L’application fonctionne en local et ne transmet aucune donnée à des serveurs tiers.',
+        faq3Q: 'Comment restaurer mon achat (Version Pro) ?',
+        faq3A: 'Dans <strong>Paramètres &gt; Version Pro</strong>, touchez le bouton <strong>« Restaurer les achats »</strong>.',
+        faq4Q: 'Comment configurer un cycle de roulement ?',
+        faq4A: 'Rendez-vous dans <strong>Paramètres &gt; Rotation des horaires</strong> et saisissez votre séquence.',
+        closeH: 'Assistance par e-mail', fLegal: 'Mentions légales', fContact: 'Contact',
+        linkPrivacy: 'Politique de confidentialité', linkTerms: 'Conditions d’utilisation (CLUF)', linkContact: 'Contacter le développeur',
+        footerCopy: '© ' + Y + ' Daniele Sforza • Calendrier de Garde. Tous droits réservés.', marks: 'App Store et Google Play sont des marques de leurs propriétaires respectifs.'
       },
       de: {
-        metaTitle: "Schichtkalender - Support & Hilfe",
-        metaDesc: "Offizielle Support- und Hilfeseite für Schichtkalender.",
-        heroBadge: "Offizieller Support",
-        heroTitle: "Der intelligente Kalender für Ihre Arbeitsschichten",
-        heroDesc: "Verwalten Sie Ihre Schichtzyklen, synchronisieren Sie Termine mit Ihrem Gerätekalender und behalten Sie Ihre Arbeitszeiten im Blick.",
-        storeAppleSmall: "Laden im",
-        storeGoogleSmall: "Jetzt bei",
-        contactTitle: "Brauchen Sie Hilfe?",
-        contactDesc: "Wir sind für Sie da. Wenn Sie Fragen haben oder ein Problem melden möchten, kontaktieren Sie uns direkt.",
-        btnEmail: "✉️ E-Mail an den Support senden",
-        btnCopy: "📋 E-Mail-Adresse kopieren",
-        toastCopied: "E-Mail-Adresse in die Zwischenablage kopiert!",
-        feat1Title: "Automatische Rotation",
-        feat1Desc: "Geben Sie Ihr Schichtmuster ein und die App berechnet alle zukünftigen Monate automatisch.",
-        feat2Title: "Kalender-Synchronisierung",
-        feat2Desc: "Synchronisieren Sie Ihre Schichten nahtlos mit Apple Kalender und Google Kalender.",
-        feat3Title: "100% Datenschutz & Offline",
-        feat3Desc: "Ihre Schichtdaten verbleiben ausschließlich lokal auf Ihrem Gerät ohne Cloud-Tracking.",
-        faqTitle: "Häufig gestellte Fragen",
-        faq1Q: "Wie synchronisiere ich meine Schichten mit dem Kalender?",
-        faq1A: "Gehen Sie zu <strong>Einstellungen &gt; Gerätekalender</strong>, aktivieren Sie die Synchronisierung und wählen Sie Ihren Kalender.",
-        faq2Q: "Sind meine persönlichen Schichtdaten geschützt?",
-        faq2A: "Ja, zu 100%. Die App arbeitet vollständig offline auf Ihrem Smartphone.",
-        faq3Q: "Wie kann ich meinen Kauf (Pro-Version) wiederherstellen?",
-        faq3A: "Tippen Sie in <strong>Einstellungen &gt; Pro-Version</strong> auf <strong>\"Käufe wiederherstellen\"</strong>.",
-        faq4Q: "Wie richte ich ein Schichtmuster ein?",
-        faq4A: "Wählen Sie <strong>Einstellungen &gt; Schichtrotation</strong> und geben Sie Ihr Muster sowie das Startdatum an.",
-        linkPrivacy: "Datenschutzrichtlinie",
-        linkTerms: "Nutzungsbedingungen (EULA)",
-        linkContact: "Entwickler kontaktieren",
-        footerCopy: "&copy; " + new Date().getFullYear() + " Daniele Sforza • Schichtkalender. Alle Rechte vorbehalten."
+        _title: 'Schichtkalender: Support und häufige Fragen für iOS und Android',
+        _desc: 'Offizielle Support- und Hilfeseite für Schichtkalender, den Schichtplaner für iOS und Android.',
+        skip: 'Zum Inhalt', navLabel: 'Hauptmenü', langLabel: 'Sprache', navFeatures: 'Funktionen', navFaq: 'Fragen', cta: 'Support anschreiben',
+        badge: 'Offizieller Support · iOS und Android', h1: 'Der Kalender für Schichtarbeit',
+        lead: 'Für iOS und Android: Geben Sie Ihren Schichtzyklus einmal ein, und die App überträgt ihn auf alle Monate. Ihre Daten bleiben nur auf Ihrem Telefon.',
+        appStore: 'Laden im App Store', playStore: 'Jetzt bei Google Play',
+        heroAlt: 'Drei Bildschirme des Schichtkalenders: die Programmansicht, der Oktober mit seinen Schichten und das Bearbeiten eines Tages',
+        featH: 'Was die App kann',
+        f1T: 'Wiederholt Ihren Schichtzyklus', f1D: 'Geben Sie die Folge ein, etwa F S N R, und das Startdatum: die App überträgt sie auf alle Monate.', f1A: 'Einstellungen › Kalender: das Startdatum und der Zyklus F S N R',
+        f2T: 'Synchronisiert den Kalender', f2D: 'Mit der Pro-Version landen Ihre Schichten im Apple Kalender oder Google Kalender, und Termine des Telefons erscheinen in der App.', f2A: 'Einstellungen › Gerätekalender: die Synchronisierung mit dem Kalender des Telefons',
+        f3T: '20 Designs oder eines von der KI', f3D: 'Dunkel und OLED, Natur, lebendig oder minimal. Oder beschreiben Sie mit Pro das gewünschte Design, und die KI auf dem Telefon erstellt es, auch offline.', f3A: 'Die Design-Auswahl: Salbei & Blaugrün aktiv, mit den Kategorien Dunkel & OLED und Natur & Erde',
+        themesLabel: 'Die 20 Designs der App',
+        proH: 'Pro-Version, ein einmaliger Kauf', proP: 'Einmal bezahlt, dauerhaft Ihre. Auf einem neuen Telefon stellen Sie sie unter Einstellungen › Pro-Version wieder her.',
+        pro1: 'Synchronisierung mit iCloud, Google Kalender und Systemkalendern', pro2: 'Programmansicht für Schichten und Termine', pro3: 'Premium-Designs und Paletten', pro4: 'KI-Designgenerator auf dem Gerät', pro5: 'Anhänge, PDFs und Fotos an Arbeitstagen',
+        proA: 'Der Bildschirm Zu PRO wechseln: einmaliger Kauf, lebenslanger Zugang und die Pro-Funktionen',
+        faqTitle: 'Häufig gestellte Fragen', restoreA: 'Der Bildschirm Zu PRO wechseln mit dem Link Käufe wiederherstellen oben',
+        contactDesc: 'Wir sind für Sie da. Wenn Sie Fragen haben oder ein Problem melden möchten, kontaktieren Sie uns direkt.',
+        btnCopy: 'E-Mail-Adresse kopieren', toastCopied: 'E-Mail-Adresse in die Zwischenablage kopiert',
+        faq1Q: 'Wie synchronisiere ich meine Schichten mit dem Kalender?',
+        faq1A: 'Gehen Sie zu <strong>Einstellungen &gt; Gerätekalender</strong>, aktivieren Sie die Synchronisierung und wählen Sie Ihren Kalender.',
+        faq2Q: 'Sind meine persönlichen Schichtdaten geschützt?',
+        faq2A: 'Ja, zu 100%. Die App arbeitet vollständig offline auf Ihrem Smartphone.',
+        faq3Q: 'Wie kann ich meinen Kauf (Pro-Version) wiederherstellen?',
+        faq3A: 'Tippen Sie in <strong>Einstellungen &gt; Pro-Version</strong> auf <strong>„Käufe wiederherstellen“</strong>.',
+        faq4Q: 'Wie richte ich ein Schichtmuster ein?',
+        faq4A: 'Wählen Sie <strong>Einstellungen &gt; Schichtrotation</strong> und geben Sie Ihr Muster sowie das Startdatum an.',
+        closeH: 'Support per E-Mail', fLegal: 'Rechtliches', fContact: 'Kontakt',
+        linkPrivacy: 'Datenschutzrichtlinie', linkTerms: 'Nutzungsbedingungen (EULA)', linkContact: 'Entwickler kontaktieren',
+        footerCopy: '© ' + Y + ' Daniele Sforza • Schichtkalender. Alle Rechte vorbehalten.', marks: 'App Store und Google Play sind Marken ihrer jeweiligen Inhaber.'
       }
     };
-
-    function setLanguage(lang) {
-      if (!translations[lang]) lang = 'it';
-      const t = translations[lang];
-
-      document.documentElement.lang = lang;
-      document.getElementById('meta-title').textContent = t.metaTitle;
-      document.getElementById('hero-badge').textContent = t.heroBadge;
-      document.getElementById('hero-title').textContent = t.heroTitle;
-      document.getElementById('hero-desc').textContent = t.heroDesc;
-      document.getElementById('store-apple-small').textContent = t.storeAppleSmall;
-      document.getElementById('store-google-small').textContent = t.storeGoogleSmall;
-      document.getElementById('contact-title').textContent = t.contactTitle;
-      document.getElementById('contact-desc').textContent = t.contactDesc;
-      document.getElementById('btn-email').innerHTML = t.btnEmail;
-      document.getElementById('btn-copy').innerHTML = t.btnCopy;
-      document.getElementById('toast').textContent = t.toastCopied;
-
-      document.getElementById('feat-1-title').textContent = t.feat1Title;
-      document.getElementById('feat-1-desc').textContent = t.feat1Desc;
-      document.getElementById('feat-2-title').textContent = t.feat2Title;
-      document.getElementById('feat-2-desc').textContent = t.feat2Desc;
-      document.getElementById('feat-3-title').textContent = t.feat3Title;
-      document.getElementById('feat-3-desc').textContent = t.feat3Desc;
-
-      document.getElementById('faq-title').textContent = t.faqTitle;
-      document.getElementById('faq-1-q').textContent = t.faq1Q;
-      document.getElementById('faq-1-a').innerHTML = t.faq1A;
-      document.getElementById('faq-2-q').textContent = t.faq2Q;
-      document.getElementById('faq-2-a').innerHTML = t.faq2A;
-      document.getElementById('faq-3-q').textContent = t.faq3Q;
-      document.getElementById('faq-3-a').innerHTML = t.faq3A;
-      document.getElementById('faq-4-q').textContent = t.faq4Q;
-      document.getElementById('faq-4-a').innerHTML = t.faq4A;
-
-      document.getElementById('link-privacy').textContent = t.linkPrivacy;
-      document.getElementById('link-terms').textContent = t.linkTerms;
-      document.getElementById('link-contact').textContent = t.linkContact;
-      document.getElementById('footer-copy').innerHTML = t.footerCopy;
-
-      document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.lang === lang);
-      });
-
-      localStorage.setItem('preferred_lang', lang);
-    }
-
-    // Language buttons
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-      btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
-    });
-
-    // Detect browser lang or stored
-    const saved = localStorage.getItem('preferred_lang');
-    const browserLang = (navigator.language || 'it').substring(0, 2).toLowerCase();
-    const initialLang = saved || (translations[browserLang] ? browserLang : 'it');
-    setLanguage(initialLang);
-
-    // Accordion
-    document.querySelectorAll('.faq-question').forEach(q => {
-      q.addEventListener('click', () => {
-        const item = q.parentElement;
-        const isOpen = item.classList.contains('open');
-        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-        if (!isOpen) {
-          item.classList.add('open');
-        }
-      });
-    });
-
-    // Copy email helper
-    function copyEmail() {
-      navigator.clipboard.writeText('info@danielesforza.dev').then(() => {
-        const toast = document.getElementById('toast');
-        toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), 2500);
-      });
-    }
-  </script>
+    Object.keys(dict).forEach(function (l) { THEMES[l].forEach(function (n, i) { dict[l]['th' + i] = n; }); });
+    document.querySelector('[data-i18n="footerCopy"]').textContent = dict.it.footerCopy;
+    // the saved language of this page; the privacy page reads the same key
+    initLang({ key: 'preferred_lang', def: 'it', dict: dict });
+  })();
+</script>
+<script type="module" src="../assets/system.js"></script>
+<script type="module" src="../assets/motion/motion.js"></script>
+<script type="module" src="../assets/layout/layout.js"></script>
 </body>
 </html>

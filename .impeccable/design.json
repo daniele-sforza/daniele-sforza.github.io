@@ -1,0 +1,157 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-11T12:00:00Z",
+  "title": "Design System: danielesforza.dev",
+  "extensions": {
+    "colorMeta": {
+      "drafting-paper": { "role": "neutral", "displayName": "Drafting Paper", "canonical": "#EBE6DC", "tonalRamp": ["oklch(25% 0.012 85)", "oklch(36% 0.014 85)", "oklch(48% 0.016 85)", "oklch(60% 0.018 85)", "oklch(72% 0.018 85)", "oklch(83% 0.017 85)", "oklch(92.5% 0.016 85)", "oklch(97% 0.008 85)"] },
+      "lifted-paper": { "role": "neutral", "displayName": "Lifted Paper", "canonical": "#F7F4EE", "tonalRamp": ["oklch(25% 0.008 85)", "oklch(36% 0.009 85)", "oklch(48% 0.01 85)", "oklch(60% 0.011 85)", "oklch(72% 0.011 85)", "oklch(84% 0.01 85)", "oklch(92% 0.009 85)", "oklch(97% 0.007 85)"] },
+      "studio-ink": { "role": "neutral", "displayName": "Studio Ink", "canonical": "#0D0C0B", "tonalRamp": ["oklch(15% 0.003 70)", "oklch(25% 0.004 70)", "oklch(36% 0.005 70)", "oklch(48% 0.006 70)", "oklch(60% 0.006 70)", "oklch(72% 0.006 70)", "oklch(84% 0.005 70)", "oklch(95% 0.004 70)"] },
+      "ink-muted": { "role": "neutral", "displayName": "Ink Muted", "canonical": "#64615c" },
+      "hairline": { "role": "neutral", "displayName": "Hairline", "canonical": "color-mix(in oklab, #0D0C0B 13%, transparent)" },
+      "paper-shade": { "role": "neutral", "displayName": "Paper Shade", "canonical": "color-mix(in oklab, #0D0C0B 9%, #EBE6DC)" },
+      "studio-black": { "role": "neutral", "displayName": "Studio Black", "canonical": "#0B0A09", "tonalRamp": ["oklch(14% 0.003 70)", "oklch(22% 0.004 70)", "oklch(32% 0.005 70)", "oklch(44% 0.006 70)", "oklch(57% 0.006 70)", "oklch(70% 0.006 70)", "oklch(83% 0.005 70)", "oklch(95% 0.004 70)"] },
+      "lamplight": { "role": "neutral", "displayName": "Lamplight", "canonical": "#EFE9DF" },
+      "lamplight-muted": { "role": "neutral", "displayName": "Lamplight Muted", "canonical": "color-mix(in oklab, #EFE9DF 56%, #0B0A09)" },
+      "panel-hairline": { "role": "neutral", "displayName": "Panel Hairline", "canonical": "color-mix(in oklab, #EFE9DF 15%, transparent)" },
+      "signal-lime": { "role": "primary", "displayName": "Signal Lime", "canonical": "#D7FF3F", "tonalRamp": ["oklch(25% 0.06 120)", "oklch(36% 0.09 120)", "oklch(48% 0.13 121)", "oklch(60% 0.16 122)", "oklch(72% 0.19 123)", "oklch(84% 0.2 124)", "oklch(93.5% 0.2 125)", "oklch(97% 0.09 125)"] },
+      "ember": { "role": "secondary", "displayName": "Ember (reserved)", "canonical": "#FF5A2E", "tonalRamp": ["oklch(25% 0.08 38)", "oklch(36% 0.12 38)", "oklch(48% 0.16 38)", "oklch(60% 0.2 38)", "oklch(67% 0.22 38)", "oklch(78% 0.14 40)", "oklch(88% 0.07 42)", "oklch(96% 0.025 45)"] },
+      "ct-night": { "role": "tertiary", "displayName": "CT Night (Calendario Turni)", "canonical": "#0e1513" },
+      "ct-night-surface": { "role": "tertiary", "displayName": "CT Night Surface (Calendario Turni)", "canonical": "#1a2120" },
+      "ct-mint": { "role": "tertiary", "displayName": "CT Mint (Calendario Turni)", "canonical": "#82d5c8" },
+      "ct-mint-ink": { "role": "tertiary", "displayName": "CT Mint Ink (Calendario Turni)", "canonical": "#003731" },
+      "ct-teal": { "role": "tertiary", "displayName": "CT Teal (Calendario Turni)", "canonical": "#006a60" },
+      "ct-mist": { "role": "tertiary", "displayName": "CT Mist (Calendario Turni)", "canonical": "#edf4f1" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "The name in the hero only." },
+      "statement": { "displayName": "Statement", "purpose": "The hero's second line, under the name." },
+      "headline": { "displayName": "Headline", "purpose": "Section headings (h2) and the closing heading." },
+      "accent-italic": { "displayName": "Signature Italic", "purpose": "Exactly one word per heading." },
+      "title": { "displayName": "Title", "purpose": "Project names in cards." },
+      "lead": { "displayName": "Lead", "purpose": "Hero intro and section leads." },
+      "body": { "displayName": "Body", "purpose": "Running text; list rows at 15px." },
+      "label": { "displayName": "Mono Label", "purpose": "Section labels, project kinds, footer heads, the status pill." }
+    },
+    "shadows": [
+      { "name": "float", "value": "0 40px 80px -40px color-mix(in oklab, #0D0C0B 35%, transparent)", "purpose": "Under device frames on the exhibit tray and under a hovered project card. Objects only." }
+    ],
+    "motion": [
+      { "name": "ease-studio", "value": "cubic-bezier(.7, 0, .2, 1)", "purpose": "Every state transition." },
+      { "name": "duration-quick", "value": "0.35s", "purpose": "Button background and press." },
+      { "name": "duration-base", "value": "0.4s", "purpose": "Card lift, arrow nudge, thumbnail zoom, underline colour." },
+      { "name": "hover-lift", "value": "translateY(-2px)", "purpose": "A linked card picked up on hover." },
+      { "name": "press", "value": "translateY(1px) scale(.985)", "purpose": "A button pressed." }
+    ],
+    "breakpoints": [
+      { "name": "phone-narrow", "value": "399px" },
+      { "name": "phone", "value": "639px" },
+      { "name": "tablet", "value": "1023px" },
+      { "name": "desktop", "value": "1024px" }
+    ],
+    "textures": [
+      { "name": "paper-grain", "value": "fractal noise in ink, 0.7 alpha, page overlay at 5% opacity, multiply", "purpose": "The drafting paper's tooth, over the whole page." },
+      { "name": "panel-grain", "value": "fractal noise in white at 5% alpha, layered over Studio Black", "purpose": "The material of the studio panels." }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button (on paper)",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The main action on the paper ground: an ink pill with a lime dot.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Scrivimi<span class=\"ds-dot\"></span></a>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 10px; height: 44px; padding: 0 24px; border-radius: 999px; background: #0D0C0B; color: #EFE9DF; font: 500 15px/1 'Host Grotesk', system-ui, sans-serif; text-decoration: none; transition: background .35s cubic-bezier(.7,0,.2,1), transform .35s cubic-bezier(.7,0,.2,1); } .ds-btn-primary .ds-dot { width: 7px; height: 7px; border-radius: 50%; background: #D7FF3F; } .ds-btn-primary:hover { background: color-mix(in oklab, #0D0C0B 86%, #EFE9DF); } .ds-btn-primary:active { transform: translateY(1px) scale(.985); } .ds-btn-primary:focus-visible { outline: 2px solid #0D0C0B; outline-offset: 3px; }"
+    },
+    {
+      "name": "Primary Button (on dark)",
+      "kind": "button",
+      "refersTo": "button-primary-on-dark",
+      "description": "The main action inside a studio panel: a lime pill with an ink dot.",
+      "html": "<div style=\"background:#0B0A09;padding:24px;border-radius:22px\"><a class=\"ds-btn-lime\" href=\"#\">Scrivimi<span class=\"ds-dot\"></span></a></div>",
+      "css": ".ds-btn-lime { display: inline-flex; align-items: center; gap: 10px; height: 44px; padding: 0 24px; border-radius: 999px; background: #D7FF3F; color: #0D0C0B; font: 500 15px/1 'Host Grotesk', system-ui, sans-serif; text-decoration: none; transition: background .35s cubic-bezier(.7,0,.2,1), transform .35s cubic-bezier(.7,0,.2,1); } .ds-btn-lime .ds-dot { width: 7px; height: 7px; border-radius: 50%; background: #0D0C0B; } .ds-btn-lime:hover { background: color-mix(in oklab, #D7FF3F 86%, #0D0C0B); } .ds-btn-lime:active { transform: translateY(1px) scale(.985); } .ds-btn-lime:focus-visible { outline: 2px solid #D7FF3F; outline-offset: 3px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "A hairline pill for the second action.",
+      "html": "<a class=\"ds-btn-secondary\" href=\"#\">Guarda i progetti</a>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; height: 44px; padding: 0 24px; border-radius: 999px; background: transparent; color: #0D0C0B; border: 1px solid color-mix(in oklab, #0D0C0B 22%, transparent); font: 500 15px/1 'Host Grotesk', system-ui, sans-serif; text-decoration: none; transition: background .35s cubic-bezier(.7,0,.2,1), transform .35s cubic-bezier(.7,0,.2,1); } .ds-btn-secondary:hover { background: color-mix(in oklab, #0D0C0B 6%, transparent); } .ds-btn-secondary:active { transform: translateY(1px) scale(.985); } .ds-btn-secondary:focus-visible { outline: 2px solid #0D0C0B; outline-offset: 3px; }"
+    },
+    {
+      "name": "Status Pill",
+      "kind": "chip",
+      "refersTo": "status-pill",
+      "description": "A fact stated in mono with a static lime dot, on dark.",
+      "html": "<div style=\"background:#0B0A09;padding:24px;border-radius:22px\"><p class=\"ds-pill\"><span class=\"ds-dot\"></span>Disponibile per nuovi progetti</p></div>",
+      "css": ".ds-pill { display: inline-flex; align-items: center; gap: 10px; height: 34px; margin: 0; padding: 0 14px; border: 1px solid color-mix(in oklab, #EFE9DF 15%, transparent); border-radius: 999px; color: #EFE9DF; font: 500 11.5px/1 'JetBrains Mono', ui-monospace, monospace; letter-spacing: .1em; text-transform: uppercase; } .ds-pill .ds-dot { width: 7px; height: 7px; border-radius: 50%; background: #D7FF3F; }"
+    },
+    {
+      "name": "Project Card",
+      "kind": "card",
+      "refersTo": "project-card",
+      "description": "A linked project on a studio panel: thumbnail, title, mono kind, arrow. Lifts and floats on hover.",
+      "html": "<div style=\"background:#0B0A09;padding:24px;border-radius:22px;max-width:520px\"><a class=\"ds-card\" href=\"#\"><span class=\"ds-card__thumb\"><svg viewBox=\"0 0 44 44\" width=\"44\" height=\"44\"><rect width=\"44\" height=\"44\" rx=\"10\" fill=\"#f4f4f4\"/><rect width=\"44\" height=\"12\" rx=\"4\" fill=\"#ff6a2b\"/></svg></span><span><span class=\"ds-card__name\">Calendario Turni</span><span class=\"ds-card__kind\">App · iOS e Android</span></span><span class=\"ds-card__go\"><svg viewBox=\"0 0 12 12\" width=\"12\" height=\"12\"><path d=\"M1 6h9M6.5 2.5 10 6l-3.5 3.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span></a></div>",
+      "css": ".ds-card { display: grid; grid-template-columns: 64px minmax(0,1fr) auto; align-items: center; gap: 16px; padding: 10px 18px 10px 10px; border-radius: 22px; background: #F7F4EE; color: #0D0C0B; text-decoration: none; transition: transform .4s cubic-bezier(.7,0,.2,1), box-shadow .4s cubic-bezier(.7,0,.2,1); } .ds-card:hover { transform: translateY(-2px); box-shadow: 0 40px 80px -40px color-mix(in oklab, #0D0C0B 35%, transparent); } .ds-card:focus-visible { outline: 2px solid #D7FF3F; outline-offset: 3px; } .ds-card__thumb { width: 64px; height: 64px; border-radius: 16px; background: #0e1513; display: grid; place-items: center; } .ds-card__name { display: block; font: 500 19px/1.2 'Host Grotesk', system-ui, sans-serif; letter-spacing: -0.015em; } .ds-card__kind { display: block; margin-top: 4px; font: 500 11.5px/1.3 'JetBrains Mono', ui-monospace, monospace; letter-spacing: .1em; text-transform: uppercase; color: #64615c; } .ds-card__go { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: #0D0C0B; color: #D7FF3F; transition: transform .4s cubic-bezier(.7,0,.2,1); } .ds-card:hover .ds-card__go { transform: translateX(3px); }"
+    },
+    {
+      "name": "Section Label",
+      "kind": "custom",
+      "refersTo": "section-label",
+      "description": "The numbered mono index line over every section heading.",
+      "html": "<p class=\"ds-label\">01 — App · iOS e Android</p><h2 class=\"ds-h2\">Calendario Turni, l’app per i <em>turni</em> di lavoro</h2>",
+      "css": ".ds-label { display: flex; align-items: center; gap: 10px; margin: 0 0 20px; color: #64615c; font: 500 11.5px/1.4 'JetBrains Mono', ui-monospace, monospace; letter-spacing: .1em; text-transform: uppercase; } .ds-label::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: currentColor; } .ds-h2 { margin: 0; color: #0D0C0B; font: 500 clamp(32px, 4.2vw, 62px)/1.02 'Host Grotesk', system-ui, sans-serif; letter-spacing: -0.035em; } .ds-h2 em { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-weight: 400; font-size: 1.06em; letter-spacing: -0.01em; }"
+    },
+    {
+      "name": "Studio Panel",
+      "kind": "custom",
+      "refersTo": "studio-panel",
+      "description": "The framed near-black slab that holds the hero and the footer; the paper border is the 10px frame.",
+      "html": "<section class=\"ds-panel\"><p class=\"ds-panel__label\">Portfolio · iOS · Android · Web</p><h1 class=\"ds-panel__name\">Daniele Sforza</h1><p class=\"ds-panel__sub\">sviluppatore di app e <em>siti web</em></p></section>",
+      "css": ".ds-panel { padding: 40px 36px; border: 10px solid #EBE6DC; border-radius: 40px; background: #0B0A09; color: #EFE9DF; } .ds-panel__label { margin: 0 0 32px; font: 500 11.5px/1.4 'JetBrains Mono', ui-monospace, monospace; letter-spacing: .1em; text-transform: uppercase; color: color-mix(in oklab, #EFE9DF 56%, #0B0A09); } .ds-panel__name { margin: 0; font: 500 72px/.88 'Host Grotesk', system-ui, sans-serif; letter-spacing: -0.055em; } .ds-panel__sub { margin: 16px 0 0; font: 500 30px/1.08 'Host Grotesk', system-ui, sans-serif; letter-spacing: -0.03em; color: color-mix(in oklab, #EFE9DF 56%, #0B0A09); } .ds-panel__sub em { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-weight: 400; color: #D7FF3F; }"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": "studio-panel",
+      "description": "Paper bar with the lime-on-ink initial, a mono language switch and the ink pill.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav__logo\" href=\"#\"><span class=\"ds-nav__mark\">D</span>Daniele Sforza</a><a class=\"ds-nav__link\" href=\"#\">Progetti</a><span class=\"ds-nav__lang\"><a href=\"#\" aria-current=\"true\">IT</a><a href=\"#\">EN</a></span><a class=\"ds-nav__cta\" href=\"#\">Scrivimi<span class=\"ds-dot\"></span></a></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; gap: 32px; height: 72px; padding: 0 24px; background: color-mix(in oklab, #EBE6DC 92%, transparent); color: #0D0C0B; font: 500 15px/1 'Host Grotesk', system-ui, sans-serif; } .ds-nav__logo { display: inline-flex; align-items: center; gap: 8px; font-size: 20px; color: inherit; text-decoration: none; } .ds-nav__mark { width: 22px; height: 22px; display: grid; place-items: center; border-radius: 8px; background: #0D0C0B; color: #D7FF3F; font-size: 13px; font-weight: 600; } .ds-nav__link { color: inherit; text-decoration: none; } .ds-nav__link:hover { text-decoration: underline; text-underline-offset: 6px; } .ds-nav__lang { margin-left: auto; display: flex; gap: 16px; font: 500 12px/1 'JetBrains Mono', ui-monospace, monospace; letter-spacing: .08em; } .ds-nav__lang a { color: inherit; text-decoration: none; } .ds-nav__lang a[aria-current] { text-decoration: underline dotted; text-underline-offset: 6px; } .ds-nav__cta { display: inline-flex; align-items: center; gap: 10px; height: 44px; padding: 0 24px; border-radius: 999px; background: #0D0C0B; color: #EFE9DF; text-decoration: none; } .ds-nav__cta .ds-dot { width: 7px; height: 7px; border-radius: 50%; background: #D7FF3F; } .ds-nav__cta:hover { background: color-mix(in oklab, #0D0C0B 86%, #EFE9DF); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Night Studio",
+    "overview": "A developer's studio after hours. The page is drafting paper on a desk, faintly grained, and the work hangs on it in near-black panels like screens left on in a dark room. One colour is still awake: a lime signal that marks where you can act and what is live. Everything else is ink, paper and lamplight cream.\n\nThe system is tactile and crafted. Panels are objects with weight, set inside a thin paper frame (10px) so they read as slabs placed on the page rather than bands across it. Devices cast a long, soft float shadow; project cards lift when touched; grain sits on every surface. Type does the talking: the name set enormous and tight, one word per heading set in a hand-cut serif italic as a signature, small mono labels that number and classify the work like a studio's index cards.\n\nThe work itself leads. Every picture is a real screenshot of a real product, shown in its own device frame and in the visitor's language. The interface recedes around it: no decorative illustration, no stock imagery, no WebGL showpiece in the hero.",
+    "keyCharacteristics": [
+      "Drafting-paper ground with ink grain; Studio Black panels inset by a 10px paper frame.",
+      "Signal Lime used only on dark, or as a small dot on ink.",
+      "Giant tight Host Grotesk display; one Instrument Serif italic word per heading.",
+      "JetBrains Mono uppercase labels that number and classify sections.",
+      "Real product screenshots in device frames, never illustrations.",
+      "Product subpages wear their own product's system, not this one."
+    ],
+    "rules": [
+      { "name": "The One Light Rule", "body": "Signal Lime is the only accent on the home page. It appears as a dot, a dark-panel button or one serif word on dark; never as a ground for large areas and never as text on paper.", "section": "colors" },
+      { "name": "The Product Wears Its Own Clothes Rule", "body": "A product subpage follows the design system of the product it supports (the app's theme, the website's own tokens). The home page's system stops at the product page's door.", "section": "colors" },
+      { "name": "The Signature Word Rule", "body": "Every heading carries exactly one word in Instrument Serif italic (at 1.06em, weight 400). It is the word that carries the meaning (turni, romano, nuovo, siti web), not a filler word.", "section": "typography" },
+      { "name": "The Numbered Index Rule", "body": "Each section opens with a mono label: a two-digit number, an em dash, the kind. Numbers run in page order.", "section": "typography" },
+      { "name": "The Objects Cast Shadows Rule", "body": "Only things that are objects (a phone, a browser window, a card being picked up) cast the Float shadow. Panels, trays and sections never do; they are surfaces, not objects.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do put the two studio panels (hero, footer) inside the 10px paper frame, rounded 30px, with their text on the container lines.",
+      "Do set one word per heading in Instrument Serif italic, and give each section a numbered mono label.",
+      "Do show real product screenshots, in the visitor's language, inside phone or browser frames.",
+      "Do keep Signal Lime to dots, the dark-panel primary button and the accent word on dark.",
+      "Do give product subpages their own product's design system (Calendario Turni: Teal Sage)."
+    ],
+    "donts": [
+      "Don't set Signal Lime text on Drafting Paper or Lifted Paper; it fails contrast.",
+      "Don't use Ember until a real need for a second accent is agreed.",
+      "Don't put a WebGL or particle scene in the hero; the three.js \"code compiling\" hero was tried and removed.",
+      "Don't pulse the status dot or any other dot; they state facts, not live data.",
+      "Don't give panels, trays or sections a drop shadow; only objects float.",
+      "Don't use illustrations, stock photos or drawn device mock-ups in place of real screenshots."
+    ]
+  }
+}
